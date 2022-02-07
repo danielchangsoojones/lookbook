@@ -1,16 +1,29 @@
 PODS:
+  - Bolts/Tasks (1.9.1)
+  - Parse (1.19.3):
+    - Parse/Core (= 1.19.3)
+  - Parse/Core (1.19.3):
+    - Bolts/Tasks (= 1.9.1)
+  - Parse/UI (1.19.3):
+    - Parse/Core
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
+  - Parse
+  - Parse/UI
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
   trunk:
+    - Bolts
+    - Parse
     - SnapKit
 
 SPEC CHECKSUMS:
+  Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: b6d3dc244b73548fe2d09aca54c833abc32bf663
+PODFILE CHECKSUM: 9b1045d2de19b1647d4766363d606c6c0dd9d0fa
 
 COCOAPODS: 1.11.2
