@@ -26,7 +26,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func logInPressed() {
-        print("log in")
+        let logInVC = LogInViewController()
+        navigationController?.pushViewController(logInVC, animated: true)
     }
     
     @objc private func registerPressed() {

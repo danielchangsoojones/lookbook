@@ -69,12 +69,11 @@ class WelcomeView: UIView {
     
     private func createButton(title: String, textColor: UIColor) -> UIButton {
         let button = UIButton()
-        button.titleLabel?.text = title
         button.backgroundColor = textColor == .black ? .white : .black
         button.setTitle(title, for: .normal)
         button.setTitleColor(textColor, for: .normal)
         button.titleLabel?.font =  .systemFont(ofSize: 13, weight: .black)
-        button.layer.cornerRadius = 6
+        button.layer.cornerRadius = 8
         button.clipsToBounds = true
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
@@ -91,7 +90,6 @@ class WelcomeView: UIView {
         subtitleLabel.font = .systemFont(ofSize: 20, weight: .light)
         subtitleLabel.textAlignment = .center
         subtitleLabel.textColor = .white
-        subtitleLabel.font = UIFont(name: "Comfortaa", size: 20)
         addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints { (make) in
             make.center.equalToSuperview()

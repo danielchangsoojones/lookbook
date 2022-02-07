@@ -9,9 +9,20 @@ import UIKit
 import SnapKit
 
 class RegisterViewController: UIViewController {
-
+    var titleLabel: UILabel!
+    var nextButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        let registerView = RegisterView(frame: self.view.bounds)
+        self.view = registerView
+        titleLabel = registerView.titleLabel
+        nextButton = registerView.nextButton
+        registerView.nextButton.addTarget(self, action: #selector(nextBtnPressed), for: .touchUpInside)
+        navigationController?.navigationBar.tintColor = UIColor.black
+    }
+    
+    @objc func nextBtnPressed() {
+        print("register")
     }
 }
