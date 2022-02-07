@@ -8,6 +8,8 @@ target 'lookbook' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'Reusable'
+  pod 'TextFieldEffects'
+  pod 'BRYXBanner'
 
   # Pods for lookbook
 
