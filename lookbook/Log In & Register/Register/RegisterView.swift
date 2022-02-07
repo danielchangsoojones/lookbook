@@ -10,6 +10,8 @@ import UIKit
 class RegisterView: UIView {
     var titleLabel: UILabel!
     private var stackView: UIStackView!
+    var emailTextField: UITextField!
+    var passwordTextField: UITextField!
     var nextButton: UIButton!
     
     override init(frame: CGRect) {
@@ -49,8 +51,8 @@ class RegisterView: UIView {
     }
     
     private func setUpStackViewContent() {
-        createTextField(placeHolder: "EMAIL")
-        createTextField(placeHolder: "PASSWORD")
+        emailTextField = createTextField(placeHolder: "EMAIL")
+        passwordTextField = createTextField(placeHolder: "PASSWORD")
         setUpNextButton()
     }
     
@@ -70,7 +72,7 @@ class RegisterView: UIView {
     }
     
     //TODO: maybe use an animated cocoapod for this
-    private func createTextField(placeHolder: String) {
+    private func createTextField(placeHolder: String) -> UITextField {
         let textField = UITextField()
         textField.placeholder = placeHolder
         textField.borderStyle = .line
@@ -84,5 +86,7 @@ class RegisterView: UIView {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(50)
         }
+        
+        return textField
     }
 }
