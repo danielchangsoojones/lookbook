@@ -18,6 +18,7 @@
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
 		923648F3278FFD0700AED21C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 923648F2278FFD0700AED21C /* Assets.xcassets */; };
 		923648F6278FFD0700AED21C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923648F4278FFD0700AED21C /* LaunchScreen.storyboard */; };
+		92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAFBAB27B1E14400773F6B /* Enviroment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		923648F2278FFD0700AED21C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		923648F5278FFD0700AED21C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		923648F7278FFD0700AED21C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92BAFBAB27B1E14400773F6B /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
 		A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug.xcconfig"; sourceTree = "<group>"; };
 		D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lookbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 		384C54C827B1C84200B8BEEA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				92BAFBAD27B1E24200773F6B /* Database Setup */,
 				384C54C927B1C84F00B8BEEA /* User.swift */,
 			);
 			path = Models;
@@ -141,6 +144,14 @@
 				923648F7278FFD0700AED21C /* Info.plist */,
 			);
 			path = lookbook;
+			sourceTree = "<group>";
+		};
+		92BAFBAD27B1E24200773F6B /* Database Setup */ = {
+			isa = PBXGroup;
+			children = (
+				92BAFBAB27B1E14400773F6B /* Enviroment.swift */,
+			);
+			path = "Database Setup";
 			sourceTree = "<group>";
 		};
 		F5E41BA31BAC84BDDDFB23BC /* Frameworks */ = {
@@ -270,6 +281,7 @@
 				384C54C427B1C32100B8BEEA /* LogInViewController.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
+				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
