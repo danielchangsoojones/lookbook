@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func showInitialVC() {
         let welcomeVC = WelcomeViewController()
-        set(startingVC: welcomeVC)
+        let navController = UINavigationController(rootViewController: welcomeVC)
+        navController.modalPresentationStyle = .fullScreen
+        set(startingVC: navController)
     }
     
     private func set(startingVC: UIViewController) {
