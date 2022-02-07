@@ -7,6 +7,7 @@ target 'lookbook' do
   pod 'SnapKit', '~> 4.0'
   pod 'Parse'
   pod 'Parse/UI'
+  pod 'Reusable'
 
   # Pods for lookbook
 

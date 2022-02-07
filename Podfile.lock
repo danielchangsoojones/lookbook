@@ -6,24 +6,32 @@ PODS:
     - Bolts/Tasks (= 1.9.1)
   - Parse/UI (1.19.3):
     - Parse/Core
+  - Reusable (4.1.2):
+    - Reusable/Storyboard (= 4.1.2)
+    - Reusable/View (= 4.1.2)
+  - Reusable/Storyboard (4.1.2)
+  - Reusable/View (4.1.2)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - Parse
   - Parse/UI
+  - Reusable
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Bolts
     - Parse
+    - Reusable
     - SnapKit
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
+  Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 9b1045d2de19b1647d4766363d606c6c0dd9d0fa
+PODFILE CHECKSUM: acfae9ff77fe4d83bb420083b92cb7311b10fcf8
 
 COCOAPODS: 1.11.2
