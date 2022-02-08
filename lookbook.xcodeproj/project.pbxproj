@@ -24,6 +24,11 @@
 		385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483DD27B25A2C00B7C19A /* SuperParseObject.swift */; };
 		385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E027B2680C00B7C19A /* ExploreDataStore.swift */; };
 		385483E327B2913A00B7C19A /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E227B2913A00B7C19A /* ImageViewExtension.swift */; };
+		386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */; };
+		386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373C27B3347800AC0497 /* MasterChatRoomView.swift */; };
+		386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373F27B334C000AC0497 /* MasterChatDataStore.swift */; };
+		386D374227B3365300AC0497 /* ChatRoomParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D374127B3365300AC0497 /* ChatRoomParse.swift */; };
+		386D374427B3368C00AC0497 /* MessageParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D374327B3368C00AC0497 /* MessageParse.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -53,6 +58,11 @@
 		385483DD27B25A2C00B7C19A /* SuperParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperParseObject.swift; sourceTree = "<group>"; };
 		385483E027B2680C00B7C19A /* ExploreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataStore.swift; sourceTree = "<group>"; };
 		385483E227B2913A00B7C19A /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatRoomViewController.swift; sourceTree = "<group>"; };
+		386D373C27B3347800AC0497 /* MasterChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatRoomView.swift; sourceTree = "<group>"; };
+		386D373F27B334C000AC0497 /* MasterChatDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatDataStore.swift; sourceTree = "<group>"; };
+		386D374127B3365300AC0497 /* ChatRoomParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomParse.swift; sourceTree = "<group>"; };
+		386D374327B3368C00AC0497 /* MessageParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageParse.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +200,24 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
+		386D373927B333C400AC0497 /* Master Chat Room */ = {
+			isa = PBXGroup;
+			children = (
+				386D373E27B3349C00AC0497 /* DataStore */,
+				386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */,
+				386D373C27B3347800AC0497 /* MasterChatRoomView.swift */,
+			);
+			path = "Master Chat Room";
+			sourceTree = "<group>";
+		};
+		386D373E27B3349C00AC0497 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				386D373F27B334C000AC0497 /* MasterChatDataStore.swift */,
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,8 +250,8 @@
 		923648E8278FFD0300AED21C /* lookbook */ = {
 			isa = PBXGroup;
 			children = (
+				386D373927B333C400AC0497 /* Master Chat Room */,
 				92A4189527B287AE009A6BA3 /* Messenger */,
-				385483CC27B2012000B7C19A /* Home */,
 				385483D127B2546600B7C19A /* Explore */,
 				385483C127B1DE6500B7C19A /* Helpers */,
 				384C54C827B1C84200B8BEEA /* Models */,
@@ -258,6 +286,8 @@
 			children = (
 				92BAFBAB27B1E14400773F6B /* Enviroment.swift */,
 				385483DB27B259E000B7C19A /* InfluencerParse.swift */,
+				386D374127B3365300AC0497 /* ChatRoomParse.swift */,
+				386D374327B3368C00AC0497 /* MessageParse.swift */,
 			);
 			path = "Database Setup";
 			sourceTree = "<group>";
@@ -392,13 +422,16 @@
 				385483C627B1E06200B7C19A /* StringExtension.swift in Sources */,
 				385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */,
 				384C54BF27B1B9B800B8BEEA /* RegisterView.swift in Sources */,
+				386D374427B3368C00AC0497 /* MessageParse.swift in Sources */,
 				385483D327B2547400B7C19A /* ExploreView.swift in Sources */,
 				385483D827B254B100B7C19A /* InfluencerTableViewCell.swift in Sources */,
 				385483D527B2548900B7C19A /* ExploreViewController.swift in Sources */,
 				384C54C427B1C32100B8BEEA /* LogInViewController.swift in Sources */,
 				92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */,
+				386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
+				386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */,
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
@@ -406,6 +439,8 @@
 				385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */,
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
 				385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */,
+				386D374227B3365300AC0497 /* ChatRoomParse.swift in Sources */,
+				386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

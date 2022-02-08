@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        User.current()?.fetchInBackground()
+    }
+    
     private func setUpServer() {
         let configuration = ParseClientConfiguration {
             $0.applicationId = Configuration.environment.appID
@@ -30,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func showInitialVC() {
-        let welcomeVC = ExploreViewController()
+        let welcomeVC = MasterChatRoomViewController()
         let navController = UINavigationController(rootViewController: welcomeVC)
         navController.modalPresentationStyle = .fullScreen
         set(startingVC: navController)
