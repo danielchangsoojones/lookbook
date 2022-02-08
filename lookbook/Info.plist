@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Configuration</key>
-	<string>$(Configuration)</string>
+	<string>$(CONFIGURATION)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
