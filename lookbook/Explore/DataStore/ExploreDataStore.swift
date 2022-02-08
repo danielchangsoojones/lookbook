@@ -20,4 +20,17 @@ class ExploreDataStore {
             }
         }
     }
+    
+    func createChatRoom(influencerObjectId: String, completion: @escaping (Bool) -> Void) {
+        let parameters: [String: Any] = ["influencerObjectId": influencerObjectId]
+        PFCloud.callFunction(inBackground: "createChatRoomWithInfluencer", withParameters: parameters) { (result, error) in
+            if result != nil {
+                completion(true)
+            } else if let error = error {
+                BannerAlert.show(with: error)
+            } else {
+                BannerAlert.showUnknownError(functionName: "createChatRoomWithInfluencer")
+            }
+        }
+    }
 }

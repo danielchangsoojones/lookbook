@@ -63,8 +63,14 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         let influencer = influencers[indexPath.row]
         cell.selectionStyle = .none
         cell.startChattingAction = {
-            //TODO: SEGUE INTO MESSENGER VC (should take influencer info as init)
-            print("segue into MessengerVC")
+            self.dataStore.createChatRoom(influencerObjectId: influencer.objectId ?? "") { success in
+                //TODO: disable button + add spinner
+                if success {
+                    //TODO: enable button + stop timer
+                    //TODO: SEGUE INTO MESSENGER VC (should take influencer info as init)
+                    print("segue into MessengerVC")
+                }
+            }
         }
         cell.set(imageFile: influencer.user.profilePhoto,
                  name: influencer.user.name ?? "",
