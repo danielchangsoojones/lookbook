@@ -59,8 +59,8 @@ extension RegisterViewController {
     }
     
     func segueIntoApp() {
-        //TODO: specify & override
-        print("segue into app")
+        let homeVC = HomeViewController()
+        pushVC(homeVC)
     }
     
     func showError(title: String, subtitle: String) {

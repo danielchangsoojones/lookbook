@@ -17,6 +17,8 @@
 		385483C627B1E06200B7C19A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483C527B1E06200B7C19A /* StringExtension.swift */; };
 		385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483C827B1F8A600B7C19A /* ResetPasswordViewController.swift */; };
 		385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483CA27B1F96600B7C19A /* ViewControllerExtension.swift */; };
+		385483CE27B2014000B7C19A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483CD27B2014000B7C19A /* HomeViewController.swift */; };
+		385483D027B2015600B7C19A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483CF27B2015600B7C19A /* HomeView.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -35,6 +37,8 @@
 		385483C527B1E06200B7C19A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		385483C827B1F8A600B7C19A /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		385483CA27B1F96600B7C19A /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		385483CD27B2014000B7C19A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		385483CF27B2015600B7C19A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,15 @@
 			path = "Reset Password";
 			sourceTree = "<group>";
 		};
+		385483CC27B2012000B7C19A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				385483CD27B2014000B7C19A /* HomeViewController.swift */,
+				385483CF27B2015600B7C19A /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +181,7 @@
 		923648E8278FFD0300AED21C /* lookbook */ = {
 			isa = PBXGroup;
 			children = (
+				385483CC27B2012000B7C19A /* Home */,
 				385483C127B1DE6500B7C19A /* Helpers */,
 				384C54C827B1C84200B8BEEA /* Models */,
 				384C54B827B1435800B8BEEA /* Log In & Register */,
@@ -302,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385483C327B1DE7D00B7C19A /* Structs.swift in Sources */,
+				385483D027B2015600B7C19A /* HomeView.swift in Sources */,
 				923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */,
 				385483C627B1E06200B7C19A /* StringExtension.swift in Sources */,
 				385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */,
@@ -312,6 +327,7 @@
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
+				385483CE27B2014000B7C19A /* HomeViewController.swift in Sources */,
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
