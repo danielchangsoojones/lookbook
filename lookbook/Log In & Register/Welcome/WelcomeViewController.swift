@@ -32,7 +32,7 @@ class WelcomeViewController: UIViewController {
     
     @objc private func registerPressed() {
         let registerVC = RegisterViewController()
-        navigationController?.pushViewController(registerVC, animated: true)
+        pushVC(registerVC)
     }
 }
 

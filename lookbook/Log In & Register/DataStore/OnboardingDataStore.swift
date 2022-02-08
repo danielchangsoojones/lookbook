@@ -64,4 +64,29 @@ class OnboardingDataStore: NSObject {
             }
         }
     }
+    
+    func resetPassword(email: String, completion: @escaping(Bool) -> Void) {
+        PFUser.requestPasswordResetForEmail(inBackground: email) { (success: Bool, error: Error?) in
+            if success {
+                BannerAlert.show(title: "Email Found",
+                                  subtitle: "It may take a couple minutes for the reset link email to show up. You may want to check your spam folder as well!",
+                                  type: .success)
+                completion(success)
+            } else if let error = error, let code = PFErrorCode(rawValue: error._code) {
+                var type = ""
+                switch code {
+                case .errorUserWithEmailNotFound:
+                    type = "Email Not Found"
+                default:
+                    type = "Reset Password Error"
+                }
+                BannerAlert.show(title: type,
+                                  subtitle: error.localizedDescription,
+                                  type: .error)
+                
+            } else {
+                BannerAlert.showUnknownError(functionName: "Password Reset")
+            }
+        }
+    }
 }

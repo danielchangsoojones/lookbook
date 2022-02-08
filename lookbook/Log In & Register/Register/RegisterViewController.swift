@@ -23,9 +23,9 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         emailTextField = registerView.emailTextField
         passwordTextField = registerView.passwordTextField
         nextButton = registerView.nextButton
-        
         registerView.nextButton.addTarget(self, action: #selector(nextBtnPressed), for: .touchUpInside)
         navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.topItem?.title = ""
         dataStore = OnboardingDataStore(delegate: self)
     }
     

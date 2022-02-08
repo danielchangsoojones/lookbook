@@ -10,7 +10,7 @@ import TextFieldEffects
 
 class RegisterView: UIView {
     var titleLabel: UILabel!
-    private var stackView: UIStackView!
+    var stackView: UIStackView!
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
     var nextButton: UIButton!
