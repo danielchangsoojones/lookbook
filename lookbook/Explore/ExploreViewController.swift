@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ExploreViewController.swift
 //  lookbook
 //
 //  Created by Dan Kwun on 2/7/22.
