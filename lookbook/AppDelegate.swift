@@ -30,9 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func showInitialVC() {
-        let welcomeVC = HomeViewController()
-        let navController = UINavigationController(rootViewController: welcomeVC)
-        navController.modalPresentationStyle = .fullScreen
+//        let welcomeVC = HomeViewController()
+//        let navController = UINavigationController(rootViewController: welcomeVC)
+//        navController.modalPresentationStyle = .fullScreen
+//        set(startingVC: navController)
+        
+        let chatVC = ChatViewController()
+        let navController = UINavigationController(rootViewController: chatVC)
         set(startingVC: navController)
     }
     
