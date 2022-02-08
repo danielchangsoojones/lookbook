@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setUpServer() {
         let configuration = ParseClientConfiguration {
-            $0.applicationId = "ohanafam27485939273899921861"
-            $0.server = "https://ohanafam-server-prod.herokuapp.com/parse"
+            $0.applicationId = Configuration.environment.appID
+            $0.server = Configuration.environment.serverURL
         }
         Parse.initialize(with: configuration)
         

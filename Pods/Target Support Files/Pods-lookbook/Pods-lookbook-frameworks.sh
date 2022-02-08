@@ -175,7 +175,15 @@ code_sign_if_enabled() {
   fi
 }
 
-if [[ "$CONFIGURATION" == "Debug" ]]; then
+if [[ "$CONFIGURATION" == "Debug(Development)" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework"
+fi
+if [[ "$CONFIGURATION" == "Debug(Production)" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"

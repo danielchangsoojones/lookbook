@@ -24,9 +24,11 @@
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
 		923648F3278FFD0700AED21C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 923648F2278FFD0700AED21C /* Assets.xcassets */; };
 		923648F6278FFD0700AED21C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923648F4278FFD0700AED21C /* LaunchScreen.storyboard */; };
+		92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAFBAB27B1E14400773F6B /* Enviroment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27B28520CC8FE8BF558CF9A7 /* Pods-lookbook.debug(production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug(production).xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug(production).xcconfig"; sourceTree = "<group>"; };
 		384C54B627B1340B00B8BEEA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		384C54BC27B143F800B8BEEA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		384C54BE27B1B9B800B8BEEA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,8 @@
 		923648F2278FFD0700AED21C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		923648F5278FFD0700AED21C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		923648F7278FFD0700AED21C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92BAFBAB27B1E14400773F6B /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
+		9F7CD885F0C94A5F4C9989B9 /* Pods-lookbook.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug(development).xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug(development).xcconfig"; sourceTree = "<group>"; };
 		A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug.xcconfig"; sourceTree = "<group>"; };
 		D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lookbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +115,7 @@
 		384C54C827B1C84200B8BEEA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				92BAFBAD27B1E24200773F6B /* Database Setup */,
 				384C54C927B1C84F00B8BEEA /* User.swift */,
 			);
 			path = Models;
@@ -156,6 +161,8 @@
 			children = (
 				A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */,
 				82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */,
+				9F7CD885F0C94A5F4C9989B9 /* Pods-lookbook.debug(development).xcconfig */,
+				27B28520CC8FE8BF558CF9A7 /* Pods-lookbook.debug(production).xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -191,6 +198,14 @@
 				923648F7278FFD0700AED21C /* Info.plist */,
 			);
 			path = lookbook;
+			sourceTree = "<group>";
+		};
+		92BAFBAD27B1E24200773F6B /* Database Setup */ = {
+			isa = PBXGroup;
+			children = (
+				92BAFBAB27B1E14400773F6B /* Enviroment.swift */,
+			);
+			path = "Database Setup";
 			sourceTree = "<group>";
 		};
 		F5E41BA31BAC84BDDDFB23BC /* Frameworks */ = {
@@ -324,6 +339,7 @@
 				384C54C427B1C32100B8BEEA /* LogInViewController.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
+				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
@@ -346,7 +362,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		923648F8278FFD0700AED21C /* Debug */ = {
+		923648F8278FFD0700AED21C /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -405,7 +421,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Debug(Development)";
 		};
 		923648F9278FFD0700AED21C /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -462,9 +478,9 @@
 			};
 			name = Release;
 		};
-		923648FB278FFD0700AED21C /* Debug */ = {
+		923648FB278FFD0700AED21C /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */;
+			baseConfigurationReference = 9F7CD885F0C94A5F4C9989B9 /* Pods-lookbook.debug(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -489,7 +505,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Debug(Development)";
 		};
 		923648FC278FFD0700AED21C /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -520,13 +536,104 @@
 			};
 			name = Release;
 		};
+		92A4189327B2164D009A6BA3 /* Debug(Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug(Production)";
+		};
+		92A4189427B2164D009A6BA3 /* Debug(Production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27B28520CC8FE8BF558CF9A7 /* Pods-lookbook.debug(production).xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WGU25444T9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = lookbook/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = danielchangsoojones.lookbook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug(Production)";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		923648E1278FFD0300AED21C /* Build configuration list for PBXProject "lookbook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				923648F8278FFD0700AED21C /* Debug */,
+				923648F8278FFD0700AED21C /* Debug(Development) */,
+				92A4189327B2164D009A6BA3 /* Debug(Production) */,
 				923648F9278FFD0700AED21C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -535,7 +642,8 @@
 		923648FA278FFD0700AED21C /* Build configuration list for PBXNativeTarget "lookbook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				923648FB278FFD0700AED21C /* Debug */,
+				923648FB278FFD0700AED21C /* Debug(Development) */,
+				92A4189427B2164D009A6BA3 /* Debug(Production) */,
 				923648FC278FFD0700AED21C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
