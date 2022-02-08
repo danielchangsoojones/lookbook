@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Enviroment: String {
-    case development = "development"
-    case production = "production"
+public enum Environment: String {
+    case development = "Development"
+    case production = "Production"
     
     var appID: String {
         switch self {
@@ -28,4 +28,16 @@ enum Enviroment: String {
             return "https://ohanafam-server-prod.herokuapp.com/parse"
         }
     }
+}
+
+class Configuration {
+    static var environment: Environment = {
+        if let configuration = Bundle.main.object(forInfoDictionaryKey: "Configuration") as? String {
+            if configuration.range(of: "Development") != nil {
+                return .development
+            }
+        }
+        
+        return .production
+    }()
 }
