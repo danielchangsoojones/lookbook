@@ -59,7 +59,7 @@ extension RegisterViewController {
     }
     
     func segueIntoApp() {
-        let homeVC = HomeViewController()
+        let homeVC = ExploreViewController()
         pushVC(homeVC)
     }
     

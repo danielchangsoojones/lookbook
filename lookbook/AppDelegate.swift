@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func showInitialVC() {
-        let welcomeVC = HomeViewController()
-        let navController = UINavigationController(rootViewController: welcomeVC)
+        let exploreVC = ExploreViewController()
+        let navController = UINavigationController(rootViewController: exploreVC)
         navController.modalPresentationStyle = .fullScreen
         set(startingVC: navController)
     }
@@ -42,4 +42,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
 }
-
