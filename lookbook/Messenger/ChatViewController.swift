@@ -18,7 +18,8 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.backgroundColor = .white
+        collectionView.reloadData()
         // Do any additional setup after loading the view.
     }
     
@@ -31,6 +32,8 @@ class ChatViewController: UIViewController {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(cellType: ChatTextCollectionCell.self)
+        view.addSubview(collectionView)
     }
 }
 
@@ -40,6 +43,13 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(for: indexPath,
+                                                         cellType: ChatTextCollectionCell.self)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width,
+                      height: 100)
     }
 }
