@@ -20,6 +20,9 @@ class LogInViewController: RegisterViewController {
     }
     
     override func nextBtnPressed() {
-        print("log in")
+        if validateEmail() && validatePassword() {
+            dataStore.logIn(email: emailTextField.text ?? "",
+                            password: passwordTextField.text ?? "")
+        }
     }
 }

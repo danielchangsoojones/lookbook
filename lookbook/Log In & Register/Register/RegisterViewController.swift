@@ -35,8 +35,10 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
                                password: passwordTextField.text ?? "")
         }
     }
-    
-    private func validateEmail() -> Bool {
+}
+
+extension RegisterViewController {
+    func validateEmail() -> Bool {
         if let email = emailTextField?.text {
             if !email.isEmail {
                 BannerAlert.show(title: "Invalid Email", subtitle: "You must input a proper email", type: .error)
@@ -46,7 +48,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         return true
     }
     
-    private func validatePassword() -> Bool {
+    func validatePassword() -> Bool {
         if let password = passwordTextField?.text {
             if password.isBlank {
                 BannerAlert.show(title: "Invalid Password", subtitle: "You must input a password", type: .error)
@@ -55,9 +57,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         }
         return true
     }
-}
-
-extension RegisterViewController {
+    
     func segueIntoApp() {
         //TODO: specify & override
         print("segue into app")

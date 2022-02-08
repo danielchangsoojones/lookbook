@@ -48,4 +48,20 @@ class OnboardingDataStore: NSObject {
             }
         }
     }
+    
+    func logIn(email: String, password: String) {
+        let lowerCaseEmail = email.lowercased().removeWhitespaces()
+        User.logInWithUsername(inBackground: lowerCaseEmail, password: password) { (user, error) -> Void in
+            if let _ = user, error == nil {
+                let installation = PFInstallation.current()
+                installation!["user"] = User.current()
+                installation!.saveEventually(nil)
+                self.delegate?.segueIntoApp()
+            } else if let error = error, let code = PFErrorCode(rawValue: error._code) {
+                if code == .errorObjectNotFound {
+                    self.delegate?.showError(title: "Login Failed", subtitle: error.localizedDescription)
+                }
+            }
+        }
+    }
 }

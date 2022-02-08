@@ -22,5 +22,8 @@ extension String {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty
     }
-
+    
+    func removeWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
+    }
 }
