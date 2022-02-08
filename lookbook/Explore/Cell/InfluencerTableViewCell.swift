@@ -29,19 +29,19 @@ class InfluencerTableViewCell: UITableViewCell, Reusable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        profileImageView.imageView.image = nil
+        profileImageView.image = nil
     }
     
     func set(imageFile: AnyObject?, name: String, messageCount: String) {
         nameLabel.text = name
-        messageCountLabel.text = "5K"
-//        profileImageView.update(file: imageFile)
+        //TODO: will need to query the Messages table to get # of messages sent. But will start with a default of 3,000
+        messageCountLabel.text = "3K"
+        profileImageView.loadFromFile(imageFile)
     }
-    
     
     private func setUpInfluencerPhoto() {
         profileImageView = UIImageView()
-        profileImageView.backgroundColor = .blue
+        profileImageView.contentMode = .scaleAspectFit
         profileImageView.layer.cornerRadius = 30
         contentView.addSubview(profileImageView)
         let imageDimension = UIScreen.main.bounds.width - 40

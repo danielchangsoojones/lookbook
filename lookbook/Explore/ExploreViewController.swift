@@ -38,6 +38,7 @@ class ExploreViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(cellType: InfluencerTableViewCell.self)
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     private func loadInfluencers() {

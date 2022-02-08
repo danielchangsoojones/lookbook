@@ -23,6 +23,7 @@
 		385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483DB27B259E000B7C19A /* InfluencerParse.swift */; };
 		385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483DD27B25A2C00B7C19A /* SuperParseObject.swift */; };
 		385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E027B2680C00B7C19A /* ExploreDataStore.swift */; };
+		385483E327B2913A00B7C19A /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E227B2913A00B7C19A /* ImageViewExtension.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -49,6 +50,7 @@
 		385483DB27B259E000B7C19A /* InfluencerParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerParse.swift; sourceTree = "<group>"; };
 		385483DD27B25A2C00B7C19A /* SuperParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperParseObject.swift; sourceTree = "<group>"; };
 		385483E027B2680C00B7C19A /* ExploreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataStore.swift; sourceTree = "<group>"; };
+		385483E227B2913A00B7C19A /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				385483C527B1E06200B7C19A /* StringExtension.swift */,
 				385483CA27B1F96600B7C19A /* ViewControllerExtension.swift */,
+				385483E227B2913A00B7C19A /* ImageViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			files = (
 				385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */,
 				385483C327B1DE7D00B7C19A /* Structs.swift in Sources */,
+				385483E327B2913A00B7C19A /* ImageViewExtension.swift in Sources */,
 				923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */,
 				385483C627B1E06200B7C19A /* StringExtension.swift in Sources */,
 				385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */,
