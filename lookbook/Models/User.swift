@@ -5,14 +5,12 @@
 //  Created by Dan Kwun on 2/7/22.
 //
 
-import UIKit
 import Parse
 
 class User: PFUser {
     @NSManaged var isCeleb: Bool
-    @NSManaged private var firstName: String?
-    @NSManaged var lastName: String?
+    @NSManaged var profilePhoto: PFFileObject?
+    @NSManaged var name: String?
     @NSManaged var phoneNumber: Double
     @NSManaged var deviceType: String?
-    
 }

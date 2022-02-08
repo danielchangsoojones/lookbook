@@ -7,9 +7,10 @@
 
 import UIKit
 
-class HomeView: UIView {
+class ExploreView: UIView {
     private var titleLabel: UILabel!
     private var subTitleLabel: UILabel!
+    var tableView: UITableView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +48,12 @@ class HomeView: UIView {
     }
     
     private func setUpTableView() {
-        
+        tableView = UITableView()
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.leading.trailing.equalTo(titleLabel)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(12)
+            make.bottom.equalToSuperview()
+        }
     }
 }
