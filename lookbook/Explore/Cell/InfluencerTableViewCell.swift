@@ -43,6 +43,7 @@ class InfluencerTableViewCell: UITableViewCell, Reusable {
         profileImageView = UIImageView()
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.layer.cornerRadius = 30
+        profileImageView.clipsToBounds = true
         contentView.addSubview(profileImageView)
         let imageDimension = UIScreen.main.bounds.width - 40
         profileImageView.snp.makeConstraints { (make) in
