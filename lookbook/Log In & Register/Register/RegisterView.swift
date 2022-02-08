@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class RegisterView: UIView {
     var titleLabel: UILabel!
-    private var stackView: UIStackView!
+    var stackView: UIStackView!
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
     var nextButton: UIButton!
@@ -71,20 +72,20 @@ class RegisterView: UIView {
         }
     }
     
-    //TODO: maybe use an animated cocoapod for this
     private func createTextField(placeHolder: String) -> UITextField {
-        let textField = UITextField()
+        let textField = HoshiTextField()
+        textField.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        textField.borderActiveColor = .black
+        textField.borderInactiveColor = UIColor.black.withAlphaComponent(0.5)
+        textField.textColor = .black
         textField.placeholder = placeHolder
-        textField.borderStyle = .line
-        textField.layer.borderWidth = 2
-        textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.spellCheckingType = .no
         stackView.addArrangedSubview(textField)
         textField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(60)
         }
         
         return textField
