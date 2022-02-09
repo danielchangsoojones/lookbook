@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         titleLabel = registerView.titleLabel
         emailTextField = registerView.emailTextField
         passwordTextField = registerView.passwordTextField
+        passwordTextField.isSecureTextEntry = true
         nextButton = registerView.nextButton
         registerView.nextButton.addTarget(self, action: #selector(nextBtnPressed), for: .touchUpInside)
         navigationController?.navigationBar.tintColor = UIColor.black

@@ -20,6 +20,8 @@ class CreateProfileViewController: RegisterViewController {
         nextButton.setTitle("FINISH", for: .normal)
         emailTextField.placeholder = "Name"
         passwordTextField.placeholder = "Phone Number"
+        passwordTextField.isSecureTextEntry = false
+        passwordTextField.keyboardType = .decimalPad
         navigationItem.hidesBackButton = true
     }
     
