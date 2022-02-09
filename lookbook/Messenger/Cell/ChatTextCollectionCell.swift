@@ -20,6 +20,7 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
         return view
     }()
     
