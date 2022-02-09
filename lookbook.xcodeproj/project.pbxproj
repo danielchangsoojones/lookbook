@@ -32,7 +32,8 @@
 		386D374727B3379A00AC0497 /* MasterChatRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D374627B3379A00AC0497 /* MasterChatRoomTableViewCell.swift */; };
 		386D374E27B35AE600AC0497 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D374D27B35AE600AC0497 /* DateExtension.swift */; };
 		386D375427B35E7500AC0497 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375327B35E7500AC0497 /* TabBarController.swift */; };
-		386D375727B3604F00AC0497 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375627B3604F00AC0497 /* SettingsViewController.swift */; };
+		386D375D27B3727900AC0497 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375C27B3727900AC0497 /* AccountView.swift */; };
+		386D375F27B3728600AC0497 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375E27B3728600AC0497 /* AccountViewController.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -70,7 +71,8 @@
 		386D374627B3379A00AC0497 /* MasterChatRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatRoomTableViewCell.swift; sourceTree = "<group>"; };
 		386D374D27B35AE600AC0497 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		386D375327B35E7500AC0497 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		386D375627B3604F00AC0497 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		386D375C27B3727900AC0497 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		386D375E27B3728600AC0497 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,12 +254,13 @@
 			path = "Tab Controller";
 			sourceTree = "<group>";
 		};
-		386D375527B3603D00AC0497 /* Settings */ = {
+		386D375527B3603D00AC0497 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				386D375627B3604F00AC0497 /* SettingsViewController.swift */,
+				386D375C27B3727900AC0497 /* AccountView.swift */,
+				386D375E27B3728600AC0497 /* AccountViewController.swift */,
 			);
-			path = Settings;
+			path = Account;
 			sourceTree = "<group>";
 		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
@@ -292,7 +295,7 @@
 		923648E8278FFD0300AED21C /* lookbook */ = {
 			isa = PBXGroup;
 			children = (
-				386D375527B3603D00AC0497 /* Settings */,
+				386D375527B3603D00AC0497 /* Account */,
 				386D375127B35E4D00AC0497 /* Navigation */,
 				386D373927B333C400AC0497 /* Master Chat Room */,
 				92A4189527B287AE009A6BA3 /* Messenger */,
@@ -460,6 +463,7 @@
 			files = (
 				386D374727B3379A00AC0497 /* MasterChatRoomTableViewCell.swift in Sources */,
 				92A4189727B287CB009A6BA3 /* ChatViewController.swift in Sources */,
+				386D375F27B3728600AC0497 /* AccountViewController.swift in Sources */,
 				385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */,
 				386D375427B35E7500AC0497 /* TabBarController.swift in Sources */,
 				385483C327B1DE7D00B7C19A /* Structs.swift in Sources */,
@@ -478,7 +482,6 @@
 				386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
-				386D375727B3604F00AC0497 /* SettingsViewController.swift in Sources */,
 				386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */,
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
@@ -488,6 +491,7 @@
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
 				385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */,
 				386D374227B3365300AC0497 /* ChatRoomParse.swift in Sources */,
+				386D375D27B3727900AC0497 /* AccountView.swift in Sources */,
 				386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
