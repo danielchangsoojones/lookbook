@@ -105,6 +105,11 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        //the start of the messages in the top chat has a nice little inset.
+        return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+    }
+    
     private func getMsgFrame(message: String) -> CGRect {
         // This is the max width of the message, not sure why height is 1000
         let maxWidth = view.frame.width * 0.6
