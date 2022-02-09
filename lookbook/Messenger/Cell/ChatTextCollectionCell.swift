@@ -29,8 +29,5 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     
     private func setMessageTextView() {
         contentView.addSubview(messageTextView)
-        messageTextView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
 }
