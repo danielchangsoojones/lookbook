@@ -35,6 +35,11 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
                                password: passwordTextField.text ?? "")
         }
     }
+    
+    func segueIntoApp() {
+        let profileVC = CreateProfileViewController()
+        pushVC(profileVC)
+    }
 }
 
 extension RegisterViewController {
@@ -56,12 +61,6 @@ extension RegisterViewController {
             }
         }
         return true
-    }
-    
-    func segueIntoApp() {
-        let tabController = TabBarController()
-        tabController.modalPresentationStyle = .fullScreen
-        present(tabController, animated: true, completion: nil)
     }
     
     func showError(title: String, subtitle: String) {
