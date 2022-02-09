@@ -85,7 +85,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
-        let profileImgOffset: CGFloat = 48
+        let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
         cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
                                             y: 0,
                                             width: estimatedFrame.width + horizontalPadding,
@@ -94,6 +94,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                                        y: 0,
                                        width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
                                        height: estimatedFrame.height + padding)
+        cell.profileImageView.image = UIImage(named: "explore")
         cell.timeLabel.text = "9:35 PM"
         return cell
     }

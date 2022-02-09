@@ -25,11 +25,14 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     }()
     
     let profileImageView: UIImageView = {
-        let imageView = UIImageView()
+        let diameter: CGFloat = 33
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: diameter, height: diameter))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .green
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 35/2
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 3
         return imageView
     }()
     
@@ -49,7 +52,7 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         contentView.addSubview(timeLabel)
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.height.width.equalTo(35)
+            make.height.width.equalTo(profileImageView.frame.width)
             make.bottom.equalToSuperview()
         }
         timeLabel.snp.makeConstraints { make in
