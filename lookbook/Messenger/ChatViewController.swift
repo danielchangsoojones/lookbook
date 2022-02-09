@@ -60,6 +60,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                                        y: 0,
                                        width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
                                        height: estimatedFrame.height + padding)
+        cell.timeLabel.text = "9:35 PM"
         return cell
     }
     

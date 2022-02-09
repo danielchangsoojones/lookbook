@@ -33,16 +33,29 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         return imageView
     }()
     
+    let timeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        return label
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
                 self.backgroundColor = .red
         contentView.addSubview(bubbleView)
         contentView.addSubview(messageTextView)
         contentView.addSubview(profileImageView)
+        contentView.addSubview(timeLabel)
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.height.width.equalTo(35)
             make.bottom.equalToSuperview()
+        }
+        timeLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(bubbleView)
+            make.leading.equalTo(bubbleView.snp.trailing).offset(3)
         }
     }
     
