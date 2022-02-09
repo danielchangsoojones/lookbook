@@ -19,6 +19,8 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setMessageTextView()
+        messageTextView.backgroundColor = .yellow
+        self.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
