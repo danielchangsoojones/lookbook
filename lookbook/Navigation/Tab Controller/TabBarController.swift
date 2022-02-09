@@ -18,10 +18,6 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewControllers = createViewControllers()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         loadStartScreen()
     }
     
@@ -36,6 +32,8 @@ class TabBarController: UITabBarController {
                 self.selectedIndex = 0
                 let navController = self.viewControllers?[0] as! UINavigationController
                 navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer))
+            } else {
+                self.selectedIndex = 1
             }
         }
     }
