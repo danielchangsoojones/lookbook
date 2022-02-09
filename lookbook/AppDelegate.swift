@@ -57,7 +57,6 @@ extension AppDelegate {
     private func toWelcomeVC() {
         let welcomeVC = WelcomeViewController()
         let navController = UINavigationController(rootViewController: welcomeVC)
-        navController.modalPresentationStyle = .fullScreen
         set(startingVC: navController)
     }
     

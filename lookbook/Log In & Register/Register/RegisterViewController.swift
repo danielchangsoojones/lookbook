@@ -59,11 +59,8 @@ extension RegisterViewController {
     }
     
     func segueIntoApp() {
-//        let homeVC = ExploreViewController()
-//        pushVC(homeVC)
-        
         let tabController = TabBarController()
-        navigationController?.modalPresentationStyle = .fullScreen
+        tabController.modalPresentationStyle = .fullScreen
         present(tabController, animated: true, completion: nil)
     }
     
