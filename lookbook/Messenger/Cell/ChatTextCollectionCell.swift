@@ -12,22 +12,25 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     let messageTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.text = "Sample Message"
+        textView.backgroundColor = .clear
         return textView
+    }()
+    
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setMessageTextView()
-        messageTextView.backgroundColor = .yellow
-        self.backgroundColor = .red
+                self.backgroundColor = .red
+        contentView.addSubview(bubbleView)
+        contentView.addSubview(messageTextView)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setMessageTextView() {
-        contentView.addSubview(messageTextView)
     }
 }

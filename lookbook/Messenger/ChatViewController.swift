@@ -18,7 +18,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .blue
         collectionView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -53,6 +53,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         cell.messageTextView.frame = CGRect(x: 0, y: 0, width: 250 + horizontalPadding, height: estimatedFrame.height + padding)
+        cell.bubbleView.frame = cell.messageTextView.frame
         return cell
     }
     
