@@ -27,7 +27,7 @@ class AccountTableViewCell: UITableViewCell, Reusable {
     
     private func setUpTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.text = "My subscription"
+        titleLabel.text = "Log out"
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.leading.equalToSuperview()
