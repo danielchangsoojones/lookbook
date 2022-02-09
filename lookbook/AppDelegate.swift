@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         setUpServer()
 //        showInitialVC()
-        loadStartScreen()
+        toTabBarController()
         return true
     }
     
@@ -45,29 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        set(startingVC: navController)
     }
     
-    private func loadStartScreen() {
-        //ExploreVC set as default start screen
-        var startIndex = 1
-        let masterChatDataStore = MasterChatDataStore()
-        masterChatDataStore.getMasterChatRooms { chatRooms in
-            if chatRooms.count > 1 {
-                //open MasterChatVC
-                startIndex = 0
-                self.toTabBarController(startIndex: startIndex)
-            } else if chatRooms.count == 1 {
-                let chatVC = ChatViewController(influencer: chatRooms[0].influencer)
-                let navController = UINavigationController(rootViewController: chatVC)
-                navController.modalPresentationStyle = .fullScreen
-                self.set(startingVC: navController)
-                //sneakily adding in the tabBarController beneath the chatVC so that users can return to MasterChatVC
-                let tabController = TabBarController(startIndex: 0)
-                navController.viewControllers.insert(tabController, at: 0)                
-            }
-        }
-    }
-    
-    private func toTabBarController(startIndex: Int) {
-        let tabController = TabBarController(startIndex: startIndex)
+    private func toTabBarController() {
+        let tabController = TabBarController()
         set(startingVC: tabController)
     }
     

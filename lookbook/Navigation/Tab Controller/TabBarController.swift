@@ -14,7 +14,6 @@ enum Tab: Int {
 }
 
 class TabBarController: UITabBarController {
-    private var startIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +22,22 @@ class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.selectedIndex = startIndex
+        loadStartScreen()
     }
     
-    init(startIndex: Int) {
-        self.startIndex = startIndex
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func loadStartScreen() {
+        //ExploreVC set as default start screen
+        let masterChatDataStore = MasterChatDataStore()
+        masterChatDataStore.getMasterChatRooms { chatRooms in
+            if chatRooms.count > 1 {
+                //open MasterChatVC
+                self.selectedIndex = 0
+            } else if chatRooms.count == 1 {
+                self.selectedIndex = 0
+                let navController = self.viewControllers?[0] as! UINavigationController
+                navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer))
+            }
+        }
     }
 
     private func createViewControllers() -> [UIViewController] {
