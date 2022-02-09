@@ -43,7 +43,6 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-                self.backgroundColor = .red
         contentView.addSubview(bubbleView)
         contentView.addSubview(messageTextView)
         contentView.addSubview(profileImageView)

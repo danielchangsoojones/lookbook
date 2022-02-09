@@ -18,7 +18,6 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .blue
         collectionView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -30,6 +29,7 @@ class ChatViewController: UIViewController {
                            height: self.view.frame.height)
         let layout = UICollectionViewFlowLayout()
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: ChatTextCollectionCell.self)
