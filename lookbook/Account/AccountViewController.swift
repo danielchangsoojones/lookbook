@@ -50,7 +50,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("show modal VC for subscription")
+        //TODO: add button actions for each row on Accounts page
+        showSubscriptionModalVC()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,5 +60,12 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    //TODO: DELETE THIS LATER
+    private func showSubscriptionModalVC() {
+        let subscriptionModalVC = SubscriptionModalViewController()
+        subscriptionModalVC.modalPresentationStyle = .popover
+        present(subscriptionModalVC, animated: true)
     }
 }

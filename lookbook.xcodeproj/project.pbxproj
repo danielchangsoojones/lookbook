@@ -35,6 +35,8 @@
 		386D375D27B3727900AC0497 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375C27B3727900AC0497 /* AccountView.swift */; };
 		386D375F27B3728600AC0497 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D375E27B3728600AC0497 /* AccountViewController.swift */; };
 		386D376227B3737600AC0497 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376127B3737600AC0497 /* AccountTableViewCell.swift */; };
+		386D376527B3753400AC0497 /* SubscriptionModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */; };
+		386D376727B3763900AC0497 /* SubscriptionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376627B3763900AC0497 /* SubscriptionModalView.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -75,6 +77,8 @@
 		386D375C27B3727900AC0497 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		386D375E27B3728600AC0497 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		386D376127B3737600AC0497 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModalViewController.swift; sourceTree = "<group>"; };
+		386D376627B3763900AC0497 /* SubscriptionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModalView.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 		386D375527B3603D00AC0497 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				386D376327B3751800AC0497 /* Subscription */,
 				386D376027B3736400AC0497 /* Cell */,
 				386D375C27B3727900AC0497 /* AccountView.swift */,
 				386D375E27B3728600AC0497 /* AccountViewController.swift */,
@@ -272,6 +277,15 @@
 				386D376127B3737600AC0497 /* AccountTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		386D376327B3751800AC0497 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */,
+				386D376627B3763900AC0497 /* SubscriptionModalView.swift */,
+			);
+			path = Subscription;
 			sourceTree = "<group>";
 		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
@@ -489,6 +503,7 @@
 				385483D527B2548900B7C19A /* ExploreViewController.swift in Sources */,
 				384C54C427B1C32100B8BEEA /* LogInViewController.swift in Sources */,
 				92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */,
+				386D376727B3763900AC0497 /* SubscriptionModalView.swift in Sources */,
 				386D374E27B35AE600AC0497 /* DateExtension.swift in Sources */,
 				386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
@@ -499,6 +514,7 @@
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
 				385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */,
+				386D376527B3753400AC0497 /* SubscriptionModalViewController.swift in Sources */,
 				386D376227B3737600AC0497 /* AccountTableViewCell.swift in Sources */,
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
 				385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */,
