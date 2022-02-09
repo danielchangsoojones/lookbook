@@ -24,11 +24,26 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         return view
     }()
     
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .green
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 35/2
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
                 self.backgroundColor = .red
         contentView.addSubview(bubbleView)
         contentView.addSubview(messageTextView)
+        contentView.addSubview(profileImageView)
+        profileImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10)
+            make.height.width.equalTo(35)
+            make.bottom.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {

@@ -53,8 +53,9 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
-        cell.messageTextView.frame = CGRect(x: startingInternalPadding, y: 0, width: estimatedFrame.width + horizontalPadding, height: estimatedFrame.height + padding)
-        cell.bubbleView.frame = CGRect(x: 0, y: 0, width: estimatedFrame.width + horizontalPadding + startingInternalPadding, height: estimatedFrame.height + padding)
+        let profileImgOffset: CGFloat = 48
+        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset, y: 0, width: estimatedFrame.width + horizontalPadding, height: estimatedFrame.height + padding)
+        cell.bubbleView.frame = CGRect(x: profileImgOffset, y: 0, width: estimatedFrame.width + horizontalPadding + startingInternalPadding, height: estimatedFrame.height + padding)
         return cell
     }
     
