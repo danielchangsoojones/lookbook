@@ -50,11 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var startIndex = 1
         let masterChatDataStore = MasterChatDataStore()
         masterChatDataStore.getMasterChatRooms { chatRooms in
-            if chatRooms.count >= 1 {
+            if chatRooms.count > 1 {
                 //open MasterChatVC
                 startIndex = 0
+                self.toTabBarController(startIndex: startIndex)
+            } else if chatRooms.count == 1 {
+                let chatVC = ChatViewController(influencer: chatRooms[0].influencer)
+                let navController = UINavigationController(rootViewController: chatVC)
+                navController.modalPresentationStyle = .fullScreen
+                self.set(startingVC: navController)
+                //sneakily adding in the tabBarController beneath the chatVC so that users can return to MasterChatVC
+                let tabController = TabBarController(startIndex: 0)
+                navController.viewControllers.insert(tabController, at: 0)                
             }
-            self.toTabBarController(startIndex: startIndex)
         }
     }
     
