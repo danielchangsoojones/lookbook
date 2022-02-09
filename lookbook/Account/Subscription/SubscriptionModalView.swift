@@ -9,9 +9,11 @@ import UIKit
 
 class SubscriptionModalView: UIView {
     var exitButton: UIButton!
-    private var mainLabel: UILabel!
+    var mainLabel: UILabel!
     private var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
+    var infoTitleLabel: UILabel!
+    var infoSubtitleLabel: UILabel!
     private var subscriptionInfoBox: UIView!
     var subscribeButton: UIButton!
     
@@ -46,7 +48,6 @@ class SubscriptionModalView: UIView {
     
     private func setUpMainLabel() {
         mainLabel = UILabel()
-        mainLabel.text = "Kaiti's Membership"
         mainLabel.font = .systemFont(ofSize: 20, weight: .bold)
         addSubview(mainLabel)
         mainLabel.snp.makeConstraints { (make) in
@@ -91,8 +92,7 @@ class SubscriptionModalView: UIView {
             make.top.equalTo(subtitleLabel.snp.bottom).offset(15)
         }
         
-        let infoTitleLabel = UILabel()
-        infoTitleLabel.text = "$10 per month"
+        infoTitleLabel = UILabel()
         infoTitleLabel.textColor = UIColor(red: 235/256, green: 82/256, blue: 84/256, alpha: 1.0)
         infoTitleLabel.font = .systemFont(ofSize: 22, weight: .bold)
         subscriptionInfoBox.addSubview(infoTitleLabel)
@@ -100,8 +100,7 @@ class SubscriptionModalView: UIView {
             make.top.equalToSuperview().inset(25)
             make.leading.equalToSuperview().inset(20)
         }
-        let infoSubtitleLabel = UILabel()
-        infoSubtitleLabel.text = "• Private DMs with the one and only Kaiti Yoo!\n• Get photos and videos that Kaiti would send to her friends. Why? Because you’re now Kaiti’s friend! : ) "
+        infoSubtitleLabel = UILabel()
         infoSubtitleLabel.numberOfLines = 0
         infoSubtitleLabel.font = .systemFont(ofSize: 13, weight: .regular)
         subscriptionInfoBox.addSubview(infoSubtitleLabel)

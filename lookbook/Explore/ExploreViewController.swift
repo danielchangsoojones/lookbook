@@ -69,6 +69,7 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
                     //TODO: enable button + stop timer
                     //TODO: SEGUE INTO MESSENGER VC (should take influencer info as init)
                     print("segue into MessengerVC")
+//                    self.showSubscriptionModalVC(influencer: influencer)
                 }
             }
         }
@@ -85,5 +86,12 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    //TODO: move into Chat Room VC
+    private func showSubscriptionModalVC(influencer: InfluencerParse) {
+        let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
+        subscriptionModalVC.modalPresentationStyle = .popover
+        present(subscriptionModalVC, animated: true)
     }
 }
