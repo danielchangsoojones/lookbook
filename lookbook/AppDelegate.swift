@@ -40,11 +40,15 @@ extension AppDelegate {
     }
 
     private func setStartingVC() {
-        if isLoggedIn {
-            toTabBarController()
-        } else {
-            toWelcomeVC()
-        }
+//        if isLoggedIn {
+//            toTabBarController()
+//        } else {
+//            toWelcomeVC()
+//        }
+        let welcomeVC = ChatViewController(influencer: InfluencerParse())
+        let navController = UINavigationController(rootViewController: welcomeVC)
+        navController.modalPresentationStyle = .fullScreen
+        set(startingVC: navController)
     }
     
     private func toWelcomeVC() {

@@ -11,6 +11,12 @@ class ChatViewController: UIViewController {
     private var messages: [String] = ["hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", "hey this is tyler"]
     private var influencer: InfluencerParse!
     private var collectionView: UICollectionView!
+    private let backgroundImgView: UIImageView = {
+        let img = UIImage(named: "kaiti_bc")
+        let imgView = UIImageView(image: img)
+        imgView.contentMode = .scaleAspectFill
+        return imgView
+    }()
     
     init(influencer: InfluencerParse) {
         self.influencer = influencer
@@ -23,6 +29,7 @@ class ChatViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        setBackgroundImg()
         setupCollectionView()
     }
     
@@ -54,6 +61,13 @@ class ChatViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(cellType: ChatTextCollectionCell.self)
         view.addSubview(collectionView)
+    }
+    
+    private func setBackgroundImg() {
+        self.view.addSubview(backgroundImgView)
+        backgroundImgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
