@@ -51,6 +51,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: add button actions for each row on Accounts page
+        logOut()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,5 +60,13 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    private func logOut() {
+        User.logOut()
+        let welcomeVC = WelcomeViewController()
+        let navController = UINavigationController(rootViewController: welcomeVC)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false, completion: nil)
     }
 }

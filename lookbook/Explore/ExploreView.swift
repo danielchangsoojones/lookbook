@@ -37,6 +37,7 @@ class ExploreView: UIView {
     
     private func setUpSubtitleLabel() {
         subTitleLabel = UILabel()
+        subTitleLabel.numberOfLines = 0
         subTitleLabel.text = "EVERYONE’S FAVORITE INFLUENCERS"
         subTitleLabel.font = .systemFont(ofSize: 18, weight: .black)
         subTitleLabel.textAlignment = .left

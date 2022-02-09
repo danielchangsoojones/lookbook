@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         titleLabel = registerView.titleLabel
         emailTextField = registerView.emailTextField
         passwordTextField = registerView.passwordTextField
+        passwordTextField.isSecureTextEntry = true
         nextButton = registerView.nextButton
         registerView.nextButton.addTarget(self, action: #selector(nextBtnPressed), for: .touchUpInside)
         navigationController?.navigationBar.tintColor = UIColor.black
@@ -34,6 +35,11 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
             dataStore.register(email: emailTextField.text ?? "",
                                password: passwordTextField.text ?? "")
         }
+    }
+    
+    func segueIntoApp() {
+        let profileVC = CreateProfileViewController()
+        pushVC(profileVC)
     }
 }
 
@@ -56,15 +62,6 @@ extension RegisterViewController {
             }
         }
         return true
-    }
-    
-    func segueIntoApp() {
-//        let homeVC = ExploreViewController()
-//        pushVC(homeVC)
-        
-        let tabController = TabBarController()
-        navigationController?.modalPresentationStyle = .fullScreen
-        present(tabController, animated: true, completion: nil)
     }
     
     func showError(title: String, subtitle: String) {

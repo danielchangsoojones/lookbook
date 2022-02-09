@@ -26,4 +26,21 @@ extension String {
     func removeWhitespaces() -> String {
         return components(separatedBy: .whitespaces).joined()
     }
+    
+    var numbersOnly: String {
+        let numbersOnly = CharacterSet.alphanumerics.inverted
+        let numberOnlyStr  = self.components(separatedBy: numbersOnly).joined(separator: "")
+        return numberOnlyStr
+    }
+    
+    var isPhoneNumber: Bool {
+        let phoneNumber = self.numbersOnly
+        
+        //To make sure that any Doubles don't use a phone number with .0 (i.e. 3176905323.0)
+        if (phoneNumber.count == 10 || phoneNumber.count == 11) {
+            return true
+        }
+        
+        return false
+    }
 }

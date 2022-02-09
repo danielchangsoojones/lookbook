@@ -40,4 +40,10 @@ class LogInViewController: RegisterViewController {
         let resetPasswordVC = ResetPasswordViewController()
         pushVC(resetPasswordVC)
     }
+    
+    override func segueIntoApp() {
+        let tabController = TabBarController()
+        tabController.modalPresentationStyle = .fullScreen
+        present(tabController, animated: true, completion: nil)
+    }
 }
