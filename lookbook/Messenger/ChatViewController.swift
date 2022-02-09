@@ -43,28 +43,44 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let message = messages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
-        cell.messageTextView.text = messages[indexPath.row]
-        let message = messages[indexPath.row]
-        let size = CGSize(width: 250, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        let estimatedFrame = NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+        cell.messageTextView.text = message
+        let estimatedFrame = getMsgFrame(message: message)
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = 48
-        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset, y: 0, width: estimatedFrame.width + horizontalPadding, height: estimatedFrame.height + padding)
-        cell.bubbleView.frame = CGRect(x: profileImgOffset, y: 0, width: estimatedFrame.width + horizontalPadding + startingInternalPadding, height: estimatedFrame.height + padding)
+        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
+                                            y: 0,
+                                            width: estimatedFrame.width + horizontalPadding,
+                                            height: estimatedFrame.height + padding)
+        cell.bubbleView.frame = CGRect(x: profileImgOffset,
+                                       y: 0,
+                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                       height: estimatedFrame.height + padding)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let message = messages[indexPath.row]
-        let size = CGSize(width: 250, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        let estimatedFrame = NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+        let estimatedFrame = getMsgFrame(message: message)
         let padding: CGFloat = 20
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
+    }
+    
+    private func getMsgFrame(message: String) -> CGRect {
+        // This is the max width of the message, not sure why height is 1000
+        let maxWidth = view.frame.width * 0.6
+        let size = CGSize(width: maxWidth, height: 1000)
+        // Not sure what options does
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        // Estimating Height of Text
+        let estimatedFrame = NSString(string: message).boundingRect(with: size,
+                                                                    options: options,
+                                                                    attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)],
+                                                                    context: nil)
+        return estimatedFrame
     }
 }
