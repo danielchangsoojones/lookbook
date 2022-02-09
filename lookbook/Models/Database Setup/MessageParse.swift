@@ -17,6 +17,6 @@ class MessageParse: SuperParseObject, PFSubclassing {
     @NSManaged var type: String
     
     class func parseClassName() -> String {
-        return "MessageParse"
+        return "Message"
     }
 }

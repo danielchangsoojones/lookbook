@@ -10,6 +10,7 @@ target 'lookbook' do
   pod 'Reusable'
   pod 'TextFieldEffects'
   pod 'BRYXBanner'
+  pod "Timepiece"
 
   # Pods for lookbook
 
