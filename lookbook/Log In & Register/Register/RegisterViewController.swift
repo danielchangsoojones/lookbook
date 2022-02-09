@@ -59,8 +59,12 @@ extension RegisterViewController {
     }
     
     func segueIntoApp() {
-        let homeVC = ExploreViewController()
-        pushVC(homeVC)
+//        let homeVC = ExploreViewController()
+//        pushVC(homeVC)
+        
+        let tabController = TabBarController()
+        navigationController?.modalPresentationStyle = .fullScreen
+        present(tabController, animated: true, completion: nil)
     }
     
     func showError(title: String, subtitle: String) {
