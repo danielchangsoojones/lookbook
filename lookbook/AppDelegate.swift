@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpServer()
-        showInitialVC()
-//        toTabBarController()
+        setStartingVC()
         return true
     }
     
@@ -33,16 +32,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         User.registerSubclass()
     }
-    
-    private func showInitialVC() {
-//        let welcomeVC = ExploreViewController()
-//        let navController = UINavigationController(rootViewController: welcomeVC)
-//        navController.modalPresentationStyle = .fullScreen
-//        set(startingVC: navController)
+}
 
-        let chatVC = ChatViewController()
-        let navController = UINavigationController(rootViewController: chatVC)
-        set(startingVC: navController)
+extension AppDelegate {
+    var isLoggedIn: Bool {
+        return User.current() != nil
+    }
+
+    private func setStartingVC() {
+        if isLoggedIn {
+            toTabBarController()
+        } else {
+            toWelcomeVC()
+        }
+    }
+    
+    private func toWelcomeVC() {
+        let welcomeVC = WelcomeViewController()
+        let navController = UINavigationController(rootViewController: welcomeVC)
+        navController.modalPresentationStyle = .fullScreen
+        set(startingVC: welcomeVC)
+
     }
     
     private func toTabBarController() {

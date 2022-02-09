@@ -30,6 +30,11 @@ class MasterChatRoomViewController: UIViewController {
         loadMasterChatRooms()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     private func setup(_ tableView: UITableView) {
         tableView.delegate = self
         tableView.dataSource = self
@@ -81,8 +86,7 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoom = chatRooms[indexPath.row]
         let influencer = chatRoom.influencer
-        //TODO: push into chat room with the influencer
-        print("open chat room with \(influencer.user.name)")
+        pushVC(ChatViewController(influencer: influencer))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

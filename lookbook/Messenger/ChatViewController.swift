@@ -9,7 +9,17 @@ import UIKit
 
 class ChatViewController: UIViewController {
     private var messages: [String] = ["hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", "hey this is tyler"]
+    private var influencer: InfluencerParse!
     private var collectionView: UICollectionView!
+    
+    init(influencer: InfluencerParse) {
+        self.influencer = influencer
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -20,6 +30,16 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         collectionView.reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     private func setupCollectionView() {
@@ -83,5 +103,12 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                                                                     attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)],
                                                                     context: nil)
         return estimatedFrame
+    }
+    
+    //use this function when we need to show subscription screen
+    private func showSubscriptionModalVC(influencer: InfluencerParse) {
+        let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
+        subscriptionModalVC.modalPresentationStyle = .popover
+        present(subscriptionModalVC, animated: true)
     }
 }

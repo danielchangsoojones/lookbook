@@ -32,6 +32,7 @@ class ExploreViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func setup(_ tableView: UITableView) {
@@ -67,9 +68,7 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
                 //TODO: disable button + add spinner
                 if success {
                     //TODO: enable button + stop timer
-                    //TODO: SEGUE INTO MESSENGER VC (should take influencer info as init)
-                    print("segue into MessengerVC")
-//                    self.showSubscriptionModalVC(influencer: influencer)
+                    self.pushVC(ChatViewController(influencer: influencer))
                 }
             }
         }
@@ -86,12 +85,5 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    
-    //TODO: move into Chat Room VC
-    private func showSubscriptionModalVC(influencer: InfluencerParse) {
-        let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
-        subscriptionModalVC.modalPresentationStyle = .popover
-        present(subscriptionModalVC, animated: true)
     }
 }
