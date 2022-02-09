@@ -11,6 +11,7 @@ target 'lookbook' do
   pod 'TextFieldEffects'
   pod 'BRYXBanner'
   pod "Timepiece"
+  pod 'GrowingTextView', '0.7.2'
 
   # Pods for lookbook
 
