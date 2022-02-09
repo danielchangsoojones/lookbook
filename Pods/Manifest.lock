@@ -1,5 +1,4 @@
 PODS:
-  - ALCameraViewController (3.1)
   - Bolts/Tasks (1.9.1)
   - BRYXBanner (0.8.4)
   - Parse (1.19.3):
@@ -18,7 +17,6 @@ PODS:
   - Timepiece (1.3.1)
 
 DEPENDENCIES:
-  - ALCameraViewController
   - BRYXBanner
   - Parse
   - Parse/UI
@@ -29,7 +27,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - ALCameraViewController
     - Bolts
     - BRYXBanner
     - Parse
@@ -39,7 +36,6 @@ SPEC REPOS:
     - Timepiece
 
 SPEC CHECKSUMS:
-  ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   BRYXBanner: 4fbd266f96ce000e4c6cc9a0558c446bd88d9801
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
@@ -48,6 +44,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
 
-PODFILE CHECKSUM: b88b39fd07e5f56daa82f9b5cfcb1c7e74b863da
+PODFILE CHECKSUM: 471ca449dc9c246db25b9f15ae6d81a95045bdf2
 
 COCOAPODS: 1.11.2

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ALCameraViewController
 
 class CreateProfileViewController: RegisterViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     private var profileImageView: UIImageView!

@@ -11,7 +11,7 @@ target 'lookbook' do
   pod 'TextFieldEffects'
   pod 'BRYXBanner'
   pod "Timepiece"
-  pod 'ALCameraViewController'
+  
   
   # Pods for lookbook
 
