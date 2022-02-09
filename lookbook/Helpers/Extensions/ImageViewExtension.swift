@@ -30,4 +30,10 @@ extension UIImageView {
     private func loadImageFromData(_ data: Data) {
         self.image = UIImage(data: data)
     }
+    
+    func addTap(target: Any?, action: Selector) {
+        self.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: target, action: action)
+        self.addGestureRecognizer(tap)
+    }
 }

@@ -38,6 +38,7 @@
 		386D376527B3753400AC0497 /* SubscriptionModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */; };
 		386D376727B3763900AC0497 /* SubscriptionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376627B3763900AC0497 /* SubscriptionModalView.swift */; };
 		386D376D27B3C70100AC0497 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376C27B3C70100AC0497 /* CreateProfileViewController.swift */; };
+		386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376E27B4893C00AC0497 /* ImageExtension.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -81,6 +82,7 @@
 		386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModalViewController.swift; sourceTree = "<group>"; };
 		386D376627B3763900AC0497 /* SubscriptionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModalView.swift; sourceTree = "<group>"; };
 		386D376C27B3C70100AC0497 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		386D376E27B4893C00AC0497 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				385483CA27B1F96600B7C19A /* ViewControllerExtension.swift */,
 				385483E227B2913A00B7C19A /* ImageViewExtension.swift */,
 				386D374D27B35AE600AC0497 /* DateExtension.swift */,
+				386D376E27B4893C00AC0497 /* ImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			files = (
 				386D374727B3379A00AC0497 /* MasterChatRoomTableViewCell.swift in Sources */,
 				92A4189727B287CB009A6BA3 /* ChatViewController.swift in Sources */,
+				386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */,
 				386D375F27B3728600AC0497 /* AccountViewController.swift in Sources */,
 				385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */,
 				386D375427B35E7500AC0497 /* TabBarController.swift in Sources */,
@@ -677,6 +681,8 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -706,6 +712,8 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -796,6 +804,8 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

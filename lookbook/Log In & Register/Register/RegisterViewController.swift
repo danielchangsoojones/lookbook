@@ -14,6 +14,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
     var passwordTextField: UITextField!
     var nextButton: UIButton!
     var dataStore: OnboardingDataStore!
+    var stackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         passwordTextField = registerView.passwordTextField
         passwordTextField.isSecureTextEntry = true
         nextButton = registerView.nextButton
+        stackView = registerView.stackView
         registerView.nextButton.addTarget(self, action: #selector(nextBtnPressed), for: .touchUpInside)
         navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.navigationBar.topItem?.title = ""

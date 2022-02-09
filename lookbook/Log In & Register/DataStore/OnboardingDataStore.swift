@@ -90,8 +90,11 @@ class OnboardingDataStore: NSObject {
         }
     }
     
-    func save(name: String, phoneNumber: Double) {
+    func save(name: String, phoneNumber: Double, photo: UIImage?) {
         if let currentUser = User.current() {
+            if let photo = photo {
+                currentUser.profilePhoto = photo.convertToFile()
+            }
             currentUser.name = name
             currentUser.phoneNumber = phoneNumber
             currentUser.saveInBackground()
