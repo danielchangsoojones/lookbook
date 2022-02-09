@@ -14,11 +14,27 @@ enum Tab: Int {
 }
 
 class TabBarController: UITabBarController {
+    private var startIndex: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewControllers = createViewControllers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.selectedIndex = startIndex
+    }
+    
+    init(startIndex: Int) {
+        self.startIndex = startIndex
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private func createViewControllers() -> [UIViewController] {
         let chatIcon = UIImage(named: "chatroom_icon") ?? UIImage()
         let exploreIcon = UIImage(named: "discover_icon") ?? UIImage()
