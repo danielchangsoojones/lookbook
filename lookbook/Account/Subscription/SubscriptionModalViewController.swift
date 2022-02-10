@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Stripe
+import Foundation
 
 class SubscriptionModalViewController: UIViewController {
     private var influencer: InfluencerParse!
     private var mainLabel: UILabel!
     private var infoTitleLabel: UILabel!
     private var infoSubtitleLabel: UILabel!
+    private var paymentSheet: PaymentSheet?
     
     init(influencer: InfluencerParse) {
         self.influencer = influencer
@@ -32,6 +35,7 @@ class SubscriptionModalViewController: UIViewController {
         subscriptionView.exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .touchUpInside)
         subscriptionView.subscribeButton.addTarget(self, action: #selector(subscribeButtonPressed), for: .touchUpInside)
         updateLabels()
+        setupPaymentContext()
     }
     
     private func updateLabels() {
@@ -45,9 +49,44 @@ class SubscriptionModalViewController: UIViewController {
     @objc private func exitButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    private func setupPaymentContext() {
+        StripeEphemeralKeyProvider.sharedClient.createCustomerKey(withAPIVersion: "4.2") { result, error in
+            if let result = result {
+                if let ephemeralKey = result["ephemeralKey"] as? [AnyHashable: Any],
+                   let paymentIntent = result["paymentIntent"] as? [AnyHashable: Any] {
+                    if let customerEphemeralKeySecret = ephemeralKey["secret"] as? String,
+                       let paymentIntentClientSecret = paymentIntent["client_secret"] as? String,
+                       let customerStripeID = User.current()?.stripeCustomerID {
+                        var configuration = PaymentSheet.Configuration()
+                        configuration.merchantDisplayName = "Ohana"
+                        configuration.customer = .init(id: customerStripeID, ephemeralKeySecret: customerEphemeralKeySecret)
+                        self.paymentSheet = PaymentSheet(paymentIntentClientSecret: paymentIntentClientSecret, configuration: configuration)
+                    } else {
+                        BannerAlert.show(title: "Secret Key Needed", subtitle: "Secret Keys does not exist", type: .error)
+                    }
+                } else {
+                    BannerAlert.show(title: "Key/Intent Needed", subtitle: "EphemeralKey or Payment Intent does not exist", type: .error)
+                }
+            } else if let error = error {
+                BannerAlert.show(with: error)
+            } else {
+                BannerAlert.showUnknownError(functionName: "setupPaymentContext")
+            }
+        }
+    }
+    
     @objc private func subscribeButtonPressed() {
-        //TODO: go to Stripe's check out page
-        dismiss(animated: true, completion: nil)
+        paymentSheet?.present(from: self) { paymentResult in
+            switch paymentResult {
+            case .completed:
+                print("Your order is confirmed")
+                BannerAlert.show(title: "Payment Success", subtitle: "You've successfully subscribed!", type: .success)
+            case .canceled:
+                print("Canceled!")
+            case .failed(let error):
+                BannerAlert.show(with: error)
+            }
+        }
     }
 }
