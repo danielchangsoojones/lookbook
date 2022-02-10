@@ -69,8 +69,8 @@ class OnboardingDataStore: NSObject {
         PFUser.requestPasswordResetForEmail(inBackground: email) { (success: Bool, error: Error?) in
             if success {
                 BannerAlert.show(title: "Email Found",
-                                  subtitle: "It may take a couple minutes for the reset link email to show up. You may want to check your spam folder as well!",
-                                  type: .success)
+                                 subtitle: "It may take a couple minutes for the reset link email to show up. You may want to check your spam folder as well!",
+                                 type: .success)
                 completion(success)
             } else if let error = error, let code = PFErrorCode(rawValue: error._code) {
                 var type = ""
@@ -81,8 +81,8 @@ class OnboardingDataStore: NSObject {
                     type = "Reset Password Error"
                 }
                 BannerAlert.show(title: type,
-                                  subtitle: error.localizedDescription,
-                                  type: .error)
+                                 subtitle: error.localizedDescription,
+                                 type: .error)
                 
             } else {
                 BannerAlert.showUnknownError(functionName: "Password Reset")
@@ -90,11 +90,23 @@ class OnboardingDataStore: NSObject {
         }
     }
     
-    func save(name: String, phoneNumber: Double) {
+    func save(name: String, phoneNumber: Double, photo: UIImage?) {
         if let currentUser = User.current() {
+            if let photo = photo {
+                currentUser.profilePhoto = photo.convertToFile()
+            }
             currentUser.name = name
             currentUser.phoneNumber = phoneNumber
             currentUser.saveInBackground()
         }
+    }
+    
+    static var isProfileComplete: Bool {
+        if let currentUser = User.current() {
+            if currentUser.profilePhoto == nil || currentUser.name == nil {
+                return false
+            }
+        }
+        return true
     }
 }

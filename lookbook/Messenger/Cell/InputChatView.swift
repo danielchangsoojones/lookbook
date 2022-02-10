@@ -15,10 +15,10 @@ class InputChatView: UIView {
         return textView
     }()
     
-    let sendButton: UIButton {
-        let btn = UIButton()
-        btn.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
-    }
+//    let sendButton: UIButton {
+//        let btn = UIButton()
+//        btn.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
