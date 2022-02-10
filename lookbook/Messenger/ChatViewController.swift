@@ -22,6 +22,8 @@ class ChatViewController: UIViewController {
         return imgView
     }()
     
+    private let inputChatView = InputChatView()
+    
     init(influencer: InfluencerParse) {
         self.influencer = influencer
         super.init(nibName: nil, bundle: nil)
@@ -36,10 +38,12 @@ class ChatViewController: UIViewController {
         setBackgroundImg()
         setBackgroundImgTint()
         setupCollectionView()
+        setInputView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -52,6 +56,14 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    private func setInputView() {
+        view.addSubview(inputChatView)
+        inputChatView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     private func setupCollectionView() {
