@@ -51,7 +51,7 @@ class SubscriptionModalViewController: UIViewController {
     }
     
     private func setupPaymentContext() {
-        StripeEphemeralKeyProvider.sharedClient.createCustomerKey(withAPIVersion: "4.2") { result, error in
+        StripeEphemeralKeyProvider.sharedClient.createCustomerKey(withAPIVersion: influencer.objectId ?? "") { result, error in
             if let result = result {
                 if let ephemeralKey = result["ephemeralKey"] as? [AnyHashable: Any],
                    let paymentIntent = result["paymentIntent"] as? [AnyHashable: Any] {
@@ -82,6 +82,7 @@ class SubscriptionModalViewController: UIViewController {
             case .completed:
                 print("Your order is confirmed")
                 BannerAlert.show(title: "Payment Success", subtitle: "You've successfully subscribed!", type: .success)
+                //TODO: record entry on Subscription table
             case .canceled:
                 print("Canceled!")
             case .failed(let error):

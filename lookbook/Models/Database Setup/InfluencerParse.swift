@@ -14,6 +14,9 @@ class InfluencerParse: SuperParseObject, PFSubclassing {
     @NSManaged var welcomePhoto: PFFileObject?
     @NSManaged var chatBackgroundPhoto: PFFileObject?
     @NSManaged var subscriptionPrice: Double
+    @NSManaged var stripeAccountID: String
+    @NSManaged var subscriptionPriceID: String
+    @NSManaged var influencerPayRate: Double
     
     class func parseClassName() -> String {
         return "Influencer"

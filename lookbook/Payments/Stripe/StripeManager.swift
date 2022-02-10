@@ -29,6 +29,7 @@ class StripeManager: NSObject {
 class StripeEphemeralKeyProvider: NSObject, STPCustomerEphemeralKeyProvider {
     static let sharedClient = StripeEphemeralKeyProvider()
     
+    //The apiVersion actually stores the influencer's objectId. We needed to send up the influencer's objectId in the getStripeEphemeralKey cloud call, but we couldn't pass in another variable to the createCustomerKey function (it's overriding the function in STPCustomerEphemeralKeyProvider class). DK made a very hacky fix, but works for now.
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         if let stripeCustomerID = User.current()?.stripeCustomerID {
             self.loadStripeEphemeralKey(withAPIVersion: apiVersion,
