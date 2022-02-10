@@ -182,6 +182,9 @@ if [[ "$CONFIGURATION" == "Debug(Development)" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeCore/StripeCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Timepiece/Timepiece.framework"
 fi
@@ -192,6 +195,9 @@ if [[ "$CONFIGURATION" == "Debug(Production)" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeCore/StripeCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Timepiece/Timepiece.framework"
 fi
@@ -202,6 +208,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeCore/StripeCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Timepiece/Timepiece.framework"
 fi

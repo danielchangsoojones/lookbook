@@ -13,4 +13,5 @@ class User: PFUser {
     @NSManaged var name: String?
     @NSManaged var phoneNumber: Double
     @NSManaged var deviceType: String?
+    @NSManaged var stripeCustomer: String
 }

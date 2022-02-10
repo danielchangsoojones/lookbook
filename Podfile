@@ -12,6 +12,7 @@ target 'lookbook' do
   pod 'BRYXBanner'
   pod "Timepiece"
   pod 'GrowingTextView', '0.7.2'
+  pod 'Stripe'
 
   # Pods for lookbook
 

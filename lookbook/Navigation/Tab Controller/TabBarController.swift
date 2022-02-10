@@ -18,6 +18,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         self.viewControllers = createViewControllers()
         loadStartScreen()
+        StripeManager.shared.setupStripeCustomer()
     }
     
     private func loadStartScreen() {

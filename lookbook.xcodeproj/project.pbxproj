@@ -39,6 +39,8 @@
 		386D376727B3763900AC0497 /* SubscriptionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376627B3763900AC0497 /* SubscriptionModalView.swift */; };
 		386D376D27B3C70100AC0497 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376C27B3C70100AC0497 /* CreateProfileViewController.swift */; };
 		386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376E27B4893C00AC0497 /* ImageExtension.swift */; };
+		386D377427B4B19B00AC0497 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377327B4B19B00AC0497 /* CheckOutViewController.swift */; };
+		386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377627B4CB1600AC0497 /* StripeManager.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -84,6 +86,8 @@
 		386D376627B3763900AC0497 /* SubscriptionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionModalView.swift; sourceTree = "<group>"; };
 		386D376C27B3C70100AC0497 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		386D376E27B4893C00AC0497 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		386D377327B4B19B00AC0497 /* CheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		386D377627B4CB1600AC0497 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +308,23 @@
 			path = "Create Profile";
 			sourceTree = "<group>";
 		};
+		386D377027B4B14400AC0497 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				386D377527B4CB0900AC0497 /* Stripe */,
+				386D377327B4B19B00AC0497 /* CheckOutViewController.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		386D377527B4CB0900AC0497 /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				386D377627B4CB1600AC0497 /* StripeManager.swift */,
+			);
+			path = Stripe;
+			sourceTree = "<group>";
+		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +357,7 @@
 		923648E8278FFD0300AED21C /* lookbook */ = {
 			isa = PBXGroup;
 			children = (
+				386D377027B4B14400AC0497 /* Payments */,
 				386D375527B3603D00AC0497 /* Account */,
 				386D375127B35E4D00AC0497 /* Navigation */,
 				386D373927B333C400AC0497 /* Master Chat Room */,
@@ -503,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */,
 				386D374727B3379A00AC0497 /* MasterChatRoomTableViewCell.swift in Sources */,
 				92A4189727B287CB009A6BA3 /* ChatViewController.swift in Sources */,
 				386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */,
@@ -518,6 +541,7 @@
 				386D374427B3368C00AC0497 /* MessageParse.swift in Sources */,
 				385483D327B2547400B7C19A /* ExploreView.swift in Sources */,
 				385483D827B254B100B7C19A /* InfluencerTableViewCell.swift in Sources */,
+				386D377427B4B19B00AC0497 /* CheckOutViewController.swift in Sources */,
 				385483D527B2548900B7C19A /* ExploreViewController.swift in Sources */,
 				384C54C427B1C32100B8BEEA /* LogInViewController.swift in Sources */,
 				92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */,
