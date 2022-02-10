@@ -15,8 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpServer()
-        setStartingVC()
+//        setStartingVC()
+        setInitialVC()
         return true
+    }
+    
+    private func setInitialVC() {
+        let query = InfluencerParse.query() as! PFQuery<InfluencerParse>
+        query.includeKey("user")
+        query.whereKey("objectId", equalTo: "BnLxDDT7rU")
+        query.getFirstObjectInBackground { (result, error) in
+            if let influencerParse = result {
+                let welcomeVC = SubscriptionModalViewController(influencer: influencerParse)
+                let navController = UINavigationController(rootViewController: welcomeVC)
+                self.set(startingVC: navController)
+            } else {
+                BannerAlert.show(with: error)
+            }
+        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
