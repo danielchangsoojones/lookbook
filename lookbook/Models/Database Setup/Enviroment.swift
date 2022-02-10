@@ -28,6 +28,16 @@ public enum Environment: String {
             return "https://ohanafam-server-prod.herokuapp.com/parse"
         }
     }
+    
+    var stripePublishableKey: String {
+        switch self {
+            //TODO: only listing development keys for safety
+        case .development:
+            return "pk_test_ilJ2KUQAVYu0mEKKpFobwdun00f6PTphly"
+        case .production:
+            return "pk_test_ilJ2KUQAVYu0mEKKpFobwdun00f6PTphly"
+        }
+    }
 }
 
 class Configuration {
