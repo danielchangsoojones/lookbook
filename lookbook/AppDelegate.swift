@@ -47,8 +47,14 @@ extension AppDelegate {
     }
     
     private func setStartingVC() {
-        if isLoggedIn {
-            toTabBarController()
+        if isLoggedIn {            
+            if OnboardingDataStore.isProfileComplete {
+                toTabBarController()
+            } else {
+                let welcomeVC = CreateProfileViewController()
+                let navController = UINavigationController(rootViewController: welcomeVC)
+                set(startingVC: navController)
+            }
         } else {
             toWelcomeVC()
         }
