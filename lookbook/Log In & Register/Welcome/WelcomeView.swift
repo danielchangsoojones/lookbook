@@ -74,12 +74,11 @@ class WelcomeView: UIView {
         button.setTitleColor(textColor, for: .normal)
         button.titleLabel?.font =  .systemFont(ofSize: 13, weight: .black)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        //button.titleLabel?.numberOfLines = 0
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.black.cgColor
-        let horizontalInset: CGFloat = 50
+        let horizontalInset: CGFloat = 20
         let verticalInset: CGFloat = 20
         button.contentEdgeInsets = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
         return button
@@ -94,7 +93,8 @@ class WelcomeView: UIView {
         subtitleLabel.textColor = .white
         addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(5)
+            make.centerY.equalToSuperview()
         }
         
         let horizontalInset = 15
