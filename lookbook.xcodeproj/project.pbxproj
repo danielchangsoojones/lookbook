@@ -24,6 +24,7 @@
 		385483DE27B25A2C00B7C19A /* SuperParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483DD27B25A2C00B7C19A /* SuperParseObject.swift */; };
 		385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E027B2680C00B7C19A /* ExploreDataStore.swift */; };
 		385483E327B2913A00B7C19A /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385483E227B2913A00B7C19A /* ImageViewExtension.swift */; };
+		385B937527B5CB67004644CA /* SubscriptionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B937427B5CB67004644CA /* SubscriptionDataStore.swift */; };
 		386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */; };
 		386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373C27B3347800AC0497 /* MasterChatRoomView.swift */; };
 		386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D373F27B334C000AC0497 /* MasterChatDataStore.swift */; };
@@ -71,6 +72,7 @@
 		385483DD27B25A2C00B7C19A /* SuperParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperParseObject.swift; sourceTree = "<group>"; };
 		385483E027B2680C00B7C19A /* ExploreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataStore.swift; sourceTree = "<group>"; };
 		385483E227B2913A00B7C19A /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		385B937427B5CB67004644CA /* SubscriptionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDataStore.swift; sourceTree = "<group>"; };
 		386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatRoomViewController.swift; sourceTree = "<group>"; };
 		386D373C27B3347800AC0497 /* MasterChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatRoomView.swift; sourceTree = "<group>"; };
 		386D373F27B334C000AC0497 /* MasterChatDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterChatDataStore.swift; sourceTree = "<group>"; };
@@ -230,6 +232,14 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
+		385B937327B5CB55004644CA /* Data Store */ = {
+			isa = PBXGroup;
+			children = (
+				385B937427B5CB67004644CA /* SubscriptionDataStore.swift */,
+			);
+			path = "Data Store";
+			sourceTree = "<group>";
+		};
 		386D373927B333C400AC0497 /* Master Chat Room */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +305,7 @@
 		386D376327B3751800AC0497 /* Subscription */ = {
 			isa = PBXGroup;
 			children = (
+				385B937327B5CB55004644CA /* Data Store */,
 				386D376427B3753400AC0497 /* SubscriptionModalViewController.swift */,
 				386D376627B3763900AC0497 /* SubscriptionModalView.swift */,
 			);
@@ -564,6 +575,7 @@
 				385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */,
 				386D374227B3365300AC0497 /* ChatRoomParse.swift in Sources */,
 				386D375D27B3727900AC0497 /* AccountView.swift in Sources */,
+				385B937527B5CB67004644CA /* SubscriptionDataStore.swift in Sources */,
 				386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

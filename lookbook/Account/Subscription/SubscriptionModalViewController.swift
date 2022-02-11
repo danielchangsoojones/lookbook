@@ -15,6 +15,11 @@ class SubscriptionModalViewController: UIViewController {
     private var infoTitleLabel: UILabel!
     private var infoSubtitleLabel: UILabel!
     private var paymentSheet: PaymentSheet?
+    private var dataStore = SubscriptionDataStore()
+    private var subscriptionId: String!
+    private var chargeAmount: Double!
+    private var current_period_start: Date!
+    private var current_period_end: Date!
     
     init(influencer: InfluencerParse) {
         self.influencer = influencer
@@ -54,10 +59,22 @@ class SubscriptionModalViewController: UIViewController {
         StripeEphemeralKeyProvider.sharedClient.createCustomerKey(withAPIVersion: influencer.objectId ?? "") { result, error in
             if let result = result {
                 if let ephemeralKey = result["ephemeralKey"] as? [AnyHashable: Any],
-                   let paymentIntent = result["paymentIntent"] as? [AnyHashable: Any] {
+                   let paymentIntent = result["paymentIntent"] as? [AnyHashable: Any],
+                   let subscription = result["subscription"] as? [AnyHashable: Any] {
                     if let customerEphemeralKeySecret = ephemeralKey["secret"] as? String,
                        let paymentIntentClientSecret = paymentIntent["client_secret"] as? String,
+                       let chargeAmount = paymentIntent["amount"] as? Double,
+                       let subscriptionId = subscription["id"] as? String,
+                       let current_period_start = subscription["current_period_start"] as? Double,
+                       let current_period_end = subscription["current_period_end"] as? Double,
                        let customerStripeID = User.current()?.stripeCustomerID {
+                        self.subscriptionId = subscriptionId
+                        self.chargeAmount = chargeAmount
+                        let startEpocTime = TimeInterval(current_period_start)
+                        let endEpocTime = TimeInterval(current_period_end)
+                        self.current_period_start = Date(timeIntervalSince1970: startEpocTime)
+                        self.current_period_end = Date(timeIntervalSince1970: endEpocTime)
+                        
                         var configuration = PaymentSheet.Configuration()
                         configuration.merchantDisplayName = "Ohana"
                         configuration.customer = .init(id: customerStripeID, ephemeralKeySecret: customerEphemeralKeySecret)
@@ -82,7 +99,9 @@ class SubscriptionModalViewController: UIViewController {
             case .completed:
                 print("Your order is confirmed")
                 BannerAlert.show(title: "Payment Success", subtitle: "You've successfully subscribed!", type: .success)
-                //TODO: record entry on Subscription table
+                self.dataStore.saveSubscription(influencerObjectId: self.influencer?.objectId ?? "", subscriptionObjectId: self.subscriptionId, chargeAmount: self.chargeAmount, current_period_start: self.current_period_start, current_period_end: self.current_period_end) {
+                    print("successfully saved subscription")
+                }
             case .canceled:
                 print("Canceled!")
             case .failed(let error):
