@@ -44,7 +44,7 @@ Table of contents
 
 **Card scanning**: We support card scanning on iOS 13 and higher. See our [Card scanning](#card-scanning) section.
 
-**Localized**: We support the following localizations: Bulgarian, Catalan, Chinese (Hong Kong), Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dutch, English (US), English (United Kingdom), Estonian, Filipino, Finnish, French, French (Canada), German, Greek, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Malay, Maltese, Norwegian Bokmål, Norwegian Nynorsk (Norway), Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Slovak, Slovenian, Spanish, Spanish (Latin America), Swedish, Turkish, Thai and Vietnamese.
+**Localized**: We support the following localizations: Bulgarian, Catalan, Chinese (Hong Kong), Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dutch, English (US), English (United Kingdom), Estonian, Filipino, Finnish, French, French (Canada), German, Greek, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Malay, Maltese, Norwegian Bokmål, Norwegian Nynorsk (Norway), Portuguese (Brazil), Polish, Portuguese, Romanian, Russian, Slovakian, Slovenian, Spanish, Spanish (Latin America), Swedish, Turkish, Turkmen, and Vietnamese.
 
 #### Recommended usage
 
@@ -61,7 +61,7 @@ We support Cocoapods, Carthage, and Swift Package Manager. If you link the libra
 To manually link the **Stripe Identity iOS SDK**, follow [these instructions](StripeIdentity/README.md#manual-linking).
 
 If you're reading this on GitHub.com, please make sure you are looking at the [tagged version](https://github.com/stripe/stripe-ios/tags) that corresponds to the release you have installed. Otherwise, the instructions and example code may be mismatched with your copy. You can read the latest tagged version of this README and browse the associated code on GitHub using
-[this link](https://github.com/stripe/stripe-ios/tree/21.11.1).
+[this link](https://github.com/stripe/stripe-ios/tree/21.9.0).
 
 ## Requirements
 

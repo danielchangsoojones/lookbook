@@ -103,9 +103,6 @@
 /* Payment Method type brand name */
 "Boleto" = "Boleto";
 
-/* Klarna buy now or pay later copy */
-"Buy now or pay later with Klarna." = "Şimdi satın alın veya daha sonra Klarna ile ödeyin.";
-
 /* SEPA legal authorization text – must use official translations. */
 "By providing your IBAN and confirming this payment, you are authorizing %@ and Stripe, our payment service provider, to send instructions to your bank to debit your account and your bank to debit your account in accordance with those instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited." = "IBAN numaranızı sağlayarak ve bu ödemeyi onaylarak, %@ ve ödeme hizmet sağlayıcımız Stripe'ı bankanıza hesabınızdan ödeme tahsilatı yapılması için talimat göndermeye ve bankanızı bu talimatlar doğrultusunda hesabınızdan ödeme yapmasına yetki veriyorsunuz. Bankanızla aranızdaki sözleşmenin hüküm ve şartlarına uygun olarak ödeme iadesi hakkına sahipsiniz. Ödeme iadesi talebi hesabınızdan ödeme yapılan tarihten itibaren 8 hafta içinde yapılmalıdır.";
 
@@ -253,9 +250,6 @@
 /* Label of a button that initiates payment when tapped */
 "Pay %@" = "%@ öde";
 
-/* Klarna pay later copy */
-"Pay later with Klarna." = "Daha sonra Klarna ile ödeyin.";
-
 /* Pay with {payment method} */
 "Pay with %@" = "%@ ile öde";
 
@@ -326,6 +320,12 @@
 /* The label of a switch indicating whether to save the user&apos;s card for future payments to this merchant */
 
 "Save this card for future %@ payments" = "Bu kartı gelecekteki %@ ödemeleri için kaydedin";
+/* Text for button to scan a credit card */
+
+"Scan Card" = "Kartı Tara";
+/* Button title to open camera to scan credit/debit card */
+
+"Scan card" = "Kartı tara";
 /* Label of a button displayed below a payment method form. Tapping the button closes the form and uses the entered payment method details for checkout in the next step */
 
 "Select" = "Seç";

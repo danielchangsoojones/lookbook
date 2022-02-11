@@ -102,12 +102,9 @@ extension PaymentMethodTypeCollectionView: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Fixed size cells for iPad
         guard UIDevice.current.userInterfaceIdiom != .pad else { return CGSize(width: 100, height: cellHeight) }
-        
-        // When there are 2 PMs, make them span the width of the collection view
-        // When there are not 2 PMs, show 3 full cells plus 30% of the next if present
-        let numberOfCellsToShow = paymentMethodTypes.count == 2 ? CGFloat(2) : CGFloat(3.3)
-        
-        let cellWidth = (collectionView.frame.width - (PaymentSheetUI.defaultPadding + (minInteritemSpacing * 3.0))) / numberOfCellsToShow
+
+        // Show 3 full cells plus 30% of the next if present
+        let cellWidth = (collectionView.frame.width - (PaymentSheetUI.defaultPadding + (minInteritemSpacing * 3.0))) / 3.3
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }

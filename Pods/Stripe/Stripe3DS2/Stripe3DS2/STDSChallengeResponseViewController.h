@@ -21,13 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Called when the user taps the Submit button after entering text in the Text flow (STDSACSUITypeText)
  */
-- (void)challengeResponseViewController:(STDSChallengeResponseViewController *)viewController didSubmitInput:(NSString *)userInput
-                     whitelistSelection: (id<STDSChallengeResponseSelectionInfo>) whitelistSelection;
+- (void)challengeResponseViewController:(STDSChallengeResponseViewController *)viewController didSubmitInput:(NSString *)userInput;
 
 /**
  Called when the user taps the Submit button after selecting one or more options in the Single-Select (STDSACSUITypeSingleSelect) or Multi-Select (STDSACSUITypeMultiSelect) flow.
  */
-- (void)challengeResponseViewController:(STDSChallengeResponseViewController *)viewController didSubmitSelection:(NSArray<id<STDSChallengeResponseSelectionInfo>> *)selection whitelistSelection: (id<STDSChallengeResponseSelectionInfo>) whitelistSelection;
+- (void)challengeResponseViewController:(STDSChallengeResponseViewController *)viewController didSubmitSelection:(NSArray<id<STDSChallengeResponseSelectionInfo>> *)selection;
 
 /**
  Called when the user submits an HTML form.
@@ -37,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Called when the user taps the Continue button from an Out-of-Band flow (STDSACSUITypeOOB).
  */
-- (void)challengeResponseViewControllerDidOOBContinue:(STDSChallengeResponseViewController *)viewController whitelistSelection: (id<STDSChallengeResponseSelectionInfo>) whitelistSelection;
+- (void)challengeResponseViewControllerDidOOBContinue:(STDSChallengeResponseViewController *)viewController;
 
 /**
  Called when the user taps the Cancel button.

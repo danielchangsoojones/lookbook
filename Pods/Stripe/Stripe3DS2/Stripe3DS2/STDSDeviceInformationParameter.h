@@ -14,9 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<STDSDeviceInformationParameter *> *)allParameters;
 
-/// Returns a UUID unique to the app version
-+ (NSString *)sdkAppIdentifier;
-
 - (void)collectIgnoringRestrictions:(BOOL)ignoreRestrictions withHandler:(void (^)(BOOL, NSString *, id))handler;
 
 @end

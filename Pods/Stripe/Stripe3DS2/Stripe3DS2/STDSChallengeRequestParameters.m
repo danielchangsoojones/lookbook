@@ -19,7 +19,6 @@
                                    acsTransactionIdentifier:challengeParams.acsTransactionID
                                              messageVersion:messageVersion
                                    sdkTransactionIdentifier:transactionIdentifier
-                                            requestorAppUrl:challengeParams.threeDSRequestorAppURL
                                              sdkCounterStoA:0];
 }
 
@@ -27,7 +26,6 @@
                                   acsTransactionIdentifier:(NSString *)acsTransactionIdentifier
                                             messageVersion:(NSString *)messageVersion
                                   sdkTransactionIdentifier:(NSString *)sdkTransactionIdentifier
-                                           requestorAppUrl:(NSString *)requestorAppUrl
                                             sdkCounterStoA:(NSInteger)sdkCounterStoA {
     self = [super init];
     if (self) {
@@ -36,7 +34,6 @@
         _acsTransactionIdentifier = [acsTransactionIdentifier copy];
         _messageVersion = [messageVersion copy];
         _sdkTransactionIdentifier = [sdkTransactionIdentifier copy];
-        _threeDSRequestorAppURL = [requestorAppUrl copy];
         _sdkCounterStoA = [NSString stringWithFormat:@"%03ld", (long)sdkCounterStoA];
     }
     return self;
@@ -48,7 +45,6 @@
                                                                      acsTransactionIdentifier:self.acsTransactionIdentifier
                                                                                messageVersion:self.messageVersion
                                                                      sdkTransactionIdentifier:self.sdkTransactionIdentifier
-                                                                              requestorAppUrl:self.threeDSRequestorAppURL // TC_SDK_10209_001
                                                                                sdkCounterStoA:incrementedCounter];
 }
 
@@ -56,10 +52,8 @@
     // [Req 40] ...if the cardholder has submitted the response without entering any data in the UI, the Challenge Data Entry field shall not be present in the CReq message.
     if (challengeDataEntry.length == 0) {
         _challengeDataEntry = nil;
-        _challengeNoEntry = @"Y";
     } else {
         _challengeDataEntry = [challengeDataEntry copy];
-        _challengeNoEntry = nil;
     }
 }
 
@@ -90,7 +84,6 @@
              NSStringFromSelector(@selector(challengeCancelString)): @"challengeCancel",
              NSStringFromSelector(@selector(challengeDataEntry)): @"challengeDataEntry",
              NSStringFromSelector(@selector(challengeHTMLDataEntry)): @"challengeHTMLDataEntry",
-             NSStringFromSelector(@selector(challengeNoEntry)): @"challengeNoEntry",
              NSStringFromSelector(@selector(messageExtension)): @"messageExtension",
              NSStringFromSelector(@selector(messageVersion)): @"messageVersion",
              NSStringFromSelector(@selector(messageType)): @"messageType",

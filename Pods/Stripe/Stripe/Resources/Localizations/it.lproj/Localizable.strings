@@ -103,9 +103,6 @@
 /* Payment Method type brand name */
 "Boleto" = "Boleto";
 
-/* Klarna buy now or pay later copy */
-"Buy now or pay later with Klarna." = "Acquista ora o paga dopo con Klarna.";
-
 /* SEPA legal authorization text – must use official translations. */
 "By providing your IBAN and confirming this payment, you are authorizing %@ and Stripe, our payment service provider, to send instructions to your bank to debit your account and your bank to debit your account in accordance with those instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited." = "La sottoscrizione del presente mandato comporta (A) l’autorizzazione a %@ a richiedere alla banca del debitore l’addebito del suo conto e (B) l’autorizzazione alla banca del debitore di procedere a tale addebito conformemente alle disposizioni impartite da {NOME DEL CREDITORE}. Il debitore ha diritto di ottenere il rimborso dalla propria Banca secondo gli accordi ed alle condizioni che regolano il rapporto con quest’ultima. Se del caso, il rimborso deve essere richiesto nel termine di 8 settimane a decorrere dalla data di addebito in conto";
 
@@ -199,9 +196,6 @@
 /* Source type brand name */
 "Klarna" = "Klarna";
 
-/* Link Payment Method type brand name */
-"Link" = "Link";
-
 /* Title for screen when data is still loading from the network. */
 "Loading…" = "Caricamento...";
 
@@ -255,9 +249,6 @@
 
 /* Label of a button that initiates payment when tapped */
 "Pay %@" = "Paga %@";
-
-/* Klarna pay later copy */
-"Pay later with Klarna." = "Paga dopo con Klarna.";
 
 /* Pay with {payment method} */
 "Pay with %@" = "Paga con %@";
@@ -329,9 +320,12 @@
 /* The label of a switch indicating whether to save the user&apos;s card for future payments to this merchant */
 
 "Save this card for future %@ payments" = "Salva la carta per i pagamenti futuri di %@";
-/* The label of a switch indicating whether to save the user's card for future payment */
+/* Text for button to scan a credit card */
 
-"Save this card for future Stripe payments" = "Salva la carta per i pagamenti futuri con Stripe";
+"Scan Card" = "Scansiona carta";
+/* Button title to open camera to scan credit/debit card */
+
+"Scan card" = "Scansiona carta";
 /* Label of a button displayed below a payment method form. Tapping the button closes the form and uses the entered payment method details for checkout in the next step */
 
 "Select" = "Seleziona";

@@ -45,7 +45,16 @@ class PaymentSheetFormFactory {
             case (true, _, _):
                 saveMode = .merchantRequired
             case (false, true, true):
-                saveMode = .userSelectable
+                // Disable user selectable save if the PI contains any non-reusable payment methods
+                let nonReusablePaymentMethods: [STPPaymentMethodType] = [
+                    .cardPresent, .blik, .weChatPay, .grabPay, .FPX, .giropay, .przelewy24, .EPS,
+                    .netBanking, .OXXO, .afterpayClearpay, .payPal, .UPI, .boleto, .unknown
+                ]
+                if paymentIntent.orderedPaymentMethodTypes.contains(where: nonReusablePaymentMethods.contains) {
+                    saveMode = .none
+                } else {
+                    saveMode = .userSelectable
+                }
             case (false, true, false):
                 fallthrough
             case (false, false, _):
@@ -86,15 +95,10 @@ class PaymentSheetFormFactory {
                 return makeP24()
             case .afterpayClearpay:
                 return makeAfterpayClearpay()
-            case .klarna:
-                return makeKlarna()
-            case .payPal:
-                return []
             default:
                 fatalError()
             }
-        }() + [makeSpacer()] // For non card PMs, add a spacer to the end of the element list to match card bottom spacing
-
+        }()
         return FormElement(formElements)
     }
 }
@@ -291,52 +295,6 @@ extension PaymentSheetFormFactory {
             view: AfterpayPriceBreakdownView(amount: paymentIntent.amount, currency: paymentIntent.currency)
         )
         return [priceBreakdownView, makeFullName(), makeEmail(), makeBillingAddressSection()]
-    }
-    
-    func makeKlarna() -> [PaymentMethodElement] {
-        guard case let .paymentIntent(paymentIntent) = intent else {
-            assertionFailure("Klarna only be used with a PaymentIntent")
-            return []
-        }
-        
-        let countryCodes = Locale.current.sortedByTheirLocalizedNames(
-            KlarnaHelper.availableCountries(currency: paymentIntent.currency)
-        )
-        let country = PaymentMethodElementWrapper(DropdownFieldElement.Address.makeCountry(
-            label: String.Localized.country,
-            countryCodes: countryCodes,
-            defaultCountry: configuration.defaultBillingDetails.address.country,
-            locale: Locale.current
-        )) { dropdown, params in
-            let address = STPPaymentMethodAddress()
-            address.country = countryCodes[dropdown.selectedIndex]
-            params.paymentMethodParams.nonnil_billingDetails.address = address
-            return params
-        }
-        
-        return [makeKlarnaCopyLabel(), makeEmail(), country]
-    }
-    
-    func makeSpacer() -> StaticElement {
-        let spacerView = UIView()
-        spacerView.translatesAutoresizingMaskIntoConstraints = false
-        spacerView.heightAnchor.constraint(equalToConstant: STPFormView.interSectionSpacing).isActive =
-            true
-        
-        return StaticElement(view: spacerView)
-    }
-    
-    private func makeKlarnaCopyLabel() -> StaticElement {
-        let klarnaLabel = UILabel()
-        if KlarnaHelper.canBuyNow() {
-            klarnaLabel.text = STPLocalizedString("Buy now or pay later with Klarna.", "Klarna buy now or pay later copy")
-        } else {
-            klarnaLabel.text = STPLocalizedString("Pay later with Klarna.", "Klarna pay later copy")
-        }
-        klarnaLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        klarnaLabel.textColor = CompatibleColor.secondaryLabel
-        klarnaLabel.numberOfLines = 0
-        return StaticElement(view: klarnaLabel)
     }
 }
 

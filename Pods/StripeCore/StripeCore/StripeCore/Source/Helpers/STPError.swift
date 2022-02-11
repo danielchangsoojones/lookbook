@@ -15,8 +15,6 @@ public enum STPErrorCode: Int {
     case connectionError = 40
     /// Your request had invalid parameters.
     case invalidRequestError = 50
-    /// No valid publishable API key provided.
-    case authenticationError = 51
     /// General-purpose API error.
     case apiError = 60
     /// Something was wrong with the given card details.
@@ -64,13 +62,17 @@ public class STPError {
 /// NSError extensions for creating error objects from Stripe API responses.
 extension NSError {
     @_spi(STP) public static func stp_error(
-        errorType: String?,
-        stripeErrorCode: String?,
-        stripeErrorMessage: String?,
-        errorParam: String?,
-        declineCode: Any?,
-        httpResponse: HTTPURLResponse?
+        fromStripeResponse jsonDictionary: [AnyHashable: Any]?, httpResponse: HTTPURLResponse?
     ) -> NSError? {
+        guard let dict = (jsonDictionary as NSDictionary?),
+            let errorDictionary = dict["error"] as? NSDictionary
+        else {
+            return nil
+        }
+        let errorType = errorDictionary["type"] as? String
+        let errorParam = errorDictionary["param"] as? String
+        let stripeErrorMessage = errorDictionary["message"] as? String
+        let stripeErrorCode = errorDictionary["code"] as? String
         var code = 0
 
         var userInfo: [AnyHashable: Any] = [
@@ -79,8 +81,8 @@ extension NSError {
         userInfo[STPError.stripeErrorCodeKey] = stripeErrorCode ?? ""
         userInfo[STPError.stripeErrorTypeKey] = errorType ?? ""
         if let errorParam = errorParam {
-            userInfo[STPError.errorParameterKey] = URLEncoder.convertToCamelCase(
-                snakeCase: errorParam)
+            userInfo[STPError.errorParameterKey] = URLEncoder.stringByReplacingSnakeCase(
+                withCamelCase: errorParam)
         }
         if let stripeErrorMessage = stripeErrorMessage {
             userInfo[STPError.errorMessageKey] = stripeErrorMessage
@@ -94,12 +96,7 @@ extension NSError {
             code = STPErrorCode.apiError.rawValue
         } else {
             if errorType == "invalid_request_error" {
-                switch httpResponse?.statusCode {
-                case 401:
-                    code = STPErrorCode.authenticationError.rawValue
-                default:
-                    code = STPErrorCode.invalidRequestError.rawValue
-                }
+                code = STPErrorCode.invalidRequestError.rawValue
             } else if errorType == "card_error" {
                 code = STPErrorCode.cardError.rawValue
                 userInfo[NSLocalizedDescriptionKey] = stripeErrorMessage  // see https://stripe.com/docs/api/errors#errors-message
@@ -158,7 +155,7 @@ extension NSError {
             let localizedMessage = codeMapEntry?["message"]
             if let cardErrorCode = cardErrorCode {
                 if cardErrorCode == STPCardErrorCode.cardDeclined.rawValue,
-                   let decline_code = declineCode {
+                   let decline_code = errorDictionary["decline_code"] {
                     userInfo[STPError.stripeDeclineCodeKey] = decline_code
                 }
                 userInfo[STPError.cardErrorCodeKey] = cardErrorCode
@@ -170,34 +167,14 @@ extension NSError {
             }
         }
 
+        // Hack (we should overhaul this file): some errors can be supplemented with better messages than the client-agnostic JSON returned
+        if httpResponse?.statusCode == 401 && stripeErrorCode == nil {
+            userInfo[STPError.errorMessageKey] =
+                "No valid API key provided. Set `STPAPIClient.shared().publishableKey` to your publishable key, which you can find here: https://stripe.com/docs/keys"
+        }
+
         return NSError(
             domain: STPError.stripeDomain, code: code, userInfo: userInfo as? [String: Any])
-    }
-
-    @_spi(STP) public static func stp_error(
-        fromStripeResponse jsonDictionary: [AnyHashable: Any]?,
-        httpResponse: HTTPURLResponse?
-    ) -> NSError? {
-        // TODO: Refactor. A lot of this can be replaced by a lookup/decision table. Check Android implementation for cues.
-        guard let dict = (jsonDictionary as NSDictionary?),
-            let errorDictionary = dict["error"] as? NSDictionary
-        else {
-            return nil
-        }
-        let errorType = errorDictionary["type"] as? String
-        let errorParam = errorDictionary["param"] as? String
-        let stripeErrorMessage = errorDictionary["message"] as? String
-        let stripeErrorCode = errorDictionary["code"] as? String
-        let declineCode = errorDictionary["decline_code"]
-
-        return stp_error(
-            errorType: errorType,
-            stripeErrorCode: stripeErrorCode,
-            stripeErrorMessage: stripeErrorMessage,
-            errorParam: errorParam,
-            declineCode: declineCode,
-            httpResponse: httpResponse
-        )
     }
 
     /// Creates an NSError object from a given Stripe API json response.
