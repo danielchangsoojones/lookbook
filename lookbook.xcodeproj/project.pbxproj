@@ -686,8 +686,9 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
+				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -719,8 +720,9 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
+				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -812,8 +814,9 @@
 				DEVELOPMENT_TEAM = WGU25444T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = lookbook/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(PRODUCT_NAME) is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
+				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
