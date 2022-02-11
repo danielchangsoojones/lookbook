@@ -1,6 +1,6 @@
 //
 //  STPMultipartFormDataEncoder.swift
-//  StripeCore
+//  Stripe
 //
 //  Created by Charles Scalesse on 12/1/16.
 //  Copyright © 2016 Stripe, Inc. All rights reserved.

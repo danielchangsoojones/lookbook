@@ -9,26 +9,15 @@
 import Foundation
 
 extension String {
-    /// Returns a substring up to the specified index.
-    ///
-    /// This method clamps out-of-bound indexes and always returns a valid (non-nil) string.
-    ///
-    /// - Parameter index: Index of last character to include in the substring.
-    /// - Returns: Substring.
     func stp_safeSubstring(to index: Int) -> String {
-        let maxLength = max(min(index, count), 0)
-        return String(prefix(maxLength))
+        return String(prefix(min(index, count)))
     }
 
-    /// Returns the substring starting from the specified index.
-    ///
-    /// This method clamps out-of-bound indexes and always returns a valid (non-nil) string.
-    ///
-    /// - Parameter index: Index of starting point of substring.
-    /// - Returns: Substring.
     func stp_safeSubstring(from index: Int) -> String {
-        let maxLength = max(min(count - index, count), 0)
-        return String(suffix(maxLength))
+        if index > count {
+            return ""
+        }
+        return String(suffix(count - index))
     }
 
     func stp_string(byRemovingSuffix suffix: String?) -> String {

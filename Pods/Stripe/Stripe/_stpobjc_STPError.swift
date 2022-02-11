@@ -10,8 +10,6 @@ import Foundation
 @_spi(STP) import StripeCore
 
 // These must line up with the codes in STPError.swift.
-/// :nodoc:
-///
 /// Possible error code values for NSErrors with the `StripeDomain` domain
 @available(swift, deprecated: 0.0.1, renamed: "STPErrorCode")
 @objc(STPErrorCode) public enum _stpobjc_STPErrorCode: Int {
@@ -19,8 +17,6 @@ import Foundation
     @objc(STPConnectionError) case connectionError = 40
     /// Your request had invalid parameters.
     @objc(STPInvalidRequestError) case invalidRequestError = 50
-    /// No valid publishable API key provided.
-    @objc(STPAuthenticationError) case authenticationError = 51
     /// General-purpose API error.
     @objc(STPAPIError) case apiError = 60
     /// Something was wrong with the given card details.
@@ -35,8 +31,6 @@ import Foundation
 
 // MARK: - STPError
 
-/// :nodoc:
-///
 /// Top-level class for Stripe error constants.
 @available(swift, deprecated: 0.0.1, renamed: "STPError")
 @objc(STPError) public class _stpobjc_STPError: NSObject {

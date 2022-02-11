@@ -26,6 +26,9 @@ import UIKit
     private(set) var urlSession: URLSession = URLSession(
         configuration: StripeAPIConfiguration.sharedUrlSessionConfiguration)
 
+    /// Determines the `publishable_key` value sent in analytics
+    public var publishableKeyProvider: PublishableKeyProvider?
+
     @objc public class func tokenType(fromParameters parameters: [AnyHashable: Any]) -> String? {
         let parameterKeys = parameters.keys
 
@@ -77,7 +80,8 @@ import UIKit
             return
         }
 
-        var request = URLRequest(url: url)
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
+
         request.stp_addParameters(toURL: payload)
         let task: URLSessionDataTask = urlSession.dataTask(with: request as URLRequest)
         task.resume()
@@ -88,10 +92,9 @@ import UIKit
      additional info, and product usage dictionary.
 
      - Parameter analytic: The analytic to log.
-     - Parameter apiClient: The STPAPIClient instance with which this payload should be associated (i.e. publishable key). Defaults to STPAPIClient.shared
      */
-    func payload(from analytic: Analytic, apiClient: STPAPIClient = STPAPIClient.shared) -> [String: Any] {
-        var payload = commonPayload(apiClient)
+    func payload(from analytic: Analytic) -> [String: Any] {
+        var payload = commonPayload()
 
         payload["event"] = analytic.event.rawValue
         payload["additional_info"] = additionalInfo()
@@ -119,7 +122,7 @@ import UIKit
 
 // MARK: - Helpers
 extension STPAnalyticsClient {
-    public func commonPayload(_ apiClient: STPAPIClient) -> [String: Any] {
+    public func commonPayload() -> [String: Any] {
         var payload: [String: Any] = [:]
         payload["bindings_version"] = StripeAPIConfiguration.STPSDKVersion
         payload["analytics_ua"] = "analytics.stripeios-1.0"
@@ -132,9 +135,7 @@ extension STPAnalyticsClient {
         }
         payload["app_name"] = Bundle.stp_applicationName() ?? ""
         payload["app_version"] = Bundle.stp_applicationVersion() ?? ""
-        payload["plugin_type"] = PluginDetector.shared.pluginType?.rawValue
-        payload["install"] = InstallMethod.current.rawValue
-        payload["publishable_key"] = apiClient.sanitizedPublishableKey ?? "unknown"
+        payload["publishable_key"] = publishableKeyProvider?.sanitizedPublishableKey ?? "unknown"
         
         return payload
     }

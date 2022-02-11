@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation STDSWebView
 
-- (instancetype)init {
+/// Overriden to always return a set configuration object per 3DS2 security guidelines.
+- (WKWebViewConfiguration *)configuration {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.preferences.javaScriptEnabled = NO;
-    return [super initWithFrame:CGRectZero configuration:configuration];
+    
+    return configuration;
 }
 
 /// Overriden to do nothing per 3DS2 security guidelines.

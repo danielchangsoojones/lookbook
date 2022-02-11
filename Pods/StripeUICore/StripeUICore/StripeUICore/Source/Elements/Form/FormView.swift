@@ -18,7 +18,7 @@ class FormView: UIView {
         
         let stack = UIStackView(arrangedSubviews: viewModel.elements)
         stack.axis = .vertical
-        stack.spacing = 12
+        stack.spacing = 16
         addAndPinSubview(stack)
     }
 

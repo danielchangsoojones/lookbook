@@ -1,6 +1,6 @@
 //
 //  Async.swift
-//  StripeCore
+//  Stripe
 //
 //  Created by Yuki Tokuhiro on 9/12/20.
 //  Copyright © 2020 Stripe, Inc. All rights reserved.
@@ -31,8 +31,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-@_spi(STP) public class Future<Value> {
-    public typealias Result = Swift.Result<Value, Error>
+class Future<Value> {
+    typealias Result = Swift.Result<Value, Error>
 
     fileprivate var result: Result? {
         // Observe whenever a result is assigned, and report it:
@@ -40,7 +40,7 @@
     }
     private var callbacks = [(Result) -> Void]()
 
-    public func observe(using callback: @escaping (Result) -> Void) {
+    func observe(using callback: @escaping (Result) -> Void) {
         // If a result has already been set, call the callback directly:
         if let result = result {
             return callback(result)
@@ -54,7 +54,7 @@
         callbacks = []
     }
 
-    public func chained<T>(
+    func chained<T>(
         using closure: @escaping (Value) throws -> Future<T>
     ) -> Future<T> {
         // We'll start by constructing a "wrapper" promise that will be
@@ -92,28 +92,20 @@
     }
 }
 
-@_spi(STP) public class Promise<Value>: Future<Value> {
-    public override init() {
+class Promise<Value>: Future<Value> {
+    init(value: Value? = nil) {
         super.init()
-    }
-
-    public convenience init(value: Value) {
-        self.init()
 
         // If the value was already known at the time the promise
         // was constructed, we can report it directly:
+        result = value.map(Result.success)
+    }
+
+    func resolve(with value: Value) {
         result = .success(value)
     }
 
-    public func resolve(with value: Value) {
-        result = .success(value)
-    }
-
-    public func reject(with error: Error) {
+    func reject(with error: Error) {
         result = .failure(error)
-    }
-
-    public func fullfill(with result: Result) {
-        self.result = result
     }
 }
