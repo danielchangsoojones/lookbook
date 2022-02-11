@@ -47,4 +47,12 @@ struct Helpers {
         }
         UIApplication.shared.open(url)
     }
+    
+    static func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardFrame.height
+            return keyboardHeight
+        }
+        return 0
+    }
 }

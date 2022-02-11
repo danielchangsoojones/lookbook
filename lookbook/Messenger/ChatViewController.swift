@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ChatViewController: UIViewController {
     struct TestMessage {
@@ -21,6 +22,7 @@ class ChatViewController: UIViewController {
     private var messages: [MessageParse] = []
     private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
+    private var bottomConstraint: Constraint?
     private func populateMessageArray() {
         testMessages = [
             TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
@@ -28,7 +30,19 @@ class ChatViewController: UIViewController {
             TestMessage(message: "wowowow", isSenderCeleb:true),
             TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: false),
             TestMessage(message: "hey this is tyler", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false)
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false),
+            TestMessage(message: "bottom", isSenderCeleb: false)
         ]
     }
     
@@ -44,8 +58,8 @@ class ChatViewController: UIViewController {
     override func loadView() {
         super.loadView()
         setBackgroundImg()
-        setupCollectionView()
         setInputView()
+        setupCollectionView()
     }
     
     override func viewDidLoad() {
@@ -53,7 +67,14 @@ class ChatViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
         populateMessageArray() //TODO: DELETE & LOAD FROM MESSAGES
+        setKeyboardDetector()
     }
+    
+    private func setKeyboardDetector() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,6 +88,7 @@ class ChatViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.tabBar.isHidden = false
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -113,6 +135,11 @@ class ChatViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(cellType: ChatTextCollectionCell.self)
         view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.snp.topMargin)
+            make.bottom.equalTo(inputChatView.snp.top)
+        }
     }
     
     private func setInputView() {
@@ -121,8 +148,24 @@ class ChatViewController: UIViewController {
         view.addSubview(inputChatView)
         inputChatView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            self.bottomConstraint = make.bottom.equalToSuperview().constraint
         }
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        let keyboardHeight = Helpers.getKeyboardHeight(notification: notification)
+        bottomConstraint?.update(offset: -keyboardHeight)
+        UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut) {
+            self.view.layoutIfNeeded()
+        } completion: { (completed) in
+            let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
+            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        view.endEditing(true)
+        bottomConstraint?.update(offset: 0)
     }
     
     @objc private func pressedSendBtn() {
@@ -135,6 +178,10 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return testMessages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        inputChatView.endEditing(true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
