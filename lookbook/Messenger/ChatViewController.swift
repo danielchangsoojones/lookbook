@@ -56,7 +56,7 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
+        self.tabBarController?.tabBar.isHidden = false    }
     
     private func setInputView() {
         view.addSubview(inputChatView)
