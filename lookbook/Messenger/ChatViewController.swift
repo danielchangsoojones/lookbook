@@ -71,6 +71,8 @@ class ChatViewController: UIViewController {
     }
     
     private func setKeyboardDetector() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -100,6 +102,7 @@ class ChatViewController: UIViewController {
         dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
             self.messages = messages
             self.collectionView.reloadData()
+            self.scrollToMostRecentMessage()
         })
     }
     
@@ -158,14 +161,22 @@ class ChatViewController: UIViewController {
         UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut) {
             self.view.layoutIfNeeded()
         } completion: { (completed) in
-            let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
-            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            self.scrollToMostRecentMessage()
         }
+    }
+    
+    private func scrollToMostRecentMessage() {
+        let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
+        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         view.endEditing(true)
         bottomConstraint?.update(offset: 0)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc private func pressedSendBtn() {
@@ -178,10 +189,6 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return testMessages.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        inputChatView.endEditing(true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
