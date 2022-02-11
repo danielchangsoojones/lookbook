@@ -40,8 +40,8 @@ class InputChatView: UIView {
         }
         textView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.trailing.equalTo(sendButton.snp.leading)
-            make.top.bottom.equalToSuperview().inset(3)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
+            make.top.bottom.equalToSuperview().inset(8)
         }
     }
     

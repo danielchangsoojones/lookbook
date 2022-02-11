@@ -42,7 +42,13 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         label.font = UIFont.systemFont(ofSize: 11, weight: .light)
         return label
     }()
+     
     
+    func set(profileImage: UIImage?, message: String, time: String) {
+        profileImageView.image = profileImage
+        messageTextView.text = message
+        timeLabel.text = time
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
