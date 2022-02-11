@@ -23,8 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         User.current()?.fetchInBackground()
     }
+    // set orientations you want to be allowed in this property by default
+    var orientationLock = UIInterfaceOrientationMask.portrait
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+            return self.orientationLock
+    }
     
-    private func setUpServer() {
+        private func setUpServer() {
         let configuration = ParseClientConfiguration {
             $0.applicationId = Configuration.environment.appID
             $0.server = Configuration.environment.serverURL

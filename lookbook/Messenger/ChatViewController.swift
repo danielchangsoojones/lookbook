@@ -13,7 +13,6 @@ class ChatViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let backgroundImgViewTint: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }()
     private let backgroundImgView: UIImageView = {
@@ -22,6 +21,8 @@ class ChatViewController: UIViewController {
         imgView.contentMode = .scaleAspectFill
         return imgView
     }()
+    
+    private let inputChatView = InputChatView()
     
     init(influencer: InfluencerParse) {
         self.influencer = influencer
@@ -37,10 +38,12 @@ class ChatViewController: UIViewController {
         setBackgroundImg()
         setBackgroundImgTint()
         setupCollectionView()
+        setInputView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -53,6 +56,14 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    private func setInputView() {
+        view.addSubview(inputChatView)
+        inputChatView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     private func setupCollectionView() {
@@ -77,9 +88,23 @@ class ChatViewController: UIViewController {
     }
     
     private func setBackgroundImgTint() {
+        backgroundImgViewTint.frame = self.view.frame
+        let layer0 = CAGradientLayer()
+        layer0.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
+          UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
+          UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
+        ]
+        layer0.locations = [0, 1, 1]
+        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
+        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
+        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0.01, tx: 1, ty: 0))
+        layer0.bounds = backgroundImgViewTint.bounds.insetBy(dx: -0.5*backgroundImgViewTint.bounds.size.width, dy: -0.5*backgroundImgViewTint.bounds.size.height)
+        layer0.position = backgroundImgViewTint.center
+        backgroundImgViewTint.layer.addSublayer(layer0)
         self.view.addSubview(backgroundImgViewTint)
-        backgroundImgViewTint.snp.makeConstraints { make in make.edges.equalTo(backgroundImgView)
-        }
+//        backgroundImgViewTint.snp.makeConstraints { make in make.edges.equalTo(backgroundImgView)
+//        }
     }
 }
 
