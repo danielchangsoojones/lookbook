@@ -19,6 +19,7 @@ class ChatViewController: UIViewController {
     private var influencer: InfluencerParse!
     private var testMessages: [TestMessage]!
     private var messages: [MessageParse] = []
+    private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
     private func populateMessageArray() {
         testMessages = [
@@ -115,15 +116,23 @@ class ChatViewController: UIViewController {
     }
     
     private func setInputView() {
+        sendMessageButton = inputChatView.sendButton
+        sendMessageButton.addTarget(self, action: #selector(pressedSendBtn), for: .touchUpInside)
         view.addSubview(inputChatView)
         inputChatView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }
+    
+    @objc private func pressedSendBtn() {
+        //TODO: Call datastore function + send message
+        print("send button")
+    }
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return testMessages.count
     }
@@ -198,7 +207,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return estimatedFrame
     }
     
-    //use this function when we need to show subscription screen
+    //TODO: use this function when we need to show subscription screen
     private func showSubscriptionModalVC(influencer: InfluencerParse) {
         let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
         subscriptionModalVC.modalPresentationStyle = .popover
