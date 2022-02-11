@@ -17,9 +17,11 @@ class ChatViewController: UIViewController {
     private let backgroundGradient = CAGradientLayer()
     private let inputChatView = InputChatView()
     private var influencer: InfluencerParse!
-    private var messages: [TestMessage]!
+    private var testMessages: [TestMessage]!
+    private var messages: [MessageParse] = []
+    private var dataStore = MessengerDataStore()
     private func populateMessageArray() {
-        messages = [
+        testMessages = [
             TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
             TestMessage(message: "hey this is tyler", isSenderCeleb: true),
             TestMessage(message: "wowowow", isSenderCeleb:true),
@@ -57,6 +59,7 @@ class ChatViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = UIColor.black
+        loadMessages()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,26 +73,11 @@ class ChatViewController: UIViewController {
         backgroundGradient.frame = backgroundImgView.bounds
     }
     
-    private func setInputView() {
-        view.addSubview(inputChatView)
-        inputChatView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-    }
-    
-    private func setupCollectionView() {
-        let frame = CGRect(x: 0,
-                           y: 0,
-                           width: self.view.frame.width,
-                           height: self.view.frame.height)
-        let layout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(cellType: ChatTextCollectionCell.self)
-        view.addSubview(collectionView)
+    private func loadMessages() {
+        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
+            self.messages = messages
+            self.collectionView.reloadData()
+        })
     }
     
     private func setBackgroundImg() {
@@ -111,15 +99,37 @@ class ChatViewController: UIViewController {
         ]
         backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
     }
+    
+    private func setupCollectionView() {
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: self.view.frame.width,
+                           height: self.view.frame.height)
+        let layout = UICollectionViewFlowLayout()
+        collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(cellType: ChatTextCollectionCell.self)
+        view.addSubview(collectionView)
+    }
+    
+    private func setInputView() {
+        view.addSubview(inputChatView)
+        inputChatView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+    }
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return testMessages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = messages[indexPath.row]
+        let message = testMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
         cell.set(profileImage: UIImage(named: "explore"),
@@ -163,7 +173,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let message = messages[indexPath.row]
+        let message = testMessages[indexPath.row]
         let estimatedFrame = getMsgFrame(message: message.message)
         let padding: CGFloat = 20
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)

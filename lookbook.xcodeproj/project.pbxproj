@@ -42,6 +42,7 @@
 		386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376E27B4893C00AC0497 /* ImageExtension.swift */; };
 		386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377627B4CB1600AC0497 /* StripeManager.swift */; };
 		386D377927B4EAB800AC0497 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377827B4EAB800AC0497 /* CustomError.swift */; };
+		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -90,6 +91,7 @@
 		386D376E27B4893C00AC0497 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		386D377627B4CB1600AC0497 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		386D377827B4EAB800AC0497 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -336,6 +338,14 @@
 			path = Stripe;
 			sourceTree = "<group>";
 		};
+		38B65E0227B691C00037DC3E /* Data Store */ = {
+			isa = PBXGroup;
+			children = (
+				38B65E0327B691D20037DC3E /* MessengerDataStore.swift */,
+			);
+			path = "Data Store";
+			sourceTree = "<group>";
+		};
 		7C0D9B5B7E11A05B7F42D2C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +398,7 @@
 		92A4189527B287AE009A6BA3 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				38B65E0227B691C00037DC3E /* Data Store */,
 				92A4189827B28BB2009A6BA3 /* Cell */,
 				92A4189627B287CB009A6BA3 /* ChatViewController.swift */,
 			);
@@ -567,6 +578,7 @@
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
+				38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
 				385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */,
 				386D376527B3753400AC0497 /* SubscriptionModalViewController.swift in Sources */,
