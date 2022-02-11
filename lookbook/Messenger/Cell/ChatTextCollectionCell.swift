@@ -61,10 +61,6 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
             make.height.width.equalTo(profileImageView.frame.width)
             make.bottom.equalToSuperview()
         }
-        timeLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(bubbleView)
-            make.leading.equalTo(bubbleView.snp.trailing).offset(3)
-        }
     }
     
     required init?(coder: NSCoder) {

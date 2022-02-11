@@ -150,32 +150,40 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
         if message.isSenderCeleb {
-            //incoming message UI for user
+            //incoming message UI
             cell.profileImageView.isHidden = false
             cell.bubbleView.backgroundColor = .white
             cell.messageTextView.textColor = .black
-            
-            cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
-                                                y: 0,
-                                                width: estimatedFrame.width + horizontalPadding,
-                                                height: estimatedFrame.height + padding)
             cell.bubbleView.frame = CGRect(x: profileImgOffset,
                                            y: 0,
                                            width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
                                            height: estimatedFrame.height + padding)
-        } else {
-            //outgoing message UI for user
-            cell.profileImageView.isHidden = true
-            cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
-            cell.messageTextView.textColor = .white
-            cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 16,
+            cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
                                                 y: 0,
                                                 width: estimatedFrame.width + horizontalPadding,
                                                 height: estimatedFrame.height + padding)
-            cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 16,
+            cell.timeLabel.snp.remakeConstraints { make in
+                make.bottom.equalTo(cell.bubbleView)
+                make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+            }
+        } else {
+            //outgoing message UI 
+            cell.profileImageView.isHidden = true
+            cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
+            cell.messageTextView.textColor = .white
+            cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
                                            y: 0,
                                            width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
                                            height: estimatedFrame.height + padding)
+            cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
+                                                y: 0,
+                                                width: estimatedFrame.width + horizontalPadding,
+                                                height: estimatedFrame.height + padding)
+       
+            cell.timeLabel.snp.remakeConstraints { make in
+                make.bottom.equalTo(cell.bubbleView)
+                make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+            }
         }
         
         return cell
