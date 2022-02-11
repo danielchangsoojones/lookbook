@@ -9,21 +9,6 @@ import UIKit
 import Reusable
 
 class ChatTextCollectionCell: UICollectionViewCell, Reusable {
-    let messageTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.backgroundColor = .clear
-        return textView
-    }()
-    
-    let bubbleView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 15
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
     let profileImageView: UIImageView = {
         let diameter: CGFloat = 33
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: diameter, height: diameter))
@@ -35,7 +20,20 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         imageView.layer.borderWidth = 3
         return imageView
     }()
-    
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
+        return view
+    }()
+    let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.backgroundColor = .clear
+        textView.isEditable = false
+        return textView
+    }()
     let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -43,7 +41,6 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         return label
     }()
      
-    
     func set(profileImage: UIImage?, message: String, time: String) {
         profileImageView.image = profileImage
         messageTextView.text = message

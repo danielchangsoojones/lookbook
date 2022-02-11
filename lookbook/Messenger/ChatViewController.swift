@@ -167,7 +167,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
             }
         } else {
-            //outgoing message UI 
+            //outgoing message UI
             cell.profileImageView.isHidden = true
             cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
             cell.messageTextView.textColor = .white
