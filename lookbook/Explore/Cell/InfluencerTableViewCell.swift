@@ -106,15 +106,13 @@ class InfluencerTableViewCell: UITableViewCell, Reusable {
         messageCountLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(subtitleLabel.snp.trailing).offset(3)
             make.top.bottom.equalTo(subtitleLabel)
-          let checkImage = UIImage(named: "verificationCheck" )
-          let myImageView:UIImageView = UIImageView()
-            myImageView.image = checkImage
+            let checkImage = UIImage(named: "verificationCheck")
+            let myImageView: UIImageView = UIImageView(image: checkImage)
             myImageView.contentMode = .scaleAspectFit
             addSubview(myImageView)
             myImageView.snp.makeConstraints { make in
-            make.leading.equalTo(nameLabel.snp.trailing).offset(3)
+                make.leading.equalTo(nameLabel.snp.trailing).offset(3)
                 make.top.bottom.equalTo(nameLabel)
-                
             }
         }
     }
