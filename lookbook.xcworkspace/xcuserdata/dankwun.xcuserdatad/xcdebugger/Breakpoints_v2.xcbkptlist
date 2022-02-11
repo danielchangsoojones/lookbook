@@ -23,48 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A447E820-C7FB-4BB4-BF68-03D84A5A76F7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lookbook/Account/Subscription/Data Store/SubscriptionDataStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "saveSubscription(influencerObjectId:subscriptionObjectId:chargeAmount:current_period_start:current_period_end:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D0EB4061-3471-4505-81DA-65ED26B6E2BF"
-            shouldBeEnabled = "No"
+            uuid = "6D7AA41B-3F01-47A4-8277-1CEBE213CBB9"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lookbook/Account/Subscription/SubscriptionModalViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "setupPaymentContext()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2DFB4F4D-9062-4A2C-910A-D855BC3BFA52"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lookbook/Account/Subscription/SubscriptionModalViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "setupPaymentContext()"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "updateLabels(influencerParse:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

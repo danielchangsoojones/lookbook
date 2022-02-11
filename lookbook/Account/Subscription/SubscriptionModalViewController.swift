@@ -39,13 +39,19 @@ class SubscriptionModalViewController: UIViewController {
         infoSubtitleLabel = subscriptionView.infoSubtitleLabel
         subscriptionView.exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .touchUpInside)
         subscriptionView.subscribeButton.addTarget(self, action: #selector(subscribeButtonPressed), for: .touchUpInside)
-        updateLabels()
+        getInfluencerInfo()
         setupPaymentContext()
     }
     
-    private func updateLabels() {
-        let influencerName = influencer.user.name ?? ""
-        let subscriptionPrice = Int(influencer.subscriptionPrice)
+    private func getInfluencerInfo() {
+        dataStore.getInfluencerInfo(influencer: influencer) { influencerParse in
+            self.updateLabels(influencerParse: influencerParse)
+        }
+    }
+    
+    private func updateLabels(influencerParse: InfluencerParse) {
+        let influencerName = influencerParse.user.name ?? ""
+        let subscriptionPrice = Int(influencerParse.subscriptionPrice)
         mainLabel.text = "\(influencerName)'s Membership"
         infoTitleLabel.text = "$\(subscriptionPrice) per month"
         infoSubtitleLabel.text = "• Private DMs with the one and only \(influencerName)!\n• Get photos and videos that \(influencerName) would send to their friends. Why? Because you’re now \(influencerName)'s friend! : ) "
