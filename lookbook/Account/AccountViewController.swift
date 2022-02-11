@@ -9,9 +9,11 @@ import UIKit
 
 class AccountViewController: UIViewController {
     private var tableView: UITableView!
+    private var rows: [String] = ["Log Out"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkIfInfluencer()
     }
     
     override func loadView() {
@@ -33,6 +35,12 @@ class AccountViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(cellType: AccountTableViewCell.self)
     }
+    
+    private func checkIfInfluencer() {
+        if User.current()?.influencer != nil {
+            rows.append("Add Payout Info")
+        }
+    }
 }
 
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
@@ -41,17 +49,25 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: AccountTableViewCell.self)
-         return cell
+        let accountsRowLabel = rows[indexPath.row]
+        cell.set(rowLabel: accountsRowLabel)
+        cell.selectionStyle = .none
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: add button actions for each row on Accounts page
-        logOut()
+        let accountsRowLabel = rows[indexPath.row]
+        if accountsRowLabel == "Log Out" {
+            logOut()
+        } else {
+            let urlStr = "https://google.com"
+            Helpers.open(urlString: urlStr)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

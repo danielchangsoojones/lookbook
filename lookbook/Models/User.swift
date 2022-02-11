@@ -8,7 +8,7 @@
 import Parse
 
 class User: PFUser {
-    @NSManaged var isCeleb: Bool
+    @NSManaged var influencer: InfluencerParse?
     @NSManaged var profilePhoto: PFFileObject?
     @NSManaged var name: String?
     @NSManaged var phoneNumber: Double

@@ -38,3 +38,13 @@ class BannerAlert {
         BannerAlert.show(title: "Error", subtitle: "There was an error using the \(functionName). Please contact the Ohana team at (401) 474 - 4336 to fix this.", type: .error)
     }
 }
+
+struct Helpers {
+    static func open(urlString: String) {
+        guard let url = URL(string: urlString) else {
+            BannerAlert.show(title: "Error", subtitle: "Could not open \(urlString)", type: .error)
+            return
+        }
+        UIApplication.shared.open(url)
+    }
+}

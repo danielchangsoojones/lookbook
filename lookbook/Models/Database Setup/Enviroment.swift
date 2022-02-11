@@ -33,9 +33,9 @@ public enum Environment: String {
         switch self {
             //TODO: only listing development keys for safety
         case .development:
-            return "pk_test_ilJ2KUQAVYu0mEKKpFobwdun00f6PTphly"
+            return "pk_test_51KRQM4GxXGJYNUDaUlCehydk3IQdNskH6IqYDSivabQ8tvGnyiRuVzZbWuE0CMYNkT7DDbSIxgoFQDjfCLrc5egM00joDPyCJM"
         case .production:
-            return "pk_test_ilJ2KUQAVYu0mEKKpFobwdun00f6PTphly"
+            return "pk_test_51KRQM4GxXGJYNUDaUlCehydk3IQdNskH6IqYDSivabQ8tvGnyiRuVzZbWuE0CMYNkT7DDbSIxgoFQDjfCLrc5egM00joDPyCJM"
         }
     }
 }

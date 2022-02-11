@@ -8,21 +8,29 @@
 import UIKit
 
 class ChatViewController: UIViewController {
-    private var messages: [String] = ["hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", "hey this is tyler"]
-    private var influencer: InfluencerParse!
+    struct TestMessage {
+        let message: String
+        let isSenderCeleb: Bool
+    }
     private var collectionView: UICollectionView!
-    private let backgroundImgViewTint: UIView = {
-        let view = UIView()
-        return view
-    }()
-    private let backgroundImgView: UIImageView = {
-        let img = UIImage(named: "kaiti_bc")
-        let imgView = UIImageView(image: img)
-        imgView.contentMode = .scaleAspectFill
-        return imgView
-    }()
-    
+    private let backgroundImgView = UIImageView()
+    private let backgroundGradient = CAGradientLayer()
     private let inputChatView = InputChatView()
+    private var influencer: InfluencerParse!
+    private var testMessages: [TestMessage]!
+    private var messages: [MessageParse] = []
+    private var sendMessageButton: UIButton!
+    private var dataStore = MessengerDataStore()
+    private func populateMessageArray() {
+        testMessages = [
+            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
+            TestMessage(message: "hey this is tyler", isSenderCeleb: true),
+            TestMessage(message: "wowowow", isSenderCeleb:true),
+            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: false),
+            TestMessage(message: "hey this is tyler", isSenderCeleb: false),
+            TestMessage(message: "wowowow", isSenderCeleb: false)
+        ]
+    }
     
     init(influencer: InfluencerParse) {
         self.influencer = influencer
@@ -36,7 +44,6 @@ class ChatViewController: UIViewController {
     override func loadView() {
         super.loadView()
         setBackgroundImg()
-        setBackgroundImgTint()
         setupCollectionView()
         setInputView()
     }
@@ -45,25 +52,53 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
-        // Do any additional setup after loading the view.
+        populateMessageArray() //TODO: DELETE & LOAD FROM MESSAGES
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.tintColor = UIColor.black
+        loadMessages()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.tabBar.isHidden = false    }
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
-    private func setInputView() {
-        view.addSubview(inputChatView)
-        inputChatView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backgroundGradient.frame = backgroundImgView.bounds
+    }
+    
+    private func loadMessages() {
+        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
+            self.messages = messages
+            self.collectionView.reloadData()
+        })
+    }
+    
+    private func setBackgroundImg() {
+        view.backgroundColor = .white
+        if let image = influencer.chatBackgroundPhoto {
+            backgroundImgView.loadFromFile(image)
+            backgroundImgView.contentMode = .scaleAspectFill
         }
+        view.addSubview(backgroundImgView)
+        backgroundImgView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(self.view.snp.topMargin)
+        }
+        
+        backgroundGradient.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
+            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
+            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
+        ]
+        backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
     }
     
     private func setupCollectionView() {
@@ -80,65 +115,83 @@ class ChatViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
-    private func setBackgroundImg() {
-        self.view.addSubview(backgroundImgView)
-        backgroundImgView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    private func setInputView() {
+        sendMessageButton = inputChatView.sendButton
+        sendMessageButton.addTarget(self, action: #selector(pressedSendBtn), for: .touchUpInside)
+        view.addSubview(inputChatView)
+        inputChatView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     
-    private func setBackgroundImgTint() {
-        backgroundImgViewTint.frame = self.view.frame
-        let layer0 = CAGradientLayer()
-        layer0.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
-          UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
-          UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
-        ]
-        layer0.locations = [0, 1, 1]
-        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
-        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
-        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0.01, tx: 1, ty: 0))
-        layer0.bounds = backgroundImgViewTint.bounds.insetBy(dx: -0.5*backgroundImgViewTint.bounds.size.width, dy: -0.5*backgroundImgViewTint.bounds.size.height)
-        layer0.position = backgroundImgViewTint.center
-        backgroundImgViewTint.layer.addSublayer(layer0)
-        self.view.addSubview(backgroundImgViewTint)
-//        backgroundImgViewTint.snp.makeConstraints { make in make.edges.equalTo(backgroundImgView)
-//        }
+    @objc private func pressedSendBtn() {
+        //TODO: Call datastore function + send message
+        print("send button")
     }
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return testMessages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = messages[indexPath.row]
+        let message = testMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
-        cell.messageTextView.text = message
-        let estimatedFrame = getMsgFrame(message: message)
+        cell.set(profileImage: UIImage(named: "explore"),
+                 message: message.message,
+                 time: "9:35 PM")
+        let estimatedFrame = getMsgFrame(message: message.message)
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
-        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
-                                            y: 0,
-                                            width: estimatedFrame.width + horizontalPadding,
-                                            height: estimatedFrame.height + padding)
-        cell.bubbleView.frame = CGRect(x: profileImgOffset,
-                                       y: 0,
-                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
-                                       height: estimatedFrame.height + padding)
-        cell.profileImageView.image = UIImage(named: "explore")
-        cell.timeLabel.text = "9:35 PM"
+        if message.isSenderCeleb {
+            //incoming message UI
+            cell.profileImageView.isHidden = false
+            cell.bubbleView.backgroundColor = .white
+            cell.messageTextView.textColor = .black
+            cell.bubbleView.frame = CGRect(x: profileImgOffset,
+                                           y: 0,
+                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                           height: estimatedFrame.height + padding)
+            cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
+                                                y: 0,
+                                                width: estimatedFrame.width + horizontalPadding,
+                                                height: estimatedFrame.height + padding)
+            cell.timeLabel.snp.remakeConstraints { make in
+                make.bottom.equalTo(cell.bubbleView)
+                make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+            }
+        } else {
+            //outgoing message UI
+            cell.profileImageView.isHidden = true
+            cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
+            cell.messageTextView.textColor = .white
+            cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
+                                           y: 0,
+                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                           height: estimatedFrame.height + padding)
+            cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
+                                                y: 0,
+                                                width: estimatedFrame.width + horizontalPadding,
+                                                height: estimatedFrame.height + padding)
+       
+            cell.timeLabel.snp.remakeConstraints { make in
+                make.bottom.equalTo(cell.bubbleView)
+                make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+            }
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let message = messages[indexPath.row]
-        let estimatedFrame = getMsgFrame(message: message)
+        let message = testMessages[indexPath.row]
+        let estimatedFrame = getMsgFrame(message: message.message)
         let padding: CGFloat = 20
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
     }
@@ -162,7 +215,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return estimatedFrame
     }
     
-    //use this function when we need to show subscription screen
+    //TODO: use this function when we need to show subscription screen
     private func showSubscriptionModalVC(influencer: InfluencerParse) {
         let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
         subscriptionModalVC.modalPresentationStyle = .popover

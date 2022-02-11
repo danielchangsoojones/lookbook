@@ -9,21 +9,6 @@ import UIKit
 import Reusable
 
 class ChatTextCollectionCell: UICollectionViewCell, Reusable {
-    let messageTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.backgroundColor = .clear
-        return textView
-    }()
-    
-    let bubbleView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 15
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
     let profileImageView: UIImageView = {
         let diameter: CGFloat = 33
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: diameter, height: diameter))
@@ -35,14 +20,32 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         imageView.layer.borderWidth = 3
         return imageView
     }()
-    
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
+        return view
+    }()
+    let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.backgroundColor = .clear
+        textView.isEditable = false
+        return textView
+    }()
     let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 11, weight: .light)
         return label
     }()
-    
+     
+    func set(profileImage: UIImage?, message: String, time: String) {
+        profileImageView.image = profileImage
+        messageTextView.text = message
+        timeLabel.text = time
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,10 +57,6 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
             make.leading.equalToSuperview().offset(10)
             make.height.width.equalTo(profileImageView.frame.width)
             make.bottom.equalToSuperview()
-        }
-        timeLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(bubbleView)
-            make.leading.equalTo(bubbleView.snp.trailing).offset(3)
         }
     }
     

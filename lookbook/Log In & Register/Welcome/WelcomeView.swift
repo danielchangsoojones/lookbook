@@ -97,26 +97,14 @@ class WelcomeView: UIView {
             make.centerY.equalToSuperview()
         }
         
-        let horizontalInset = 15
-        let titleLabel = UILabel()
-        titleLabel.text = "ohana"
-        titleLabel.font = .systemFont(ofSize: 48, weight: .bold)
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = .white
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(subtitleLabel.snp.top).offset(-15)
-            make.centerX.equalToSuperview().inset(horizontalInset)
-        }
-        
         let logoImageView = UIImageView()
         if let logoImage = UIImage(named: "logo") {
             logoImageView.image = logoImage
             logoImageView.contentMode = .scaleAspectFit
             addSubview(logoImageView)
             logoImageView.snp.makeConstraints { (make) in
-                make.trailing.equalTo(titleLabel.snp.leading).offset(-horizontalInset)
-                make.top.bottom.equalTo(titleLabel)
+                make.bottom.equalTo(subtitleLabel.snp.top).offset(-15)
+                make.leading.trailing.equalToSuperview().inset(30)
             }
         }
     }
