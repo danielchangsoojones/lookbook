@@ -109,6 +109,7 @@ class ChatViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundGradient.frame = backgroundImgView.bounds
+        scrollToLastMessage()
     }
     
     private func loadMessages() {
@@ -120,22 +121,24 @@ class ChatViewController: UIViewController {
     
     private func setBackgroundImg() {
         view.backgroundColor = .white
-        if let image = influencer?.chatBackgroundPhoto {
+        let image = influencer?.chatBackgroundPhoto
+        if image == nil {
+            backgroundImgView.image = UIImage(named: "welcome_bg")
+        } else {
             backgroundImgView.loadFromFile(image)
             backgroundImgView.contentMode = .scaleAspectFill
+            backgroundGradient.colors = [
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
+                UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
+                UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
+            ]
+            backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
         }
         view.addSubview(backgroundImgView)
         backgroundImgView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(self.view.snp.topMargin)
         }
-        
-        backgroundGradient.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
-            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
-            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
-        ]
-        backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
     }
     
     private func setupCollectionView() {
