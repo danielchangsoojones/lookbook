@@ -233,44 +233,65 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
-        if message.isSenderInfluencer {
-            //incoming message UI
-            cell.profileImageView.isHidden = false
-            cell.bubbleView.backgroundColor = .white
-            cell.messageTextView.textColor = .black
-            cell.bubbleView.frame = CGRect(x: profileImgOffset,
-                                           y: 0,
-                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
-                                           height: estimatedFrame.height + padding)
-            cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
-                                                y: 0,
-                                                width: estimatedFrame.width + horizontalPadding,
-                                                height: estimatedFrame.height + padding)
-            cell.timeLabel.snp.remakeConstraints { make in
-                make.bottom.equalTo(cell.bubbleView)
-                make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+        
+        if isUserInfluencer {
+            //user is influencer
+            if message.isSenderInfluencer {
+                //show influencer's message in blue on right
+                showOutboundMessages(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding)
+            } else {
+                //show fan's messages in white on left
+                showInboundMessage(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding, profileImgOffset: profileImgOffset)
             }
         } else {
-            //outgoing message UI
-            cell.profileImageView.isHidden = true
-            cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
-            cell.messageTextView.textColor = .white
-            cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
-                                           y: 0,
-                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
-                                           height: estimatedFrame.height + padding)
-            cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
-                                                y: 0,
-                                                width: estimatedFrame.width + horizontalPadding,
-                                                height: estimatedFrame.height + padding)
-       
-            cell.timeLabel.snp.remakeConstraints { make in
-                make.bottom.equalTo(cell.bubbleView)
-                make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+            //user is fan
+            if message.isSenderInfluencer {
+                //show influencer's messages in white on left
+                showInboundMessage(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding, profileImgOffset: profileImgOffset)
+            } else {
+                //show fan's message in blue on right
+                showOutboundMessages(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding)
             }
         }
         
         return cell
+    }
+    
+    private func showInboundMessage(cell: ChatTextCollectionCell, estimatedFrame: CGRect, horizontalPadding: CGFloat, startingInternalPadding: CGFloat, padding: CGFloat, profileImgOffset: CGFloat) {
+        cell.profileImageView.isHidden = false
+        cell.bubbleView.backgroundColor = .white
+        cell.messageTextView.textColor = .black
+        cell.bubbleView.frame = CGRect(x: profileImgOffset,
+                                       y: 0,
+                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                       height: estimatedFrame.height + padding)
+        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
+                                            y: 0,
+                                            width: estimatedFrame.width + horizontalPadding,
+                                            height: estimatedFrame.height + padding)
+        cell.timeLabel.snp.remakeConstraints { make in
+            make.bottom.equalTo(cell.bubbleView)
+            make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+        }
+    }
+    
+    private func showOutboundMessages(cell: ChatTextCollectionCell, estimatedFrame: CGRect, horizontalPadding: CGFloat, startingInternalPadding: CGFloat, padding: CGFloat) {
+        cell.profileImageView.isHidden = true
+        cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
+        cell.messageTextView.textColor = .white
+        cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
+                                       y: 0,
+                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                       height: estimatedFrame.height + padding)
+        cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
+                                            y: 0,
+                                            width: estimatedFrame.width + horizontalPadding,
+                                            height: estimatedFrame.height + padding)
+   
+        cell.timeLabel.snp.remakeConstraints { make in
+            make.bottom.equalTo(cell.bubbleView)
+            make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
