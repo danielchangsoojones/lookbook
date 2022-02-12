@@ -91,6 +91,11 @@ class ChatViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = UIColor.black
+        if isUserInfluencer {
+            self.title = fan.name ?? ""
+        } else {
+            self.title = influencer?.user.name ?? ""
+        }
         loadMessages()
     }
     
