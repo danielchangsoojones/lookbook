@@ -10,7 +10,7 @@ import Reusable
 
 class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
     var profileImageView: UIImageView!
-    private var nameLabel: UILabel!
+    var nameLabel: UILabel!
     var timeStampLabel: UILabel!
     private var lastMessageLabel: UILabel!
     var unreadCircleView: UIView!

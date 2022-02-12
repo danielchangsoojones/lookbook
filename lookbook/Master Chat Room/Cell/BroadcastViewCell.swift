@@ -14,6 +14,9 @@ class BroadcastViewCell: MasterChatRoomTableViewCell  {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         unreadCircleView.isHidden = true
         timeStampLabel.isHidden = true
+        nameLabel.text = "BROADCAST YOUR MESSAGE"
+        setupSpeaker()
+        
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -23,15 +26,16 @@ class BroadcastViewCell: MasterChatRoomTableViewCell  {
         let broadcastImage = UIImage(named: "broadcastProfile")
         profileImageView.image = broadcastImage
     }
-    func setupThumbnail() {
-        let thumbnailImage = UIImage(named: "thumbnail")
-        let myImageView: UIImageView = UIImageView(image: thumbnailImage)
-        myImageView.contentMode = .scaleAspectFit
-        addSubview(myImageView)
-        myImageView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(unreadCircleView)
+    func setupSpeaker() {
+        let speakerImageView = UIImageView()
+        let speakerImage = UIImage(named: "speakerphone")
+        speakerImageView.image = speakerImage
+        speakerImageView.contentMode = .scaleAspectFit
+        addSubview(speakerImageView)
+        speakerImageView.snp.makeConstraints { make in
+            make.trailing.leading.equalTo(unreadCircleView)
             make.top.bottom.equalTo(unreadCircleView)
-    }
+        }
     }
     
 }
