@@ -225,7 +225,12 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
         let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
-        cell.set(profileImage: UIImage(named: "explore"),
+        //TODO: we need to make the profile image = influencer or fan's photo depending on who is viewing the screen. We can't work on this until we finish the loadMessages server call. 
+        var messageProfileImage = UIImage(named: "explore")
+        if isUserInfluencer {
+            messageProfileImage = UIImage(named: "kaiti_1")
+        }
+        cell.set(profileImage: messageProfileImage,
                  message: messageText,
                  time: "9:35 PM")
         let estimatedFrame = getMsgFrame(message: messageText)
