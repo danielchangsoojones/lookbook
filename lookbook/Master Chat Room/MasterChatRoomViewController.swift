@@ -43,7 +43,8 @@ class MasterChatRoomViewController: UIViewController {
     }
     
     private func loadMasterChatRooms() {
-        dataStore.getMasterChatRooms { chatRooms in
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        dataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
             self.chatRooms = chatRooms
             self.tableView.reloadData()
         }
@@ -63,7 +64,8 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MasterChatRoomTableViewCell.self)
         let chatRoom = chatRooms[indexPath.row]
         
-        let influencerName = chatRoom.influencer.user.name ?? ""
+        var profileImage = chatRoom.influencer.user.profilePhoto
+        var influencerName = chatRoom.influencer.user.name ?? ""
         var lastMessage = "Send a message!"
         var timeStamp = chatRoom.createdAt?.format() ?? Date().format()
         var hasUnread = false
@@ -74,7 +76,13 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
             hasUnread = latestMessage.hasRead == nil ? true : false
         }
         
-        cell.set(imageFile: chatRoom.influencer.user.profilePhoto,
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        if isUserInfluencer {
+            profileImage = chatRoom.fan.profilePhoto
+            influencerName = chatRoom.fan.name ?? ""
+        }
+        
+        cell.set(imageFile: profileImage,
                  name: influencerName,
                  lastMessage: lastMessage,
                  timeStamp: timeStamp,

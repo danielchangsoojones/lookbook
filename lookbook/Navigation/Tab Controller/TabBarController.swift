@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
     private func loadStartScreen() {
         //ExploreVC set as default start screen
         let masterChatDataStore = MasterChatDataStore()
-        masterChatDataStore.getMasterChatRooms { chatRooms in
+        masterChatDataStore.getMasterChatRooms(isUserInfluencer: false) { chatRooms in
             if chatRooms.count > 1 {
                 //open MasterChatVC
                 self.selectedIndex = 0

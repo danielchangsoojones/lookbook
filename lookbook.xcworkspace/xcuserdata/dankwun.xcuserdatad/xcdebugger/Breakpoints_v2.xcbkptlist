@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "E2EC96A0-2329-4FDE-BA0F-0A9F239DE3DE"
+   uuid = "50B24980-E336-4C45-8EFF-2F6D725FA8DA"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "250EFAF5-02D0-456F-B894-231F79CC4561"
-            shouldBeEnabled = "Yes"
+            uuid = "DEA983F9-3F3D-4451-806E-D99B3AFC81E9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lookbook/Payments/ezcheckoutvcViewController.swift"
+            filePath = "lookbook/Master Chat Room/MasterChatRoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "pay()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6D7AA41B-3F01-47A4-8277-1CEBE213CBB9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lookbook/Account/Subscription/SubscriptionModalViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "updateLabels(influencerParse:)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "loadMasterChatRooms()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
