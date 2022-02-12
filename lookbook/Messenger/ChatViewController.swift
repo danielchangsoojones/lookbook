@@ -48,6 +48,17 @@ class ChatViewController: UIViewController {
         ]
     }
     
+//    var influencerMessages : [ChatMessage] {
+//        if let influencer = influencer {
+//            return dict
+//        }
+//        return dict[fan.objectId]
+//    }
+//
+//    var influencerMessages : [ChatMessage] {
+//        return dict[fan.objectId]
+//    }
+    
     init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
         //if the currentUser is an influencer, fan will be referring to the currentUser's object
@@ -114,10 +125,12 @@ class ChatViewController: UIViewController {
     }
     
     private func loadMessages() {
-//        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
-//            self.messages = messages
-//            self.collectionView.reloadData()
-//        })
+        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages in
+            //TODO: we then need to save the values in a static var
+            self.testMessages = messages
+            self.collectionView.reloadData()
+            self.scrollToLastMessage()
+        }
     }
     
     private func setBackgroundImg() {
@@ -202,7 +215,7 @@ class ChatViewController: UIViewController {
             let fanID = fan?.objectId ?? ""
             let influencerID = influencer?.objectId ?? ""
             //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
-            let messageType = influencer?.objectId == nil ? "Broadcast" : "DM"
+            let messageType = influencer?.objectId == nil ? "broadcast" : "DM"
             dataStore.sendMessage(fanId: fanID,
                                   influencerID: influencerID,
                                   isUserInfluencer: self.isUserInfluencer,

@@ -10,7 +10,7 @@ import Parse
 
 class MessageParse: SuperParseObject, PFSubclassing {
     @NSManaged var message: String
-    @NSManaged var isSenderCeleb: Bool
+    @NSManaged var isSenderInfluencer: Bool
     @NSManaged var fan: User
     @NSManaged var celeb: InfluencerParse
     @NSManaged var hasRead: Date?
