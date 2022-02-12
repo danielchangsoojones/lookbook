@@ -21,7 +21,7 @@ class MessengerDataStore: NSObject {
             } else if let error = error {
                 BannerAlert.show(with: error)
             } else {
-                BannerAlert.showUnknownError(functionName: "loadMessages")
+                BannerAlert.showUnknownError(functionName: "sendMessage")
             }
         }
     }

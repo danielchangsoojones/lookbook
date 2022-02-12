@@ -21,43 +21,10 @@ class ChatViewController: UIViewController {
     private var fan: User!
     private var influencer: InfluencerParse?
     private var isUserInfluencer: Bool!
-    private var testMessages: [ChatMessage]!
-    private var messages: [MessageParse] = []
+    private var chatMessages: [ChatMessage] = []
     private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
-    private func populateMessageArray() {
-        testMessages = [
-            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: " hey this is daniel what's up hows it going ehllo blahblah ?"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "hey this is dk wlbha lkajdfl alkjds falksjd flkj ?"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "i like to eat alkjda flkajsd flakjsd flakjd f"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "that's really cool woahalkdjf alksdjf "),
-            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "did you type this out "),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "cool"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "beans dlfkajsdl fkja"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "yayayyay aya ya y aya y aya "),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "huelllo``?"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "yeeettttt"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "letss get ittt"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "DOMGOADKLFAJDSF"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "LETS DO ITSSS"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hahhaha"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "nice1! 😄"),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hwoo "),
-            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hi?"),
-        ]
-    }
-    
-//    var influencerMessages : [ChatMessage] {
-//        if let influencer = influencer {
-//            return dict
-//        }
-//        return dict[fan.objectId]
-//    }
-//
-//    var influencerMessages : [ChatMessage] {
-//        return dict[fan.objectId]
-//    }
     
     init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
@@ -82,7 +49,6 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
-        populateMessageArray() //TODO: DELETE & LOAD FROM MESSAGES
         setKeyboardDetector()
     }
     
@@ -127,7 +93,7 @@ class ChatViewController: UIViewController {
     private func loadMessages() {
         dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages in
             //TODO: we then need to save the values in a static var
-            self.testMessages = messages
+            self.chatMessages = messages
             self.collectionView.reloadData()
             self.scrollToLastMessage()
         }
@@ -195,7 +161,7 @@ class ChatViewController: UIViewController {
     }
     
     private func scrollToLastMessage() {
-        let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
+        let indexPath = NSIndexPath(item: self.chatMessages.count - 1, section: 0) as IndexPath
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 
@@ -207,7 +173,7 @@ class ChatViewController: UIViewController {
     @objc private func pressedSendBtn() {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
             let newLocalMsg = ChatMessage(messageParse: nil, isSenderInfluencer: isUserInfluencer, localMsg: localMessage)
-            testMessages.append(newLocalMsg)
+            chatMessages.append(newLocalMsg)
             //TODO: we just need to insert this at the bottom instead of reloading
             collectionView.reloadData()
             scrollToLastMessage()
@@ -221,7 +187,7 @@ class ChatViewController: UIViewController {
                                   isUserInfluencer: self.isUserInfluencer,
                                   messageText: localMessage,
                                   messageType: messageType) { messageParse in
-                self.testMessages.last?.messageParse = messageParse
+                self.chatMessages.last?.messageParse = messageParse
                 print("succesfully ran sendMessage")
             }
         }
@@ -231,11 +197,11 @@ class ChatViewController: UIViewController {
 extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testMessages.count
+        return chatMessages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = testMessages[indexPath.row]
+        let message = chatMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
         let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
@@ -314,7 +280,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let message = testMessages[indexPath.row]
+        let message = chatMessages[indexPath.row]
         let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
         let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
