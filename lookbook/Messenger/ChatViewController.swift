@@ -8,16 +8,34 @@
 import UIKit
 import SnapKit
 
-class ChatViewController: UIViewController {
-    struct TestMessage {
-        let message: String
-        let isSenderCeleb: Bool
+class TestMessage {
+    init(messageParse: MessageParse) {
+        self.messageParse = messageParse
     }
+    init(localMsg: String) {
+        self.localMsg = localMsg
+    }
+    var messageParse: MessageParse?
+    var message: String {
+        return messageParse?.message ?? (localMsg ?? "")
+    }
+    var localMsg: String?
+    var isSenderCeleb: Bool {
+        if let msgParse = messageParse {
+            return msgParse.isSenderCeleb
+        }
+        return false
+    }
+}
+
+class ChatViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let backgroundImgView = UIImageView()
     private let backgroundGradient = CAGradientLayer()
     private let inputChatView = InputChatView()
-    private var influencer: InfluencerParse!
+    private var isUserInfluencer: Bool!
+    private var influencer: InfluencerParse?
+    private var fan: User?
     private var testMessages: [TestMessage]!
     private var messages: [MessageParse] = []
     private var sendMessageButton: UIButton!
@@ -25,6 +43,7 @@ class ChatViewController: UIViewController {
     private var bottomConstraint: Constraint?
     private func populateMessageArray() {
         testMessages = [
+            TestMessage(localMsg: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
             TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
             TestMessage(message: "hey this is tyler", isSenderCeleb: true),
             TestMessage(message: "wowowow", isSenderCeleb:true),
@@ -46,8 +65,10 @@ class ChatViewController: UIViewController {
         ]
     }
     
-    init(influencer: InfluencerParse) {
+    init(influencer: InfluencerParse, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
+        self.fan = fan
+        self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -180,8 +201,24 @@ class ChatViewController: UIViewController {
     }
     
     @objc private func pressedSendBtn() {
-        //TODO: Call datastore function + send message
-        print("send button")
+        if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
+            let newLocalMsg = TestMessage(localMsg: localMessage)
+            testMessages.append(newLocalMsg)
+            //TODO: we just need to insert this at the bottom instead of reloading
+            collectionView.reloadData()
+            let fanID = fan?.objectId ?? ""
+            let influencerID = influencer?.objectId ?? ""
+            //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+            let messageType = influencer?.objectId == nil ? "Broadcast" : "DM"
+            dataStore.sendMessage(fanId: fanID,
+                                  influencerID: influencerID,
+                                  isUserInfluencer: self.isUserInfluencer,
+                                  messageText: localMessage,
+                                  messageType: messageType,
+                                  localMessageObject: newLocalMsg) {
+                print("succesfully ran sendMessage")
+            }
+        }
     }
 }
 

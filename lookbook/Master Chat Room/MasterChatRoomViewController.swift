@@ -43,9 +43,12 @@ class MasterChatRoomViewController: UIViewController {
     }
     
     private func loadMasterChatRooms() {
-        dataStore.getMasterChatRooms { chatRooms in
-            self.chatRooms = chatRooms
-            self.tableView.reloadData()
+        if let currentUser = User.current() {
+            let isUserInfluencer = currentUser.influencer != nil ? true : false
+            dataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
+                self.chatRooms = chatRooms
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -86,7 +89,14 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoom = chatRooms[indexPath.row]
         let influencer = chatRoom.influencer
-        pushVC(ChatViewController(influencer: influencer))
+        let fan = chatRoom.fan
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        if isUserInfluencer {
+            //user is influencer
+            pushVC(ChatViewController(influencer: influencer, fan: fan, isUserInfluencer: true))
+        } else {
+            pushVC(ChatViewController(influencer: influencer, fan: fan, isUserInfluencer: false))
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

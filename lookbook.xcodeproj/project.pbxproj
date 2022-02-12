@@ -736,7 +736,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -771,7 +771,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -866,7 +866,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

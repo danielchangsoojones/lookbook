@@ -9,7 +9,8 @@ import UIKit
 import Parse
 
 class MasterChatDataStore {
-    func getMasterChatRooms(completion: @escaping ([ChatRoomParse]) -> Void) {
+    func getMasterChatRooms(isUserInfluencer: Bool, completion: @escaping ([ChatRoomParse]) -> Void) {
+        let parameters: [String: Any] = ["isUserInfluencer": isUserInfluencer]
         PFCloud.callFunction(inBackground: "getMasterChatRooms", withParameters: [:]) { (result, error) in
             if let result = result as? [ChatRoomParse] {
                 completion(result)
