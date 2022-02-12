@@ -9,10 +9,12 @@ import UIKit
 
 class AccountViewController: UIViewController {
     private var tableView: UITableView!
-    private var rows: [String] = ["Log Out"]
+    private var rows: [String] = ["Log Out", "Contact Us"]
+    private var messageHelper: MessageHelper?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageHelper = MessageHelper(currentVC: self)
         checkIfInfluencer()
     }
     
@@ -64,9 +66,12 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         let accountsRowLabel = rows[indexPath.row]
         if accountsRowLabel == "Log Out" {
             logOut()
+        } else if (accountsRowLabel == "Contact Us") {
+            let customerServicePhone = "3176905323"
+            self.messageHelper?.text(customerServicePhone, body: "[Ohana] Help! I'm having issues.")
         } else {
-            let urlStr = "https://google.com"
-            Helpers.open(urlString: urlStr)
+            let customerServicePhone = "3176905323"
+            self.messageHelper?.text(customerServicePhone, body: "[Ohana] I'm an influencer and I need to add my payout info. Could you help me?")
         }
     }
     
