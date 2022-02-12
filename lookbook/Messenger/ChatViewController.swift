@@ -83,7 +83,7 @@ class ChatViewController: UIViewController {
     private func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        collectionView.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
