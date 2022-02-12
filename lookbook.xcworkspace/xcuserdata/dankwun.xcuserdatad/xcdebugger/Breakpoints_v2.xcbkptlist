@@ -23,15 +23,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A0C35E9D-B0C6-4D56-8033-0C7F8EB87C42"
+            uuid = "DAC749C8-DD90-4C7D-9721-8FE2C712008C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lookbook/Messenger/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "pressedSendBtn()"
             landmarkType = "7">
          </BreakpointContent>

@@ -8,26 +8,6 @@
 import UIKit
 import SnapKit
 
-//class TestMessage {
-//    init(messageParse: MessageParse) {
-//        self.messageParse = messageParse
-//    }
-//    init(localMsg: String) {
-//        self.localMsg = localMsg
-//    }
-//    var messageParse: MessageParse?
-//    var message: String {
-//        return messageParse?.message ?? (localMsg ?? "")
-//    }
-//    var localMsg: String?
-//    var isSenderCeleb: Bool {
-//        if let msgParse = messageParse {
-//            return msgParse.isSenderCeleb
-//        }
-//        return false
-//    }
-//}
-
 class ChatViewController: UIViewController {
     struct TestMessage {
         let message: String
@@ -41,31 +21,30 @@ class ChatViewController: UIViewController {
     private var fan: User!
     private var influencer: InfluencerParse?
     private var isUserInfluencer: Bool!
-    private var testMessages: [TestMessage]!
+    private var testMessages: [ChatMessage]!
     private var messages: [MessageParse] = []
     private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
     private func populateMessageArray() {
         testMessages = [
-            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
-            TestMessage(message: "hey this is tyler", isSenderCeleb: true),
-            TestMessage(message: "wowowow", isSenderCeleb:true),
-            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: false),
-            TestMessage(message: "hey this is tyler", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "bottom", isSenderCeleb: false)
+            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: " hey this is daniel what's up hows it going ehllo blahblah ?"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "hey this is dk wlbha lkajdfl alkjds falksjd flkj ?"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "i like to eat alkjda flkajsd flakjsd flakjd f"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "that's really cool woahalkdjf alksdjf "),
+            ChatMessage(messageParse: nil, isSenderInfluencer: true, localMsg: "did you type this out "),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "cool"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "beans dlfkajsdl fkja"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "yayayyay aya ya y aya y aya "),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "huelllo``?"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "yeeettttt"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "letss get ittt"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "DOMGOADKLFAJDSF"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "LETS DO ITSSS"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hahhaha"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "nice1! 😄"),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hwoo "),
+            ChatMessage(messageParse: nil, isSenderInfluencer: false, localMsg: "hi?"),
         ]
     }
     
@@ -205,11 +184,12 @@ class ChatViewController: UIViewController {
     
     @objc private func pressedSendBtn() {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
-            let newLocalMsg = TestMessage(message: "hi>?adsflkja dflkaj dsklfa ds", isSenderCeleb: false)
+            let newLocalMsg = ChatMessage(messageParse: nil, isSenderInfluencer: isUserInfluencer, localMsg: localMessage)
             testMessages.append(newLocalMsg)
             //TODO: we just need to insert this at the bottom instead of reloading
             collectionView.reloadData()
             scrollToLastMessage()
+            inputChatView.textView.text = ""
             let fanID = fan?.objectId ?? ""
             let influencerID = influencer?.objectId ?? ""
             //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
@@ -219,9 +199,8 @@ class ChatViewController: UIViewController {
                                   isUserInfluencer: self.isUserInfluencer,
                                   messageText: localMessage,
                                   messageType: messageType) { messageParse in
+                self.testMessages.last?.messageParse = messageParse
                 print("succesfully ran sendMessage")
-//
-//                testMessages.last?.messageParse = messageParse
             }
         }
     }
@@ -237,15 +216,16 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let message = testMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
+        let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
         cell.set(profileImage: UIImage(named: "explore"),
-                 message: message.message,
+                 message: messageText,
                  time: "9:35 PM")
-        let estimatedFrame = getMsgFrame(message: message.message)
+        let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
-        if message.isSenderCeleb {
+        if message.isSenderInfluencer {
             //incoming message UI
             cell.profileImageView.isHidden = false
             cell.bubbleView.backgroundColor = .white
@@ -287,7 +267,8 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let message = testMessages[indexPath.row]
-        let estimatedFrame = getMsgFrame(message: message.message)
+        let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
+        let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
     }
