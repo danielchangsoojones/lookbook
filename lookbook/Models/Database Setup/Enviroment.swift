@@ -31,11 +31,10 @@ public enum Environment: String {
     
     var stripePublishableKey: String {
         switch self {
-            //TODO: only listing development keys for safety
         case .development:
             return "pk_test_51KRQM4GxXGJYNUDaUlCehydk3IQdNskH6IqYDSivabQ8tvGnyiRuVzZbWuE0CMYNkT7DDbSIxgoFQDjfCLrc5egM00joDPyCJM"
         case .production:
-            return "pk_test_51KRQM4GxXGJYNUDaUlCehydk3IQdNskH6IqYDSivabQ8tvGnyiRuVzZbWuE0CMYNkT7DDbSIxgoFQDjfCLrc5egM00joDPyCJM"
+            return "pk_live_51KRQM4GxXGJYNUDahww2zDokzfBldgfZ2HHJhS0jvUqY5BMdy88BKz48GEmbF2FJSCW4pzL0V2b7mKKHA9v5r1mj00dq15lsh3"
         }
     }
 }

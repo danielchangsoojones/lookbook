@@ -36,5 +36,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3AFC88B5-C550-4EF2-BCD9-823AED0B96FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lookbook/Messenger/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3148EFA-9E89-4D10-8DAA-1775721DFD61"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lookbook/Messenger/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E724D67D-4D5B-46C2-87B6-57464E382638"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lookbook/Messenger/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E724D67D-4D5B-46C2-87B6-57464E382638 - b6d4e6040b0e00ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lookbook.ChatViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "lookbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dankwun/lookbook/lookbook/Messenger/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "2424">
+               </Location>
+               <Location
+                  uuid = "E724D67D-4D5B-46C2-87B6-57464E382638 - b6d4e6040b0e00ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lookbook.ChatViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "lookbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dankwun/lookbook/lookbook/Messenger/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "3553">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -12,7 +12,7 @@ class MessageParse: SuperParseObject, PFSubclassing {
     @NSManaged var message: String
     @NSManaged var isSenderInfluencer: Bool
     @NSManaged var fan: User
-    @NSManaged var celeb: InfluencerParse
+    @NSManaged var influencer: InfluencerParse
     @NSManaged var hasRead: Date?
     @NSManaged var type: String
     
