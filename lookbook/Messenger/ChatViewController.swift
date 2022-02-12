@@ -17,7 +17,9 @@ class ChatViewController: UIViewController {
     private let backgroundImgView = UIImageView()
     private let backgroundGradient = CAGradientLayer()
     private let inputChatView = InputChatView()
-    private var influencer: InfluencerParse!
+    private var fan: User!
+    private var influencer: InfluencerParse?
+    private var isUserInfluencer: Bool!
     private var testMessages: [TestMessage]!
     private var messages: [MessageParse] = []
     private var sendMessageButton: UIButton!
@@ -46,8 +48,10 @@ class ChatViewController: UIViewController {
         ]
     }
     
-    init(influencer: InfluencerParse) {
+    init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
+        self.fan = fan
+        self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -97,15 +101,15 @@ class ChatViewController: UIViewController {
     }
     
     private func loadMessages() {
-        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
-            self.messages = messages
-            self.collectionView.reloadData()
-        })
+//        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
+//            self.messages = messages
+//            self.collectionView.reloadData()
+//        })
     }
     
     private func setBackgroundImg() {
         view.backgroundColor = .white
-        if let image = influencer.chatBackgroundPhoto {
+        if let image = influencer?.chatBackgroundPhoto {
             backgroundImgView.loadFromFile(image)
             backgroundImgView.contentMode = .scaleAspectFill
         }

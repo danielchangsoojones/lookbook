@@ -68,7 +68,13 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
                 //TODO: disable button + add spinner
                 if success {
                     //TODO: enable button + stop timer
-                    self.pushVC(ChatViewController(influencer: influencer))
+                    if let currentUser = User.current() {
+                        let isUserFan = currentUser.influencer == nil ? true : false
+                        //only fans can see the ExploreVC
+                        if isUserFan {
+                            self.pushVC(ChatViewController(influencer: influencer, fan: currentUser, isUserInfluencer: false))
+                        }
+                    }
                 }
             }
         }
