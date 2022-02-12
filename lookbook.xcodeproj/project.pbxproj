@@ -43,6 +43,7 @@
 		386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377627B4CB1600AC0497 /* StripeManager.swift */; };
 		386D377927B4EAB800AC0497 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377827B4EAB800AC0497 /* CustomError.swift */; };
 		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
+		4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -92,6 +93,7 @@
 		386D377627B4CB1600AC0497 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		386D377827B4EAB800AC0497 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
+		4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewCell.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				386D374627B3379A00AC0497 /* MasterChatRoomTableViewCell.swift */,
+				4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
 				386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */,
+				4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */,
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
