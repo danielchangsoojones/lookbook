@@ -50,6 +50,7 @@ class ChatViewController: UIViewController {
     
     init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
+        //if the currentUser is an influencer, fan will be referring to the currentUser's object
         self.fan = fan
         self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
@@ -225,7 +226,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
         let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
-        //TODO: we need to make the profile image = influencer or fan's photo depending on who is viewing the screen. We can't work on this until we finish the loadMessages server call. 
+        //TODO: we need to make the profile image = influencer or fan's photo depending on who is viewing the screen. We can't work on this until we finish the loadMessages server call.
         var messageProfileImage = UIImage(named: "explore")
         if isUserInfluencer {
             messageProfileImage = UIImage(named: "kaiti_1")
