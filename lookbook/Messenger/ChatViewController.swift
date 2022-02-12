@@ -8,10 +8,31 @@
 import UIKit
 import SnapKit
 
+//class TestMessage {
+//    init(messageParse: MessageParse) {
+//        self.messageParse = messageParse
+//    }
+//    init(localMsg: String) {
+//        self.localMsg = localMsg
+//    }
+//    var messageParse: MessageParse?
+//    var message: String {
+//        return messageParse?.message ?? (localMsg ?? "")
+//    }
+//    var localMsg: String?
+//    var isSenderCeleb: Bool {
+//        if let msgParse = messageParse {
+//            return msgParse.isSenderCeleb
+//        }
+//        return false
+//    }
+//}
+
 class ChatViewController: UIViewController {
     struct TestMessage {
         let message: String
         let isSenderCeleb: Bool
+        var messageParse: MessageParse? = nil
     }
     private var collectionView: UICollectionView!
     private let backgroundImgView = UIImageView()
@@ -77,8 +98,14 @@ class ChatViewController: UIViewController {
     private func setKeyboardDetector() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        hideKeyboardWhenTappedAround()
     }
     
+    private func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -162,19 +189,41 @@ class ChatViewController: UIViewController {
         UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut) {
             self.view.layoutIfNeeded()
         } completion: { (completed) in
-            let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
-            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            self.scrollToLastMessage()
         }
     }
     
+    private func scrollToLastMessage() {
+        let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
+        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+
     @objc private func keyboardWillHide(notification: NSNotification) {
         view.endEditing(true)
         bottomConstraint?.update(offset: 0)
     }
     
     @objc private func pressedSendBtn() {
-        //TODO: Call datastore function + send message
-        print("send button")
+        if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
+            let newLocalMsg = TestMessage(message: "hi>?adsflkja dflkaj dsklfa ds", isSenderCeleb: false)
+            testMessages.append(newLocalMsg)
+            //TODO: we just need to insert this at the bottom instead of reloading
+            collectionView.reloadData()
+            scrollToLastMessage()
+            let fanID = fan?.objectId ?? ""
+            let influencerID = influencer?.objectId ?? ""
+            //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+            let messageType = influencer?.objectId == nil ? "Broadcast" : "DM"
+            dataStore.sendMessage(fanId: fanID,
+                                  influencerID: influencerID,
+                                  isUserInfluencer: self.isUserInfluencer,
+                                  messageText: localMessage,
+                                  messageType: messageType) { messageParse in
+                print("succesfully ran sendMessage")
+//
+//                testMessages.last?.messageParse = messageParse
+            }
+        }
     }
 }
 
@@ -182,10 +231,6 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return testMessages.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        inputChatView.endEditing(true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
