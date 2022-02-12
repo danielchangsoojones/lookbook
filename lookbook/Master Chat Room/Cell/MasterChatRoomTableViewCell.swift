@@ -9,11 +9,11 @@ import UIKit
 import Reusable
 
 class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
-    private var profileImageView: UIImageView!
+    var profileImageView: UIImageView!
     private var nameLabel: UILabel!
-    private var timeStampLabel: UILabel!
+    var timeStampLabel: UILabel!
     private var lastMessageLabel: UILabel!
-    private var unreadCircleView: UIView!
+    var unreadCircleView: UIView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,7 +42,7 @@ class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
         unreadCircleView.isHidden = !hasUnread
     }
 
-    private func setUpInfluencerPhoto() {
+    func setUpInfluencerPhoto() {
         profileImageView = UIImageView()
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.layer.cornerRadius = 32
@@ -66,7 +66,7 @@ class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
         }
     }
     
-    private func setUpTimeStampLabel() {
+    func setUpTimeStampLabel() {
         timeStampLabel = UILabel()
         timeStampLabel.font = .systemFont(ofSize: 11, weight: .regular)
         timeStampLabel.textAlignment = .right
@@ -91,7 +91,7 @@ class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
         }
     }
     
-    private func setUpUnreadCircleView() {
+    func setUpUnreadCircleView() {
         unreadCircleView = UIView()
         unreadCircleView.isHidden = false
         unreadCircleView.layer.cornerRadius = 7.5
