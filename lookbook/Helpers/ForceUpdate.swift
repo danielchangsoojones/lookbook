@@ -7,12 +7,13 @@
 
 import Foundation
 import Parse
+import SCLAlertView
 
 class ForceUpdate {
     static func checkIfForceUpdate() {
         let version_str = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         if let version_str = version_str {
-            let parameters: [String : Any] = ["appVersion" : version_str]
+            let parameters: [String : Any] = ["app_version" : version_str]
             PFCloud.callFunction(inBackground: "checkForceUpdate", withParameters: parameters) { (result, error) in
                 if let mustUpdate = result as? Bool {
                     if mustUpdate {
@@ -33,8 +34,8 @@ class ForceUpdate {
         )
         let alertView = SCLAlertView(appearance: appearance)
         alertView.addButton("Update", action: {
-            Helpers.open("https://apps.apple.com/us/app/nomad-rides/id1390278983")
+            Helpers.open(urlString: "https://apps.apple.com/us/app/id1609559752")
         })
-        alertView.showSuccess("Update App", subTitle: "There is a new Nomad Rides version available. Please update your app!")
+        alertView.showSuccess("Update App", subTitle: "There is a new Ohana version available. Please update your app!")
     }
 }

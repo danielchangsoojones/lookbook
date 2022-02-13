@@ -14,6 +14,7 @@ class MasterChatRoomViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        ForceUpdate.checkIfForceUpdate()
     }
     
     override func loadView() {

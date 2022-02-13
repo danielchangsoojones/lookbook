@@ -13,6 +13,7 @@ target 'lookbook' do
   pod "Timepiece"
   pod 'GrowingTextView', '0.7.2'
   pod 'Stripe'
+  pod 'SCLAlertView'
 
   # Pods for lookbook
 
