@@ -52,8 +52,8 @@ class InfluencerMasterChatRoomViewController: MasterChatRoomViewController {
         let chatRoom = chatRooms[indexPathRow]
         let fan = chatRoom.fan
         
-        if indexPathRow == 0 {
-            pushVC(ChatViewController(influencer: nil, fan: fan, isUserInfluencer: true))
+        if indexPath.row == 0 {
+            pushVC(BroadcastViewController(influencer: nil, fan: fan, isUserInfluencer: true))
         } else {
             pushVC(ChatViewController(influencer: nil, fan: fan, isUserInfluencer: true))
         }

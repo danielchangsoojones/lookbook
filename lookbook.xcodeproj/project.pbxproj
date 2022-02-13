@@ -47,6 +47,7 @@
 		3898BF5127B87F34001E5C2F /* TimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5027B87F34001E5C2F /* TimerExtension.swift */; };
 		3898BF5427B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5327B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift */; };
 		3898BF5727B91239001E5C2F /* BroadcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5627B91239001E5C2F /* BroadcastViewController.swift */; };
+		3898BF5927B91F0A001E5C2F /* BroadcastInputChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5827B91F0A001E5C2F /* BroadcastInputChatView.swift */; };
 		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
 		4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
@@ -103,6 +104,7 @@
 		3898BF5027B87F34001E5C2F /* TimerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtension.swift; sourceTree = "<group>"; };
 		3898BF5327B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerMasterChatRoomViewController.swift; sourceTree = "<group>"; };
 		3898BF5627B91239001E5C2F /* BroadcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewController.swift; sourceTree = "<group>"; };
+		3898BF5827B91F0A001E5C2F /* BroadcastInputChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastInputChatView.swift; sourceTree = "<group>"; };
 		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
 		4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewCell.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				3898BF5627B91239001E5C2F /* BroadcastViewController.swift */,
+				3898BF5827B91F0A001E5C2F /* BroadcastInputChatView.swift */,
 			);
 			path = Broadcast;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */,
 				928D5BC427B3C898004550ED /* InputChatView.swift in Sources */,
 				386D376D27B3C70100AC0497 /* CreateProfileViewController.swift in Sources */,
+				3898BF5927B91F0A001E5C2F /* BroadcastInputChatView.swift in Sources */,
 				386D376727B3763900AC0497 /* SubscriptionModalView.swift in Sources */,
 				386D374E27B35AE600AC0497 /* DateExtension.swift in Sources */,
 				386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */,

@@ -22,12 +22,15 @@ class MessengerDataStore: NSObject {
         }
     }
     
-    func loadBroadcastMessages(completion: @escaping ([MessageParse], Double) -> Void) {
+    func loadBroadcastMessages(completion: @escaping ([ChatMessage], Double) -> Void) {
         PFCloud.callFunction(inBackground: "loadBroadcastMessages", withParameters: [:]) { (result, error) in
             if let result = result as? [String: Any] {
                 if let broadcastMessages = result["broadcastMessages"] as? [MessageParse],
                    let numberOfFans = result["numberOfFans"] as? Double {
-                    completion(broadcastMessages, numberOfFans)
+                    let finalMessages = broadcastMessages.map { (messageParse) -> ChatMessage in
+                        return ChatMessage(messageParse: messageParse, isSenderInfluencer: messageParse.isSenderInfluencer, localMsg: nil)
+                    }
+                    completion(finalMessages, numberOfFans)
                 }
             } else if let error = error {
                 BannerAlert.show(with: error)

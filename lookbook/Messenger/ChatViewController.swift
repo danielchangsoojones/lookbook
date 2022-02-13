@@ -9,16 +9,16 @@ import UIKit
 import SnapKit
 
 class ChatViewController: UIViewController {
-    private var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     private let backgroundImgView = UIImageView()
     private let backgroundGradient = CAGradientLayer()
-    private let inputChatView = InputChatView()
+    var inputChatView = InputChatView()
     private var fan: User!
     private var influencer: InfluencerParse?
     private var isUserInfluencer: Bool!
-    private var chatMessages: [ChatMessage] = []
-    private var sendMessageButton: UIButton!
-    private var dataStore = MessengerDataStore()
+    var chatMessages: [ChatMessage] = []
+    var sendMessageButton: UIButton!
+    var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
     private var hasUserReachedLimit: Bool?
     
@@ -85,7 +85,7 @@ class ChatViewController: UIViewController {
         scrollToLastMessage()
     }
     
-    private func loadMessages() {
+    func loadMessages() {
         dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages, hasUserReachedLimit in
             //TODO: we then need to save the values in a static var
             self.chatMessages = messages
@@ -160,7 +160,7 @@ class ChatViewController: UIViewController {
         }
     }
     
-    private func scrollToLastMessage() {
+    func scrollToLastMessage() {
         let indexPath = NSIndexPath(item: self.chatMessages.count - 1, section: 0) as IndexPath
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
