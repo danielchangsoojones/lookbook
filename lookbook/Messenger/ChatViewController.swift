@@ -25,6 +25,7 @@ class ChatViewController: UIViewController {
     private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
+    private var hasUserReachedLimit: Bool?
     
     init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
@@ -90,9 +91,13 @@ class ChatViewController: UIViewController {
     }
     
     private func loadMessages() {
-        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages in
+        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages, hasUserReachedLimit in
             //TODO: we then need to save the values in a static var
             self.chatMessages = messages
+            self.hasUserReachedLimit = hasUserReachedLimit
+            if let influencer = self.influencer, hasUserReachedLimit {
+                self.showSubscriptionModalVC(influencer: influencer)
+            }
             self.collectionView.reloadData()
             self.scrollToLastMessage()
         }
@@ -171,24 +176,36 @@ class ChatViewController: UIViewController {
     
     @objc private func pressedSendBtn() {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
-            let newLocalMsg = ChatMessage(messageParse: nil, isSenderInfluencer: isUserInfluencer, localMsg: localMessage)
-            chatMessages.append(newLocalMsg)
-            //TODO: we just need to insert this at the bottom instead of reloading
-            collectionView.reloadData()
-            scrollToLastMessage()
-            inputChatView.textView.text = ""
-            let fanID = fan?.objectId ?? ""
-            let influencerID = influencer?.objectId ?? ""
-            //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
-            let messageType = "DM"
-            dataStore.sendMessage(fanId: fanID,
-                                  influencerID: influencerID,
-                                  isUserInfluencer: self.isUserInfluencer,
-                                  messageText: localMessage,
-                                  messageType: messageType) { chatRoomParse in
-                self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
-                print("succesfully ran sendMessage")
+            if hasUserReachedLimit ?? false {
+                //show subscription screen
+                if let influencer = influencer {
+                    showSubscriptionModalVC(influencer: influencer)
+                }
+            } else {
+                //show message
+                startSendMessageAction(localMessage: localMessage)
             }
+        }
+    }
+    
+    private func startSendMessageAction(localMessage: String) {
+        let newLocalMsg = ChatMessage(messageParse: nil, isSenderInfluencer: isUserInfluencer, localMsg: localMessage)
+        chatMessages.append(newLocalMsg)
+        //TODO: we just need to insert this at the bottom instead of reloading
+        collectionView.reloadData()
+        scrollToLastMessage()
+        inputChatView.textView.text = ""
+        let fanID = fan?.objectId ?? ""
+        let influencerID = influencer?.objectId ?? ""
+        //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+        let messageType = "DM"
+        dataStore.sendMessage(fanId: fanID,
+                              influencerID: influencerID,
+                              isUserInfluencer: self.isUserInfluencer,
+                              messageText: localMessage,
+                              messageType: messageType) { chatRoomParse in
+            self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
+            print("succesfully ran sendMessage")
         }
     }
 }
