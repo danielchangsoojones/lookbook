@@ -9,11 +9,6 @@ import UIKit
 import SnapKit
 
 class ChatViewController: UIViewController {
-    struct TestMessage {
-        let message: String
-        let isSenderCeleb: Bool
-        var messageParse: MessageParse? = nil
-    }
     private var collectionView: UICollectionView!
     private let backgroundImgView = UIImageView()
     private let backgroundGradient = CAGradientLayer()
