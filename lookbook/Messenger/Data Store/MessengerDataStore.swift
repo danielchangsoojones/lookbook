@@ -9,14 +9,14 @@ import UIKit
 import Parse
 
 class MessengerDataStore: NSObject {
-    func sendMessage(fanId: String, influencerID: String, isUserInfluencer: Bool, messageText: String, messageType: String, completion: @escaping (MessageParse) -> Void) {
+    func sendMessage(fanId: String, influencerID: String, isUserInfluencer: Bool, messageText: String, messageType: String, completion: @escaping (ChatRoomParse) -> Void) {
         let parameters: [String: Any] = ["fanId": fanId,
                                          "influencerID": influencerID,
                                          "isUserInfluencer": isUserInfluencer,
                                          "messageText": messageText,
                                          "messageType": messageType]
         PFCloud.callFunction(inBackground: "sendMessage", withParameters: parameters) { (result, error) in
-            if let result = result as? MessageParse {
+            if let result = result as? ChatRoomParse {
                 completion(result)
             } else if let error = error {
                 BannerAlert.show(with: error)

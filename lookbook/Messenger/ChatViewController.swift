@@ -28,7 +28,6 @@ class ChatViewController: UIViewController {
     
     init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
-        //if the currentUser is an influencer, fan will be referring to the currentUser's object
         self.fan = fan
         self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
@@ -181,13 +180,13 @@ class ChatViewController: UIViewController {
             let fanID = fan?.objectId ?? ""
             let influencerID = influencer?.objectId ?? ""
             //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
-            let messageType = influencer?.objectId == nil ? "broadcast" : "DM"
+            let messageType = "DM"
             dataStore.sendMessage(fanId: fanID,
                                   influencerID: influencerID,
                                   isUserInfluencer: self.isUserInfluencer,
                                   messageText: localMessage,
-                                  messageType: messageType) { messageParse in
-                self.chatMessages.last?.messageParse = messageParse
+                                  messageType: messageType) { chatRoomParse in
+                self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
                 print("succesfully ran sendMessage")
             }
         }
@@ -204,15 +203,18 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let message = chatMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
-        let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
-        //TODO: we need to make the profile image = influencer or fan's photo depending on who is viewing the screen. We can't work on this until we finish the loadMessages server call.
-        var messageProfileImage = UIImage(named: "explore")
+        let chatMessageParse = message.messageParse
+        let messageText = chatMessageParse?.message ?? (message.localMsg ?? "")
+        let timeStamp = chatMessageParse?.createdAt?.format() ?? Date().format()
+        var messageProfileImage = User.current()?.profilePhoto
         if isUserInfluencer {
-            messageProfileImage = UIImage(named: "kaiti_1")
+            messageProfileImage = chatMessageParse?.fan.profilePhoto
+        } else {
+            messageProfileImage = chatMessageParse?.influencer.user.profilePhoto
         }
         cell.set(profileImage: messageProfileImage,
                  message: messageText,
-                 time: "9:35 PM")
+                 time: timeStamp)
         let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16

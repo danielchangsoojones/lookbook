@@ -23,15 +23,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "68ED3621-565B-482B-AA54-062AE4EEE5C3"
+            uuid = "9F130E55-AF4B-402D-9DB1-0AD2F8A4611B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lookbook/Messenger/Data Store/MessengerDataStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "loadMessages(fanId:influencerID:isUserInfluencer:lastMsgTimeStamp:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -39,81 +39,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3AFC88B5-C550-4EF2-BCD9-823AED0B96FF"
+            uuid = "DEC39723-82C9-42EB-B1D0-056B7C82596A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lookbook/Messenger/ChatViewController.swift"
+            filePath = "lookbook/Messenger/Data Store/MessengerDataStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "loadMessages(fanId:influencerID:isUserInfluencer:lastMsgTimeStamp:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D3148EFA-9E89-4D10-8DAA-1775721DFD61"
+            uuid = "DEF686C5-FF0F-48F7-9C47-44F8414B2744"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lookbook/Messenger/ChatViewController.swift"
+            filePath = "lookbook/Messenger/Data Store/MessengerDataStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "sendMessage(fanId:influencerID:isUserInfluencer:messageText:messageType:completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E724D67D-4D5B-46C2-87B6-57464E382638"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lookbook/Messenger/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E724D67D-4D5B-46C2-87B6-57464E382638 - b6d4e6040b0e00ce"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "lookbook.ChatViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
-                  moduleName = "lookbook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dankwun/lookbook/lookbook/Messenger/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
-                  offsetFromSymbolStart = "1872">
-               </Location>
-               <Location
-                  uuid = "E724D67D-4D5B-46C2-87B6-57464E382638 - b6d4e6040b0e00ce"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "lookbook.ChatViewController.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
-                  moduleName = "lookbook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dankwun/lookbook/lookbook/Messenger/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
-                  offsetFromSymbolStart = "2604">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
