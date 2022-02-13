@@ -17,7 +17,22 @@ class MessengerDataStore: NSObject {
             } else if let error = error {
                 BannerAlert.show(with: error)
             } else {
-                BannerAlert.showUnknownError(functionName: "sendMessage")
+                BannerAlert.showUnknownError(functionName: "sendBroadcast")
+            }
+        }
+    }
+    
+    func loadBroadcastMessages(completion: @escaping ([MessageParse], Double) -> Void) {
+        PFCloud.callFunction(inBackground: "loadBroadcastMessages", withParameters: [:]) { (result, error) in
+            if let result = result as? [String: Any] {
+                if let broadcastMessages = result["broadcastMessages"] as? [MessageParse],
+                   let numberOfFans = result["numberOfFans"] as? Double {
+                    completion(broadcastMessages, numberOfFans)
+                }
+            } else if let error = error {
+                BannerAlert.show(with: error)
+            } else {
+                BannerAlert.showUnknownError(functionName: "loadBroadcastMessages")
             }
         }
     }
