@@ -31,6 +31,10 @@ class MasterChatRoomTableViewCell: UITableViewCell, Reusable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        resetImg()
+    }
+    
+    func resetImg() {
         profileImageView.image = nil
     }
     
