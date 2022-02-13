@@ -225,9 +225,13 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let timeStamp = chatMessageParse?.createdAt?.format() ?? Date().format()
         var messageProfileImage = User.current()?.profilePhoto
         if isUserInfluencer {
-            messageProfileImage = chatMessageParse?.fan.profilePhoto
+            if let chatMessageParse = chatMessageParse {
+                messageProfileImage = chatMessageParse.fan.profilePhoto
+            }
         } else {
-            messageProfileImage = chatMessageParse?.influencer.user.profilePhoto
+            if let influencer = influencer {
+                messageProfileImage = influencer.user.profilePhoto
+            }
         }
         cell.set(profileImage: messageProfileImage,
                  message: messageText,
