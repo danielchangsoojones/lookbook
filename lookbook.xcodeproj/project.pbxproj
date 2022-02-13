@@ -45,6 +45,7 @@
 		3898BF4D27B7A168001E5C2F /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF4C27B7A168001E5C2F /* ChatMessage.swift */; };
 		3898BF4F27B87E33001E5C2F /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF4E27B87E33001E5C2F /* MessageHelper.swift */; };
 		3898BF5127B87F34001E5C2F /* TimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5027B87F34001E5C2F /* TimerExtension.swift */; };
+		3898BF5427B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5327B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift */; };
 		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
 		4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
@@ -99,6 +100,7 @@
 		3898BF4C27B7A168001E5C2F /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		3898BF4E27B87E33001E5C2F /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		3898BF5027B87F34001E5C2F /* TimerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtension.swift; sourceTree = "<group>"; };
+		3898BF5327B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerMasterChatRoomViewController.swift; sourceTree = "<group>"; };
 		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
 		4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewCell.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		386D373927B333C400AC0497 /* Master Chat Room */ = {
 			isa = PBXGroup;
 			children = (
+				3898BF5227B8E92D001E5C2F /* InfluencerMasterChatRoom */,
 				386D374527B3378200AC0497 /* Cell */,
 				386D373E27B3349C00AC0497 /* DataStore */,
 				386D373A27B3346B00AC0497 /* MasterChatRoomViewController.swift */,
@@ -359,6 +362,14 @@
 				3898BF4C27B7A168001E5C2F /* ChatMessage.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		3898BF5227B8E92D001E5C2F /* InfluencerMasterChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				3898BF5327B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift */,
+			);
+			path = InfluencerMasterChatRoom;
 			sourceTree = "<group>";
 		};
 		38B65E0227B691C00037DC3E /* Data Store */ = {
@@ -582,6 +593,7 @@
 				385483C327B1DE7D00B7C19A /* Structs.swift in Sources */,
 				385483E327B2913A00B7C19A /* ImageViewExtension.swift in Sources */,
 				923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */,
+				3898BF5427B8E94C001E5C2F /* InfluencerMasterChatRoomViewController.swift in Sources */,
 				385483C627B1E06200B7C19A /* StringExtension.swift in Sources */,
 				386D377927B4EAB800AC0497 /* CustomError.swift in Sources */,
 				385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */,
