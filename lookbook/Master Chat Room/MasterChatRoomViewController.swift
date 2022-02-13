@@ -57,7 +57,7 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRooms.count
+        return chatRooms.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,7 +65,7 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: BroadcastViewCell.self)
             return cell
         } else {   let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MasterChatRoomTableViewCell.self)
-            let chatRoom = chatRooms[indexPath.row]
+            let chatRoom = chatRooms[indexPath.row - 1]
             
             let influencerName = chatRoom.influencer.user.name ?? ""
             var lastMessage = "Send a message!"
@@ -86,7 +86,7 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
             cell.selectionStyle = .none
             return cell
         }
-        }
+    }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoom = chatRooms[indexPath.row]

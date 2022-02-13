@@ -21,11 +21,17 @@ class BroadcastViewCell: MasterChatRoomTableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func resetImg() {
+        //do nothing, so it doesn't reset the cell on prepare for reuse
+    }
+    
     override func setUpInfluencerPhoto() {
         super.setUpInfluencerPhoto()
         let broadcastImage = UIImage(named: "broadcastProfile")
         profileImageView.image = broadcastImage
     }
+    
     func setupSpeaker() {
         let speakerImageView = UIImageView()
         let speakerImage = UIImage(named: "speakerphone")
