@@ -46,6 +46,7 @@
 		3898BF4F27B87E33001E5C2F /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF4E27B87E33001E5C2F /* MessageHelper.swift */; };
 		3898BF5127B87F34001E5C2F /* TimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5027B87F34001E5C2F /* TimerExtension.swift */; };
 		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
+		4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
 		923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648E9278FFD0300AED21C /* AppDelegate.swift */; };
 		923648EE278FFD0300AED21C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923648ED278FFD0300AED21C /* WelcomeViewController.swift */; };
@@ -54,6 +55,7 @@
 		928D5BC427B3C898004550ED /* InputChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D5BC327B3C898004550ED /* InputChatView.swift */; };
 		92A4189727B287CB009A6BA3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A4189627B287CB009A6BA3 /* ChatViewController.swift */; };
 		92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A4189927B28DA6009A6BA3 /* ChatTextCollectionCell.swift */; };
+		92B9A5CF27B88FF30075B293 /* ForceUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */; };
 		92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAFBAB27B1E14400773F6B /* Enviroment.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,7 +100,9 @@
 		3898BF4E27B87E33001E5C2F /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		3898BF5027B87F34001E5C2F /* TimerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtension.swift; sourceTree = "<group>"; };
 		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
+		4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewCell.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
+		9227CFD927B7AB160057C9B5 /* lookbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lookbook.entitlements; sourceTree = "<group>"; };
 		923648E6278FFD0300AED21C /* lookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		923648E9278FFD0300AED21C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		923648ED278FFD0300AED21C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		928D5BC327B3C898004550ED /* InputChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputChatView.swift; sourceTree = "<group>"; };
 		92A4189627B287CB009A6BA3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		92A4189927B28DA6009A6BA3 /* ChatTextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextCollectionCell.swift; sourceTree = "<group>"; };
+		92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdate.swift; sourceTree = "<group>"; };
 		92BAFBAB27B1E14400773F6B /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
 		9F7CD885F0C94A5F4C9989B9 /* Pods-lookbook.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug(development).xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug(development).xcconfig"; sourceTree = "<group>"; };
 		A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +193,7 @@
 			children = (
 				385483C427B1E05500B7C19A /* Extensions */,
 				385483C227B1DE7D00B7C19A /* Structs.swift */,
+				92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */,
 				3898BF4E27B87E33001E5C2F /* MessageHelper.swift */,
 			);
 			path = Helpers;
@@ -273,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				386D374627B3379A00AC0497 /* MasterChatRoomTableViewCell.swift */,
+				4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 		923648E8278FFD0300AED21C /* lookbook */ = {
 			isa = PBXGroup;
 			children = (
+				9227CFD927B7AB160057C9B5 /* lookbook.entitlements */,
 				386D377027B4B14400AC0497 /* Payments */,
 				386D375527B3603D00AC0497 /* Account */,
 				386D375127B35E4D00AC0497 /* Navigation */,
@@ -578,6 +586,7 @@
 				386D377927B4EAB800AC0497 /* CustomError.swift in Sources */,
 				385483C927B1F8A600B7C19A /* ResetPasswordViewController.swift in Sources */,
 				384C54BF27B1B9B800B8BEEA /* RegisterView.swift in Sources */,
+				92B9A5CF27B88FF30075B293 /* ForceUpdate.swift in Sources */,
 				386D374427B3368C00AC0497 /* MessageParse.swift in Sources */,
 				385483D327B2547400B7C19A /* ExploreView.swift in Sources */,
 				385483D827B254B100B7C19A /* InfluencerTableViewCell.swift in Sources */,
@@ -593,6 +602,7 @@
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
 				3898BF4F27B87E33001E5C2F /* MessageHelper.swift in Sources */,
 				386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */,
+				4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */,
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
@@ -748,6 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = lookbook/lookbook.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -783,7 +794,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_ENTITLEMENTS = lookbook/lookbook.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WGU25444T9;
@@ -879,6 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = lookbook/lookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WGU25444T9;

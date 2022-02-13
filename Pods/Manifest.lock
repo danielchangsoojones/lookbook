@@ -13,6 +13,7 @@ PODS:
     - Reusable/View (= 4.1.2)
   - Reusable/Storyboard (4.1.2)
   - Reusable/View (4.1.2)
+  - SCLAlertView (0.8)
   - SnapKit (4.2.0)
   - Stripe (21.9.0):
     - Stripe/Stripe3DS2 (= 21.9.0)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - Parse
   - Parse/UI
   - Reusable
+  - SCLAlertView
   - SnapKit (~> 4.0)
   - Stripe
   - TextFieldEffects
@@ -45,6 +47,7 @@ SPEC REPOS:
     - GrowingTextView
     - Parse
     - Reusable
+    - SCLAlertView
     - SnapKit
     - Stripe
     - StripeCore
@@ -58,6 +61,7 @@ SPEC CHECKSUMS:
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Stripe: 41c3d261501e1dc84755b1bdabdaae50ebf92b53
   StripeCore: 2ea9531e863ef20f191a0d61f00dedb7f061baef
@@ -65,6 +69,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
 
-PODFILE CHECKSUM: a1deca4d2e564f69322f3e36025a98087c90d33b
+PODFILE CHECKSUM: 5609ba45e5bb165596e812d62db70c2006b23675
 
 COCOAPODS: 1.11.2
