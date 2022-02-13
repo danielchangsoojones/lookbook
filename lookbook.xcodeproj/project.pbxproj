@@ -767,7 +767,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -778,7 +778,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = danielchangsoojones.lookbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -803,7 +803,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -814,7 +814,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = danielchangsoojones.lookbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ohana-prod-profile";
@@ -899,7 +899,7 @@
 				INFOPLIST_FILE = lookbook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ohana;
 				INFOPLIST_KEY_NSCameraUsageDescription = "lookbook is asking for access to camera to upload a photo to your profile. Only the influencer will be able to view this photo. ";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Ohana accesses your location to see influencers around you";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "lookbook is asking for access to photo library to upload a photo to your profile. Only the influencer will be able to view this photo. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -910,7 +910,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = danielchangsoojones.lookbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
