@@ -66,8 +66,8 @@ class BroadcastViewController: ChatViewController {
             collectionView.reloadData()
             scrollToLastMessage()
             inputChatView.textView.text = ""
-            dataStore.sendBroadcast(messageText: localMessage) {
-                print("hi")
+            dataStore.sendBroadcast(messageText: localMessage) { messageParse in
+                self.chatMessages.last?.messageParse = messageParse
             }
         }
     }

@@ -9,11 +9,11 @@ import UIKit
 import Parse
 
 class MessengerDataStore: NSObject {
-    func sendBroadcast(messageText: String, completion: @escaping () -> Void) {
+    func sendBroadcast(messageText: String, completion: @escaping (MessageParse) -> Void) {
         let parameters: [String: Any] = ["messageText": messageText]
         PFCloud.callFunction(inBackground: "sendBroadcast", withParameters: parameters) { (result, error) in
-            if result != nil {
-                completion()
+            if let result = result as? MessageParse {
+                completion(result)
             } else if let error = error {
                 BannerAlert.show(with: error)
             } else {
