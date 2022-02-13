@@ -118,6 +118,7 @@ class ChatViewController: UIViewController {
             ]
             backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
         }
+        backgroundImgView.clipsToBounds = true
         view.addSubview(backgroundImgView)
         backgroundImgView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
