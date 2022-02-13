@@ -16,13 +16,13 @@ enum Tab: Int {
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewControllers = createViewControllers()
-        loadStartScreen()
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        self.viewControllers = createViewControllers(isUserInfluencer: isUserInfluencer)
+        loadStartScreen(isUserInfluencer: isUserInfluencer)
         StripeManager.shared.setupStripeCustomer()
     }
     
-    private func loadStartScreen() {
-        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+    private func loadStartScreen(isUserInfluencer: Bool) {
         let masterChatDataStore = MasterChatDataStore()
         masterChatDataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
             if isUserInfluencer {
@@ -47,14 +47,17 @@ class TabBarController: UITabBarController {
     }
 
 
-    private func createViewControllers() -> [UIViewController] {
+    private func createViewControllers(isUserInfluencer: Bool) -> [UIViewController] {
         let chatIcon = UIImage(named: "chatroom_icon") ?? UIImage()
         let exploreIcon = UIImage(named: "discover_icon") ?? UIImage()
         let settingsIcon =  UIImage(named: "settings_icon") ?? UIImage()
         let masterChatVC = createViewController(type: MasterChatRoomViewController.self, title: "Chat", icon: chatIcon, tab: .chatRooms)
         let discoverVC = createViewController(type: ExploreViewController.self, title: "Discover", icon: exploreIcon, tab: .discover)
         let accountVC = createViewController(type: AccountViewController.self, title: "Account", icon: settingsIcon, tab: .settings)
-        let array = [masterChatVC, discoverVC, accountVC]
+        var array = [masterChatVC, discoverVC, accountVC]
+        if isUserInfluencer {
+            array = [masterChatVC, accountVC]
+        }
         
         return array
     }
