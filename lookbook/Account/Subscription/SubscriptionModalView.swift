@@ -58,7 +58,7 @@ class SubscriptionModalView: UIView {
     
     private func setUpTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.text = "Subscribe to receive & send messages!"
+        titleLabel.text = "You've reached a limit on messages you can send and receive! Subscribe to DM with the influencer : )"
         titleLabel.numberOfLines = 0
         titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
         addSubview(titleLabel)
