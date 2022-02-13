@@ -52,11 +52,12 @@ class TabBarController: UITabBarController {
         let exploreIcon = UIImage(named: "discover_icon") ?? UIImage()
         let settingsIcon =  UIImage(named: "settings_icon") ?? UIImage()
         let masterChatVC = createViewController(type: MasterChatRoomViewController.self, title: "Chat", icon: chatIcon, tab: .chatRooms)
+        let influencerMasterChatVC = createViewController(type: InfluencerMasterChatRoomViewController.self, title: "Chat", icon: chatIcon, tab: .chatRooms)
         let discoverVC = createViewController(type: ExploreViewController.self, title: "Discover", icon: exploreIcon, tab: .discover)
         let accountVC = createViewController(type: AccountViewController.self, title: "Account", icon: settingsIcon, tab: .settings)
         var array = [masterChatVC, discoverVC, accountVC]
         if isUserInfluencer {
-            array = [masterChatVC, accountVC]
+            array = [influencerMasterChatVC, accountVC]
         }
         
         return array
