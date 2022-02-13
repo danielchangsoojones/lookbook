@@ -11,6 +11,7 @@ class MasterChatRoomViewController: UIViewController {
     private var chatRooms: [ChatRoomParse] = []
     private var dataStore = MasterChatDataStore()
     private var tableView: UITableView!
+    private var callToActionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,7 @@ class MasterChatRoomViewController: UIViewController {
         let masterChatRoomView = MasterChatRoomView(frame: self.view.frame)
         self.view = masterChatRoomView
         self.tableView = masterChatRoomView.tableView
+        self.callToActionLabel = masterChatRoomView.callToActionLabel
         setup(masterChatRoomView.tableView)
     }
     
@@ -47,6 +49,7 @@ class MasterChatRoomViewController: UIViewController {
         dataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
             self.chatRooms = chatRooms
             self.tableView.reloadData()
+            self.callToActionLabel.isHidden = chatRooms.count > 0
         }
     }
 }
