@@ -9,6 +9,19 @@ import UIKit
 import Parse
 
 class MessengerDataStore: NSObject {
+    func sendBroadcast(messageText: String, completion: @escaping () -> Void) {
+        let parameters: [String: Any] = ["messageText": messageText]
+        PFCloud.callFunction(inBackground: "sendBroadcast", withParameters: parameters) { (result, error) in
+            if result != nil {
+                completion()
+            } else if let error = error {
+                BannerAlert.show(with: error)
+            } else {
+                BannerAlert.showUnknownError(functionName: "sendMessage")
+            }
+        }
+    }
+    
     func sendMessage(fanId: String, influencerID: String, isUserInfluencer: Bool, messageText: String, messageType: String, completion: @escaping (ChatRoomParse) -> Void) {
         let parameters: [String: Any] = ["fanId": fanId,
                                          "influencerID": influencerID,
