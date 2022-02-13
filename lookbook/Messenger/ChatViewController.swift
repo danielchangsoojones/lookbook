@@ -307,7 +307,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let message = chatMessages[indexPath.row]
         let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
         let estimatedFrame = getMsgFrame(message: messageText)
-        let padding: CGFloat = 20
+        let padding: CGFloat = 20 + 5
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
     }
     

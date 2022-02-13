@@ -10,7 +10,7 @@ import Reusable
 
 class ChatTextCollectionCell: UICollectionViewCell, Reusable {
     let profileImageView: UIImageView = {
-        let diameter: CGFloat = 33
+        let diameter: CGFloat = 47
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: diameter, height: diameter))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .green
