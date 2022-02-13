@@ -12,6 +12,7 @@ import Foundation
 class SubscriptionModalViewController: UIViewController {
     private var influencer: InfluencerParse!
     private var mainLabel: UILabel!
+    private var titleLabel: UILabel!
     private var infoTitleLabel: UILabel!
     private var infoSubtitleLabel: UILabel!
     private var paymentSheet: PaymentSheet?
@@ -35,6 +36,7 @@ class SubscriptionModalViewController: UIViewController {
         let subscriptionView = SubscriptionModalView(frame: self.view.bounds)
         self.view = subscriptionView
         mainLabel = subscriptionView.mainLabel
+        titleLabel = subscriptionView.titleLabel
         infoTitleLabel = subscriptionView.infoTitleLabel
         infoSubtitleLabel = subscriptionView.infoSubtitleLabel
         subscriptionView.exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .touchUpInside)
@@ -53,6 +55,7 @@ class SubscriptionModalViewController: UIViewController {
         let influencerName = influencerParse.user.name ?? ""
         let subscriptionPrice = Int(influencerParse.subscriptionPrice)
         mainLabel.text = "\(influencerName)'s Membership"
+        titleLabel.text = "You've reached a limit on messages you can send and receive! Subscribe to directly message with \(influencerName)"
         infoTitleLabel.text = "$\(subscriptionPrice) per month"
         infoSubtitleLabel.text = "• Private DMs with the one and only \(influencerName)!\n• Get photos and videos that \(influencerName) would send to their friends. Why? Because you’re now \(influencerName)'s friend! : ) "
     }
@@ -104,7 +107,8 @@ class SubscriptionModalViewController: UIViewController {
             switch paymentResult {
             case .completed:
                 print("Your order is confirmed")
-                BannerAlert.show(title: "Payment Success", subtitle: "You've successfully subscribed!", type: .success)
+                BannerAlert.show(title: "Payment Success", subtitle: "You'll be able to receive and send messages moving forward. Try sending a message now!", type: .success)
+                self.dismiss(animated: true, completion: nil)
                 self.dataStore.saveSubscription(influencerObjectId: self.influencer?.objectId ?? "", subscriptionObjectId: self.subscriptionId, chargeAmount: self.chargeAmount, current_period_start: self.current_period_start, current_period_end: self.current_period_end) {
                     print("successfully saved subscription")
                 }

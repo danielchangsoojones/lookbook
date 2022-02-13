@@ -11,7 +11,8 @@ class MasterChatRoomViewController: UIViewController {
     private var chatRooms: [ChatRoomParse] = []
     private var dataStore = MasterChatDataStore()
     private var tableView: UITableView!
- 
+    private var callToActionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ForceUpdate.checkIfForceUpdate()
@@ -22,6 +23,7 @@ class MasterChatRoomViewController: UIViewController {
         let masterChatRoomView = MasterChatRoomView(frame: self.view.frame)
         self.view = masterChatRoomView
         self.tableView = masterChatRoomView.tableView
+        self.callToActionLabel = masterChatRoomView.callToActionLabel
         setup(masterChatRoomView.tableView)
     }
     
@@ -45,9 +47,11 @@ class MasterChatRoomViewController: UIViewController {
     }
     
     private func loadMasterChatRooms() {
-        dataStore.getMasterChatRooms { chatRooms in
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        dataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
             self.chatRooms = chatRooms
             self.tableView.reloadData()
+            self.callToActionLabel.isHidden = chatRooms.count > 0
         }
     }
 }
@@ -65,10 +69,12 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
         if (indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: BroadcastViewCell.self)
             return cell
-        } else {   let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MasterChatRoomTableViewCell.self)
-            let chatRoom = chatRooms[indexPath.row - 1]
+        } else {
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: MasterChatRoomTableViewCell.self)
+            let chatRoom = chatRooms[indexPath.row]
             
-            let influencerName = chatRoom.influencer.user.name ?? ""
+            var profileImage = chatRoom.influencer.user.profilePhoto
+            var influencerName = chatRoom.influencer.user.name ?? ""
             var lastMessage = "Send a message!"
             var timeStamp = chatRoom.createdAt?.format() ?? Date().format()
             var hasUnread = false
@@ -79,7 +85,13 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
                 hasUnread = latestMessage.hasRead == nil ? true : false
             }
             
-            cell.set(imageFile: chatRoom.influencer.user.profilePhoto,
+            let isUserInfluencer = User.current()?.influencer != nil ? true : false
+            if isUserInfluencer {
+                profileImage = chatRoom.fan.profilePhoto
+                influencerName = chatRoom.fan.name ?? ""
+            }
+            
+            cell.set(imageFile: profileImage,
                      name: influencerName,
                      lastMessage: lastMessage,
                      timeStamp: timeStamp,
@@ -92,7 +104,14 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoom = chatRooms[indexPath.row]
         let influencer = chatRoom.influencer
-        pushVC(ChatViewController(influencer: influencer))
+        let fan = chatRoom.fan
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
+        if isUserInfluencer {
+            //user is influencer
+            pushVC(ChatViewController(influencer: nil, fan: fan, isUserInfluencer: true))
+        } else {
+            pushVC(ChatViewController(influencer: influencer, fan: fan, isUserInfluencer: false))
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

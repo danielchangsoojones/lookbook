@@ -10,7 +10,7 @@ import UIKit
 class SubscriptionModalView: UIView {
     var exitButton: UIButton!
     var mainLabel: UILabel!
-    private var titleLabel: UILabel!
+    var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
     var infoTitleLabel: UILabel!
     var infoSubtitleLabel: UILabel!
@@ -58,7 +58,6 @@ class SubscriptionModalView: UIView {
     
     private func setUpTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.text = "Subscribe to receive & send messages!"
         titleLabel.numberOfLines = 0
         titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
         addSubview(titleLabel)

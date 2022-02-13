@@ -12,42 +12,25 @@ class ChatViewController: UIViewController {
     struct TestMessage {
         let message: String
         let isSenderCeleb: Bool
+        var messageParse: MessageParse? = nil
     }
     private var collectionView: UICollectionView!
     private let backgroundImgView = UIImageView()
     private let backgroundGradient = CAGradientLayer()
     private let inputChatView = InputChatView()
-    private var influencer: InfluencerParse!
-    private var testMessages: [TestMessage]!
-    private var messages: [MessageParse] = []
+    private var fan: User!
+    private var influencer: InfluencerParse?
+    private var isUserInfluencer: Bool!
+    private var chatMessages: [ChatMessage] = []
     private var sendMessageButton: UIButton!
     private var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
-    private func populateMessageArray() {
-        testMessages = [
-            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: true),
-            TestMessage(message: "hey this is tyler", isSenderCeleb: true),
-            TestMessage(message: "wowowow", isSenderCeleb:true),
-            TestMessage(message: "hey this is danielssdfb sdfbsdfhsf sdjkfn sdkfnsja kfaj fdkls dnfjkdsf jdfjkf sjkfsnfj", isSenderCeleb: false),
-            TestMessage(message: "hey this is tyler", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "wowowow", isSenderCeleb: false),
-            TestMessage(message: "bottom", isSenderCeleb: false)
-        ]
-    }
+    private var hasUserReachedLimit: Bool?
     
-    init(influencer: InfluencerParse) {
+    init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
         self.influencer = influencer
+        self.fan = fan
+        self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -66,21 +49,31 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
-        populateMessageArray() //TODO: DELETE & LOAD FROM MESSAGES
         setKeyboardDetector()
     }
     
     private func setKeyboardDetector() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        hideKeyboardWhenTappedAround()
     }
     
+    private func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
+        tap.cancelsTouchesInView = false
+        collectionView.addGestureRecognizer(tap)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = UIColor.black
+        if isUserInfluencer {
+            self.title = fan.name ?? ""
+        } else {
+            self.title = influencer?.user.name ?? ""
+        }
         loadMessages()
     }
     
@@ -94,33 +87,42 @@ class ChatViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundGradient.frame = backgroundImgView.bounds
+        scrollToLastMessage()
     }
     
     private func loadMessages() {
-        dataStore.loadMessages(influencerObjectId: influencer.objectId ?? "", completion: { messages in
-            self.messages = messages
+        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages, hasUserReachedLimit in
+            //TODO: we then need to save the values in a static var
+            self.chatMessages = messages
+            self.hasUserReachedLimit = hasUserReachedLimit
+            if let influencer = self.influencer, hasUserReachedLimit {
+                self.showSubscriptionModalVC(influencer: influencer)
+            }
             self.collectionView.reloadData()
-        })
+            self.scrollToLastMessage()
+        }
     }
     
     private func setBackgroundImg() {
         view.backgroundColor = .white
-        if let image = influencer.chatBackgroundPhoto {
+        let image = influencer?.chatBackgroundPhoto
+        if image == nil {
+            backgroundImgView.image = UIImage(named: "welcome_bg")
+        } else {
             backgroundImgView.loadFromFile(image)
             backgroundImgView.contentMode = .scaleAspectFill
+            backgroundGradient.colors = [
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
+                UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
+                UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
+            ]
+            backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
         }
         view.addSubview(backgroundImgView)
         backgroundImgView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(self.view.snp.topMargin)
         }
-        
-        backgroundGradient.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor,
-            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.48).cgColor,
-            UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.32).cgColor
-        ]
-        backgroundImgView.layer.insertSublayer(backgroundGradient, at: 0)
     }
     
     private func setupCollectionView() {
@@ -158,87 +160,148 @@ class ChatViewController: UIViewController {
         UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut) {
             self.view.layoutIfNeeded()
         } completion: { (completed) in
-            let indexPath = NSIndexPath(item: self.testMessages.count - 1, section: 0) as IndexPath
-            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            self.scrollToLastMessage()
         }
     }
     
+    private func scrollToLastMessage() {
+        let indexPath = NSIndexPath(item: self.chatMessages.count - 1, section: 0) as IndexPath
+        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+
     @objc private func keyboardWillHide(notification: NSNotification) {
         view.endEditing(true)
         bottomConstraint?.update(offset: 0)
     }
     
     @objc private func pressedSendBtn() {
-        //TODO: Call datastore function + send message
-        print("send button")
+        if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
+            if hasUserReachedLimit ?? false {
+                //show subscription screen
+                if let influencer = influencer {
+                    showSubscriptionModalVC(influencer: influencer)
+                }
+            } else {
+                //show message
+                startSendMessageAction(localMessage: localMessage)
+            }
+        }
+    }
+    
+    private func startSendMessageAction(localMessage: String) {
+        let newLocalMsg = ChatMessage(messageParse: nil, isSenderInfluencer: isUserInfluencer, localMsg: localMessage)
+        chatMessages.append(newLocalMsg)
+        //TODO: we just need to insert this at the bottom instead of reloading
+        collectionView.reloadData()
+        scrollToLastMessage()
+        inputChatView.textView.text = ""
+        let fanID = fan?.objectId ?? ""
+        let influencerID = influencer?.objectId ?? ""
+        //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+        let messageType = "DM"
+        dataStore.sendMessage(fanId: fanID,
+                              influencerID: influencerID,
+                              isUserInfluencer: self.isUserInfluencer,
+                              messageText: localMessage,
+                              messageType: messageType) { chatRoomParse in
+            self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
+            print("succesfully ran sendMessage")
+        }
     }
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     //TODO: once data store function is hooked up, replace testMessages with messages
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testMessages.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        inputChatView.endEditing(true)
+        return chatMessages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = testMessages[indexPath.row]
+        let message = chatMessages[indexPath.row]
         let cell = collectionView.dequeueReusableCell(for: indexPath,
                                                          cellType: ChatTextCollectionCell.self)
-        cell.set(profileImage: UIImage(named: "explore"),
-                 message: message.message,
-                 time: "9:35 PM")
-        let estimatedFrame = getMsgFrame(message: message.message)
+        let chatMessageParse = message.messageParse
+        let messageText = chatMessageParse?.message ?? (message.localMsg ?? "")
+        let timeStamp = chatMessageParse?.createdAt?.format() ?? Date().format()
+        var messageProfileImage = User.current()?.profilePhoto
+        if isUserInfluencer {
+            messageProfileImage = chatMessageParse?.fan.profilePhoto
+        } else {
+            messageProfileImage = chatMessageParse?.influencer.user.profilePhoto
+        }
+        cell.set(profileImage: messageProfileImage,
+                 message: messageText,
+                 time: timeStamp)
+        let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
         let horizontalPadding: CGFloat = 16
         let startingInternalPadding: CGFloat = 8
         let profileImgOffset: CGFloat = cell.profileImageView.frame.width + 15
-        if message.isSenderCeleb {
-            //incoming message UI
-            cell.profileImageView.isHidden = false
-            cell.bubbleView.backgroundColor = .white
-            cell.messageTextView.textColor = .black
-            cell.bubbleView.frame = CGRect(x: profileImgOffset,
-                                           y: 0,
-                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
-                                           height: estimatedFrame.height + padding)
-            cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
-                                                y: 0,
-                                                width: estimatedFrame.width + horizontalPadding,
-                                                height: estimatedFrame.height + padding)
-            cell.timeLabel.snp.remakeConstraints { make in
-                make.bottom.equalTo(cell.bubbleView)
-                make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+        
+        if isUserInfluencer {
+            //user is influencer
+            if message.isSenderInfluencer {
+                //show influencer's message in blue on right
+                showOutboundMessages(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding)
+            } else {
+                //show fan's messages in white on left
+                showInboundMessage(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding, profileImgOffset: profileImgOffset)
             }
         } else {
-            //outgoing message UI
-            cell.profileImageView.isHidden = true
-            cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
-            cell.messageTextView.textColor = .white
-            cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
-                                           y: 0,
-                                           width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
-                                           height: estimatedFrame.height + padding)
-            cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
-                                                y: 0,
-                                                width: estimatedFrame.width + horizontalPadding,
-                                                height: estimatedFrame.height + padding)
-       
-            cell.timeLabel.snp.remakeConstraints { make in
-                make.bottom.equalTo(cell.bubbleView)
-                make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+            //user is fan
+            if message.isSenderInfluencer {
+                //show influencer's messages in white on left
+                showInboundMessage(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding, profileImgOffset: profileImgOffset)
+            } else {
+                //show fan's message in blue on right
+                showOutboundMessages(cell: cell, estimatedFrame: estimatedFrame, horizontalPadding: horizontalPadding, startingInternalPadding: startingInternalPadding, padding: padding)
             }
         }
         
         return cell
     }
     
+    private func showInboundMessage(cell: ChatTextCollectionCell, estimatedFrame: CGRect, horizontalPadding: CGFloat, startingInternalPadding: CGFloat, padding: CGFloat, profileImgOffset: CGFloat) {
+        cell.profileImageView.isHidden = false
+        cell.bubbleView.backgroundColor = .white
+        cell.messageTextView.textColor = .black
+        cell.bubbleView.frame = CGRect(x: profileImgOffset,
+                                       y: 0,
+                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                       height: estimatedFrame.height + padding)
+        cell.messageTextView.frame = CGRect(x: startingInternalPadding + profileImgOffset,
+                                            y: 0,
+                                            width: estimatedFrame.width + horizontalPadding,
+                                            height: estimatedFrame.height + padding)
+        cell.timeLabel.snp.remakeConstraints { make in
+            make.bottom.equalTo(cell.bubbleView)
+            make.leading.equalTo(cell.bubbleView.snp.trailing).offset(3)
+        }
+    }
+    
+    private func showOutboundMessages(cell: ChatTextCollectionCell, estimatedFrame: CGRect, horizontalPadding: CGFloat, startingInternalPadding: CGFloat, padding: CGFloat) {
+        cell.profileImageView.isHidden = true
+        cell.bubbleView.backgroundColor = UIColor(red: 16/256, green: 121/256, blue: 249/256, alpha: 1)
+        cell.messageTextView.textColor = .white
+        cell.bubbleView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - startingInternalPadding - 10,
+                                       y: 0,
+                                       width: estimatedFrame.width + horizontalPadding + startingInternalPadding,
+                                       height: estimatedFrame.height + padding)
+        cell.messageTextView.frame = CGRect(x: view.frame.width - estimatedFrame.width - horizontalPadding - 10,
+                                            y: 0,
+                                            width: estimatedFrame.width + horizontalPadding,
+                                            height: estimatedFrame.height + padding)
+   
+        cell.timeLabel.snp.remakeConstraints { make in
+            make.bottom.equalTo(cell.bubbleView)
+            make.trailing.equalTo(cell.bubbleView.snp.leading).offset(-3)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let message = testMessages[indexPath.row]
-        let estimatedFrame = getMsgFrame(message: message.message)
+        let message = chatMessages[indexPath.row]
+        let messageText = message.messageParse?.message ?? (message.localMsg ?? "")
+        let estimatedFrame = getMsgFrame(message: messageText)
         let padding: CGFloat = 20
         return CGSize(width: view.frame.width, height: estimatedFrame.height + padding)
     }

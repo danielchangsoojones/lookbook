@@ -41,8 +41,8 @@ class ChatTextCollectionCell: UICollectionViewCell, Reusable {
         return label
     }()
      
-    func set(profileImage: UIImage?, message: String, time: String) {
-        profileImageView.image = profileImage
+    func set(profileImage: AnyObject?, message: String, time: String) {
+        profileImageView.loadFromFile(profileImage)
         messageTextView.text = message
         timeLabel.text = time
     }

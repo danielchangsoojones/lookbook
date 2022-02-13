@@ -22,21 +22,30 @@ class TabBarController: UITabBarController {
     }
     
     private func loadStartScreen() {
-        //ExploreVC set as default start screen
+        let isUserInfluencer = User.current()?.influencer != nil ? true : false
         let masterChatDataStore = MasterChatDataStore()
-        masterChatDataStore.getMasterChatRooms { chatRooms in
-            if chatRooms.count > 1 {
-                //open MasterChatVC
+        masterChatDataStore.getMasterChatRooms(isUserInfluencer: isUserInfluencer) { chatRooms in
+            if isUserInfluencer {
                 self.selectedIndex = 0
-            } else if chatRooms.count == 1 {
-                self.selectedIndex = 0
-                let navController = self.viewControllers?[0] as! UINavigationController
-                navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer))
             } else {
-                self.selectedIndex = 1
+                if chatRooms.count > 1 {
+                    //open MasterChatVC
+                    self.selectedIndex = 0
+                } else if chatRooms.count == 1 {
+                    //open ChatVC
+                    self.selectedIndex = 0
+                    if let currentUser = User.current() {
+                        let navController = self.viewControllers?[0] as! UINavigationController
+                        navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer, fan: currentUser, isUserInfluencer: false))
+                    }
+                } else {
+                    //open ExploreVC
+                    self.selectedIndex = 1
+                }
             }
         }
     }
+
 
     private func createViewControllers() -> [UIViewController] {
         let chatIcon = UIImage(named: "chatroom_icon") ?? UIImage()

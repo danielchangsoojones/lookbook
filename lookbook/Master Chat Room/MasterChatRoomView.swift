@@ -10,12 +10,14 @@ import UIKit
 class MasterChatRoomView: UIView {
     private var titleLabel: UILabel!
     var tableView: UITableView!
+    var callToActionLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         setUpTitleLabel()
         setUpTableView()
+        setUpCallToActionLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,5 +44,18 @@ class MasterChatRoomView: UIView {
             make.bottom.equalToSuperview()
         }
     }
-
+    
+    private func setUpCallToActionLabel() {
+        callToActionLabel = UILabel()
+        callToActionLabel.numberOfLines = 2
+        callToActionLabel.isHidden = true
+        callToActionLabel.textAlignment = .center
+        callToActionLabel.text = "Start a chat with an influencer on the Discover tab! 😊"
+        callToActionLabel.font = .systemFont(ofSize: 20, weight: .regular)
+        addSubview(callToActionLabel)
+        callToActionLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
 }

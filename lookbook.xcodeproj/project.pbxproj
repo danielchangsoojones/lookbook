@@ -42,6 +42,9 @@
 		386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D376E27B4893C00AC0497 /* ImageExtension.swift */; };
 		386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377627B4CB1600AC0497 /* StripeManager.swift */; };
 		386D377927B4EAB800AC0497 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D377827B4EAB800AC0497 /* CustomError.swift */; };
+		3898BF4D27B7A168001E5C2F /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF4C27B7A168001E5C2F /* ChatMessage.swift */; };
+		3898BF4F27B87E33001E5C2F /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF4E27B87E33001E5C2F /* MessageHelper.swift */; };
+		3898BF5127B87F34001E5C2F /* TimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898BF5027B87F34001E5C2F /* TimerExtension.swift */; };
 		38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B65E0327B691D20037DC3E /* MessengerDataStore.swift */; };
 		4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */; };
 		8208E8C911C65271FDBE2B3C /* Pods_lookbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BFE31F465B19A7EF1D2C98 /* Pods_lookbook.framework */; };
@@ -93,6 +96,9 @@
 		386D376E27B4893C00AC0497 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		386D377627B4CB1600AC0497 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		386D377827B4EAB800AC0497 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		3898BF4C27B7A168001E5C2F /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		3898BF4E27B87E33001E5C2F /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
+		3898BF5027B87F34001E5C2F /* TimerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtension.swift; sourceTree = "<group>"; };
 		38B65E0327B691D20037DC3E /* MessengerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerDataStore.swift; sourceTree = "<group>"; };
 		4C6712C827B7854F0081E052 /* BroadcastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewCell.swift; sourceTree = "<group>"; };
 		82F105B818555B1C722A4FB8 /* Pods-lookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.release.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 				385483C427B1E05500B7C19A /* Extensions */,
 				385483C227B1DE7D00B7C19A /* Structs.swift */,
 				92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */,
+				3898BF4E27B87E33001E5C2F /* MessageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -201,6 +208,7 @@
 				386D374D27B35AE600AC0497 /* DateExtension.swift */,
 				386D376E27B4893C00AC0497 /* ImageExtension.swift */,
 				386D377827B4EAB800AC0497 /* CustomError.swift */,
+				3898BF5027B87F34001E5C2F /* TimerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,6 +353,14 @@
 			path = Stripe;
 			sourceTree = "<group>";
 		};
+		3898BF4B27B7A018001E5C2F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3898BF4C27B7A168001E5C2F /* ChatMessage.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		38B65E0227B691C00037DC3E /* Data Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +422,7 @@
 		92A4189527B287AE009A6BA3 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				3898BF4B27B7A018001E5C2F /* Extension */,
 				38B65E0227B691C00037DC3E /* Data Store */,
 				92A4189827B28BB2009A6BA3 /* Cell */,
 				92A4189627B287CB009A6BA3 /* ChatViewController.swift */,
@@ -583,11 +600,13 @@
 				386D374027B334C000AC0497 /* MasterChatDataStore.swift in Sources */,
 				384C54B727B1340B00B8BEEA /* WelcomeView.swift in Sources */,
 				384C54CA27B1C84F00B8BEEA /* User.swift in Sources */,
+				3898BF4F27B87E33001E5C2F /* MessageHelper.swift in Sources */,
 				386D373D27B3347800AC0497 /* MasterChatRoomView.swift in Sources */,
 				4C6712C927B7854F0081E052 /* BroadcastViewCell.swift in Sources */,
 				92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */,
 				385483CB27B1F96600B7C19A /* ViewControllerExtension.swift in Sources */,
 				384C54C727B1C40500B8BEEA /* OnboardingDataStore.swift in Sources */,
+				3898BF5127B87F34001E5C2F /* TimerExtension.swift in Sources */,
 				38B65E0427B691D20037DC3E /* MessengerDataStore.swift in Sources */,
 				923648EA278FFD0300AED21C /* AppDelegate.swift in Sources */,
 				385483E127B2680C00B7C19A /* ExploreDataStore.swift in Sources */,
@@ -596,6 +615,7 @@
 				384C54BD27B143F800B8BEEA /* RegisterViewController.swift in Sources */,
 				385483DC27B259E000B7C19A /* InfluencerParse.swift in Sources */,
 				386D374227B3365300AC0497 /* ChatRoomParse.swift in Sources */,
+				3898BF4D27B7A168001E5C2F /* ChatMessage.swift in Sources */,
 				386D375D27B3727900AC0497 /* AccountView.swift in Sources */,
 				385B937527B5CB67004644CA /* SubscriptionDataStore.swift in Sources */,
 				386D373B27B3346B00AC0497 /* MasterChatRoomViewController.swift in Sources */,
