@@ -192,16 +192,21 @@ class ChatViewController: UIViewController {
         scrollToLastMessage()
         inputChatView.textView.text = ""
         let fanID = fan?.objectId ?? ""
-        let influencerID = influencer?.objectId ?? ""
-        //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
-        let messageType = "DM"
-        dataStore.sendMessage(fanId: fanID,
-                              influencerID: influencerID,
-                              isUserInfluencer: self.isUserInfluencer,
-                              messageText: localMessage,
-                              messageType: messageType) { chatRoomParse in
-            self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
-            print("succesfully ran sendMessage")
+        if let influencer = influencer {
+            //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+            let messageType = "DM"
+            dataStore.sendMessage(fanId: fanID,
+                                  influencer: influencer,
+                                  isUserInfluencer: self.isUserInfluencer,
+                                  messageText: localMessage,
+                                  messageType: messageType) { chatRoomParse in
+                self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
+                print("succesfully ran sendMessage")
+            }
+        } else {
+            BannerAlert.show(title: "Error",
+                             subtitle: "Could not find the influencer for this chat",
+                             type: .error)
         }
     }
 }

@@ -14,4 +14,8 @@ class User: PFUser {
     @NSManaged var phoneNumber: Double
     @NSManaged var deviceType: String?
     @NSManaged var stripeCustomerID: String
+    
+    var isInfluencer: Bool {
+        return influencer != nil
+    }
 }

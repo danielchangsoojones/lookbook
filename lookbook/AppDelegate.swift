@@ -73,8 +73,12 @@ extension AppDelegate {
     }
 
     private func setStartingVC() {
-        if isLoggedIn {            
-            if OnboardingDataStore.isProfileComplete {
+        if isLoggedIn {
+            if (User.current()?.isInfluencer ?? false) {
+                Influencer.loadInfluencer {
+                    self.toTabBarController()
+                }
+            } else if OnboardingDataStore.isProfileComplete {
                 toTabBarController()
             } else {
                 let welcomeVC = CreateProfileViewController()
