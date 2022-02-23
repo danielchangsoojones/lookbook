@@ -46,7 +46,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
-        setKeyboardDetector()
+//        setKeyboardDetector()
     }
     
     private func setKeyboardDetector() {
@@ -220,7 +220,10 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let timeStamp = chatMessageParse?.createdAt?.format() ?? Date().format()
         var messageProfileImage = User.current()?.profilePhoto
         if isUserInfluencer {
-            if let chatMessageParse = chatMessageParse {
+            if let chatMessageParse = chatMessageParse, !message.isSenderInfluencer {
+                //we do not want any profile image when the sender was influencer
+                //it was crashing on the message just sent, even though it doesn't need a profile
+                //photo for a sent message
                 messageProfileImage = chatMessageParse.fan.profilePhoto
             }
         } else {

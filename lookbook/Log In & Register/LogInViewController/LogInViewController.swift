@@ -42,7 +42,13 @@ class LogInViewController: RegisterViewController {
     }
     
     override func segueIntoApp() {
-        Influencer.loadInfluencer {
+        if (User.current()?.isInfluencer ?? false) {
+            Influencer.loadInfluencer {
+                let tabController = TabBarController()
+                tabController.modalPresentationStyle = .fullScreen
+                self.present(tabController, animated: true, completion: nil)
+            }
+        } else {
             let tabController = TabBarController()
             tabController.modalPresentationStyle = .fullScreen
             self.present(tabController, animated: true, completion: nil)
