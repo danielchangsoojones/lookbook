@@ -20,6 +20,7 @@ class Influencer {
         if let currentUser = User.current() {
             let query = InfluencerParse.query() as! PFQuery<InfluencerParse>
             query.whereKey("user", equalTo: currentUser)
+            query.includeKey("user")
             query.getFirstObjectInBackground { influencerParse, error in
                 if let influencerParse = influencerParse {
                     let influencer = Influencer(influencerParse: influencerParse)
