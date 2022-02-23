@@ -72,7 +72,7 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
                         let isUserFan = currentUser.influencer == nil ? true : false
                         //only fans can see the ExploreVC
                         if isUserFan {
-                            self.pushVC(ChatViewController(influencer: influencer, fan: currentUser, isUserInfluencer: false))
+                            self.pushVC(ChatViewController(influencer: influencer, fan: currentUser))
                         }
                     }
                 }

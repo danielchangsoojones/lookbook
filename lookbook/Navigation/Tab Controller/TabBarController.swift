@@ -36,7 +36,7 @@ class TabBarController: UITabBarController {
                     self.selectedIndex = 0
                     if let currentUser = User.current() {
                         let navController = self.viewControllers?[0] as! UINavigationController
-                        navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer, fan: currentUser, isUserInfluencer: false))
+                        navController.viewControllers[0].pushVC(ChatViewController(influencer: chatRooms[0].influencer, fan: currentUser))
                     }
                 } else {
                     //open ExploreVC

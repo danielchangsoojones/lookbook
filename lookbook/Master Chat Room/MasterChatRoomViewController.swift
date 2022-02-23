@@ -101,7 +101,7 @@ extension MasterChatRoomViewController: UITableViewDataSource, UITableViewDelega
         let chatRoom = chatRooms[indexPathRow]
         let influencer = chatRoom.influencer
         let fan = chatRoom.fan
-        pushVC(ChatViewController(influencer: influencer, fan: fan, isUserInfluencer: false))
+        pushVC(ChatViewController(influencer: influencer, fan: fan))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

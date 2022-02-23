@@ -14,18 +14,20 @@ class ChatViewController: UIViewController {
     private let backgroundGradient = CAGradientLayer()
     var inputChatView = InputChatView()
     private var fan: User!
-    private var influencer: InfluencerParse?
-    private var isUserInfluencer: Bool!
+    private let influencer: InfluencerParse
     var chatMessages: [ChatMessage] = []
     var sendMessageButton: UIButton!
     var dataStore = MessengerDataStore()
     private var bottomConstraint: Constraint?
     private var hasUserReachedLimit: Bool?
     
-    init(influencer: InfluencerParse?, fan: User, isUserInfluencer: Bool) {
+    var isUserInfluencer: Bool {
+        return Influencer.shared != nil
+    }
+    
+    init(influencer: InfluencerParse, fan: User) {
         self.influencer = influencer
         self.fan = fan
-        self.isUserInfluencer = isUserInfluencer
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,7 +69,7 @@ class ChatViewController: UIViewController {
         if isUserInfluencer {
             self.title = fan.name ?? ""
         } else {
-            self.title = influencer?.user.name ?? ""
+            self.title = influencer.user.name ?? ""
         }
         loadMessages()
     }
@@ -86,12 +88,12 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
-        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer?.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages, hasUserReachedLimit in
+        dataStore.loadMessages(fanId: fan.objectId ?? "", influencerID: influencer.objectId ?? "", isUserInfluencer: isUserInfluencer, lastMsgTimeStamp: nil) { messages, hasUserReachedLimit in
             //TODO: we then need to save the values in a static var
             self.chatMessages = messages
             self.hasUserReachedLimit = hasUserReachedLimit
-            if let influencer = self.influencer, hasUserReachedLimit {
-                self.showSubscriptionModalVC(influencer: influencer)
+            if hasUserReachedLimit {
+                self.showSubscriptionModalVC(influencer: self.influencer)
             }
             self.collectionView.reloadData()
             self.scrollToLastMessage()
@@ -100,7 +102,7 @@ class ChatViewController: UIViewController {
     
     private func setBackgroundImg() {
         view.backgroundColor = .white
-        let image = influencer?.chatBackgroundPhoto
+        let image = influencer.chatBackgroundPhoto
         if image == nil {
             backgroundImgView.image = UIImage(named: "welcome_bg")
         } else {
@@ -174,9 +176,7 @@ class ChatViewController: UIViewController {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
             if hasUserReachedLimit ?? false {
                 //show subscription screen
-                if let influencer = influencer {
-                    showSubscriptionModalVC(influencer: influencer)
-                }
+                showSubscriptionModalVC(influencer: influencer)
             } else {
                 //show message
                 startSendMessageAction(localMessage: localMessage)
@@ -192,21 +192,15 @@ class ChatViewController: UIViewController {
         scrollToLastMessage()
         inputChatView.textView.text = ""
         let fanID = fan?.objectId ?? ""
-        if let influencer = influencer {
-            //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
-            let messageType = "DM"
-            dataStore.sendMessage(fanId: fanID,
-                                  influencer: influencer,
-                                  isUserInfluencer: self.isUserInfluencer,
-                                  messageText: localMessage,
-                                  messageType: messageType) { chatRoomParse in
-                self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
-                print("succesfully ran sendMessage")
-            }
-        } else {
-            BannerAlert.show(title: "Error",
-                             subtitle: "Could not find the influencer for this chat",
-                             type: .error)
+        //TODO: this isn't entirely accurate as some of the influencer's messages might be a DM. We need to check if this room is a broadcast channel.
+        let messageType = "DM"
+        dataStore.sendMessage(fanId: fanID,
+                              influencer: influencer,
+                              isUserInfluencer: self.isUserInfluencer,
+                              messageText: localMessage,
+                              messageType: messageType) { chatRoomParse in
+            self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
+            print("succesfully ran sendMessage")
         }
     }
 }
@@ -230,9 +224,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 messageProfileImage = chatMessageParse.fan.profilePhoto
             }
         } else {
-            if let influencer = influencer {
-                messageProfileImage = influencer.user.profilePhoto
-            }
+            messageProfileImage = influencer.user.profilePhoto
         }
         cell.set(profileImage: messageProfileImage,
                  message: messageText,

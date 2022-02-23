@@ -52,10 +52,14 @@ class InfluencerMasterChatRoomViewController: MasterChatRoomViewController {
         let chatRoom = chatRooms[indexPathRow]
         let fan = chatRoom.fan
         
-        if indexPath.row == 0 {
-            pushVC(BroadcastViewController(influencer: nil, fan: fan, isUserInfluencer: true))
+        if let currentInfluencerParse = Influencer.shared?.influencerParse {
+            if indexPath.row == 0 {
+                pushVC(BroadcastViewController(influencer: currentInfluencerParse, fan: fan))
+            } else {
+                pushVC(ChatViewController(influencer: currentInfluencerParse, fan: fan))
+            }
         } else {
-            pushVC(ChatViewController(influencer: nil, fan: fan, isUserInfluencer: true))
+            BannerAlert.show(title: "Error", subtitle: "There is no influencer loaded into the app", type: .error)
         }
     }
 }
