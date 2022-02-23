@@ -41,6 +41,7 @@ class MasterChatRoomViewController: UIViewController {
     private func setup(_ tableView: UITableView) {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(cellType: MasterChatRoomTableViewCell.self)
         tableView.register(cellType: BroadcastViewCell.self)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
