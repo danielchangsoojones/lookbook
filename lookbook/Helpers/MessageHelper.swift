@@ -14,6 +14,8 @@ import MessageUI
  If the MessageHelper is not retained then you will experience crashes.
 */
 class MessageHelper: NSObject {
+    static let customerServiceNum = "7074755694"
+    
     var theSpinnerContainer: UIView?
     weak var currentVC: UIViewController?
     var messageDelegate: MFMessageComposeViewControllerDelegate?
