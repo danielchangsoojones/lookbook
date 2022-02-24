@@ -30,8 +30,8 @@ class OnboardingDataStore: NSObject {
         newUser.signUpInBackground { (success, error: Error?) -> Void in
             if success {
                 let installation = PFInstallation.current()
-                installation!["user"] = User.current()
-                installation!.saveInBackground()
+                installation?["user"] = User.current()
+                installation?.saveInBackground()
                 self.delegate?.segueIntoApp()
             }
             else {
@@ -54,8 +54,8 @@ class OnboardingDataStore: NSObject {
         User.logInWithUsername(inBackground: lowerCaseEmail, password: password) { (user, error) -> Void in
             if let _ = user, error == nil {
                 let installation = PFInstallation.current()
-                installation!["user"] = User.current()
-                installation!.saveEventually(nil)
+                installation?["user"] = User.current()
+                installation?.saveEventually(nil)
                 self.delegate?.segueIntoApp()
             } else if let error = error, let code = PFErrorCode(rawValue: error._code) {
                 if code == .errorObjectNotFound {

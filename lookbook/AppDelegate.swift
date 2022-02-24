@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let installation = PFInstallation.current()
         installation?.setDeviceTokenFrom(deviceToken)
         installation?.saveInBackground()
-            
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
