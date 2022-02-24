@@ -8,7 +8,10 @@
 import UIKit
 
 class LogInViewController: RegisterViewController {
+    private var messageHelper: MessageHelper?
+    
     override func viewDidLoad() {
+        messageHelper = MessageHelper(currentVC: self, delegate: nil)
         super.viewDidLoad()
         updateLabels()
         setUpResetPasswordBtn()
@@ -35,8 +38,10 @@ class LogInViewController: RegisterViewController {
     }
     
     @objc private func resetBtnPressed() {
-        let resetPasswordVC = ResetPasswordViewController()
-        pushVC(resetPasswordVC)
+        let msg = "please help me reset my password for ohana"
+        messageHelper?.text("7074755694", body: msg)
+//        let resetPasswordVC = ResetPasswordViewController()
+//        pushVC(resetPasswordVC)
     }
     
     override func segueIntoApp() {
