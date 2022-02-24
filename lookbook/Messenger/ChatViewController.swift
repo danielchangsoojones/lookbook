@@ -47,6 +47,7 @@ class ChatViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         collectionView.reloadData()
         setKeyboardDetector()
+        checkPushNotificationStatus()
     }
     
     private func setKeyboardDetector() {
@@ -78,6 +79,28 @@ class ChatViewController: UIViewController {
         super.viewDidLayoutSubviews()
         backgroundGradient.frame = backgroundImgView.bounds
         scrollToLastMessage()
+    }
+    
+    private func checkPushNotificationStatus() {
+        let current = UNUserNotificationCenter.current()
+        current.getNotificationSettings(completionHandler: { permission in
+            switch permission.authorizationStatus  {
+            case .authorized:
+                print("User granted permission for notification")
+            case .denied, .notDetermined:
+                DispatchQueue.main.async {
+                    BannerAlert.show(title: "Enable Push Notifications", subtitle: "To see when you receive new messages from this celeb, please go to your iPhone settings and enable push notifications", type: .info)
+                }
+            case .provisional:
+                // @available(iOS 12.0, *)
+                print("The application is authorized to post non-interruptive user notifications.")
+            case .ephemeral:
+                // @available(iOS 14.0, *)
+                print("The application is temporarily authorized to post notifications. Only available to app clips.")
+            @unknown default:
+                print("Unknow Status")
+            }
+        })
     }
     
     func loadMessages() {

@@ -12,6 +12,7 @@ class BannerAlert {
     enum BannerType {
         case success
         case error
+        case info
     }
     
     static func show(title: String, subtitle: String, type: BannerType, duration: TimeInterval = 5) {
@@ -21,6 +22,8 @@ class BannerAlert {
             backgroundColor = UIColor.red
         case .success:
             backgroundColor = UIColor.systemGreen
+        case .info:
+            backgroundColor = .purple
         }
         
         let banner = Banner(title: title, subtitle: subtitle, backgroundColor: backgroundColor)
