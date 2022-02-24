@@ -60,6 +60,7 @@
 		92A4189A27B28DA6009A6BA3 /* ChatTextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A4189927B28DA6009A6BA3 /* ChatTextCollectionCell.swift */; };
 		92B9A5CF27B88FF30075B293 /* ForceUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */; };
 		92B9A5D527C5CB090075B293 /* Influencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B9A5D427C5CB090075B293 /* Influencer.swift */; };
+		92B9A5E227C7285D0075B293 /* SpinningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B9A5E127C7285D0075B293 /* SpinningButton.swift */; };
 		92BAFBAC27B1E14400773F6B /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAFBAB27B1E14400773F6B /* Enviroment.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		92A4189927B28DA6009A6BA3 /* ChatTextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextCollectionCell.swift; sourceTree = "<group>"; };
 		92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdate.swift; sourceTree = "<group>"; };
 		92B9A5D427C5CB090075B293 /* Influencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Influencer.swift; sourceTree = "<group>"; };
+		92B9A5E127C7285D0075B293 /* SpinningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningButton.swift; sourceTree = "<group>"; };
 		92BAFBAB27B1E14400773F6B /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
 		9F7CD885F0C94A5F4C9989B9 /* Pods-lookbook.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug(development).xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug(development).xcconfig"; sourceTree = "<group>"; };
 		A05B04072D0010C9A46DC331 /* Pods-lookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lookbook.debug.xcconfig"; path = "Target Support Files/Pods-lookbook/Pods-lookbook.debug.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				385483C227B1DE7D00B7C19A /* Structs.swift */,
 				92B9A5CE27B88FF30075B293 /* ForceUpdate.swift */,
 				3898BF4E27B87E33001E5C2F /* MessageHelper.swift */,
+				92B9A5E127C7285D0075B293 /* SpinningButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				386D377727B4CB1600AC0497 /* StripeManager.swift in Sources */,
+				92B9A5E227C7285D0075B293 /* SpinningButton.swift in Sources */,
 				386D374727B3379A00AC0497 /* MasterChatRoomTableViewCell.swift in Sources */,
 				92A4189727B287CB009A6BA3 /* ChatViewController.swift in Sources */,
 				386D376F27B4893C00AC0497 /* ImageExtension.swift in Sources */,

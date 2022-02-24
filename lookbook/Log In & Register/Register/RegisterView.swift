@@ -13,8 +13,7 @@ class RegisterView: UIView {
     var stackView: UIStackView!
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
-    var nextButton: UIButton!
-    var activityIndicator = UIActivityIndicatorView()
+    var nextButton: SpinningButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,7 +58,7 @@ class RegisterView: UIView {
     }
     
     private func setUpNextButton() {
-        nextButton = UIButton()
+        nextButton = SpinningButton()
         nextButton.backgroundColor = .black
         nextButton.titleLabel?.textColor = .white
         nextButton.setTitle("REGISTER", for: .normal)
@@ -70,13 +69,6 @@ class RegisterView: UIView {
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(50)
-        }
-        
-        activityIndicator.color = .white
-        nextButton.addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.width.equalTo(30)
         }
     }
     

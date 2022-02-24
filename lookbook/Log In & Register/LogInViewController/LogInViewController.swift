@@ -14,11 +14,9 @@ class LogInViewController: RegisterViewController {
         setUpResetPasswordBtn()
     }
     
-    override func nextBtnPressed() {
-        if validateEmail() && validatePassword() {
-            dataStore.logIn(email: emailTextField.text ?? "",
-                            password: passwordTextField.text ?? "")
-        }
+    override func runServerAuthentication() {
+        dataStore.logIn(email: emailTextField.text ?? "",
+                        password: passwordTextField.text ?? "")
     }
     
     private func updateLabels() {

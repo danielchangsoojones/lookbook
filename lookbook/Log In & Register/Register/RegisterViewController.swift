@@ -12,7 +12,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
     var titleLabel: UILabel!
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
-    var nextButton: UIButton!
+    var nextButton: SpinningButton!
     var dataStore: OnboardingDataStore!
     var stackView: UIStackView!
     
@@ -32,15 +32,18 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         dataStore = OnboardingDataStore(delegate: self)
     }
     
-    @objc func nextBtnPressed() {
+    @objc private func nextBtnPressed() {
+        nextButton.startSpinning()
         if validateEmail() && validatePassword() {
-            dataStore.register(email: emailTextField.text ?? "",
-                               password: passwordTextField.text ?? "")
+            runServerAuthentication()
+        } else {
+            nextButton.stopSpinning()
         }
     }
     
-    private func disableButton() {
-        
+    func runServerAuthentication() {
+        dataStore.register(email: emailTextField.text ?? "",
+                           password: passwordTextField.text ?? "")
     }
     
     func segueIntoApp() {
@@ -71,6 +74,7 @@ extension RegisterViewController {
     }
     
     func showError(title: String, subtitle: String) {
+        nextButton.stopSpinning()
         BannerAlert.show(title: title, subtitle: subtitle, type: .error)
     }
 }
