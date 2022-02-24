@@ -65,6 +65,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let accountsRowLabel = rows[indexPath.row]
         if accountsRowLabel == "Log Out" {
+            Influencer.shared = nil
             logOut()
         } else if (accountsRowLabel == "Contact Us") {
             let customerServicePhone = "3176905323"
