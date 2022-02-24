@@ -32,7 +32,7 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         dataStore = OnboardingDataStore(delegate: self)
     }
     
-    @objc private func nextBtnPressed() {
+    @objc func nextBtnPressed() {
         nextButton.startSpinning()
         if validateEmail() && validatePassword() {
             runServerAuthentication()

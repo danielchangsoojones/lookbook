@@ -76,6 +76,7 @@ class CreateProfileViewController: RegisterViewController, UINavigationControlle
     }
     
     override func nextBtnPressed() {
+        nextButton.startSpinning()
         if isComplete {
             let name = emailTextField?.text ?? ""
             let bottomText = passwordTextField?.text ?? "1111111111"
@@ -84,6 +85,8 @@ class CreateProfileViewController: RegisterViewController, UINavigationControlle
             let tabController = TabBarController()
             tabController.modalPresentationStyle = .fullScreen
             present(tabController, animated: true, completion: nil)
+        } else {
+            nextButton.stopSpinning()
         }
     }
     
