@@ -14,6 +14,7 @@ class RegisterView: UIView {
     var emailTextField: UITextField!
     var passwordTextField: UITextField!
     var nextButton: UIButton!
+    var activityIndicator = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,6 +70,13 @@ class RegisterView: UIView {
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(50)
+        }
+        
+        activityIndicator.color = .white
+        nextButton.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(30)
         }
     }
     

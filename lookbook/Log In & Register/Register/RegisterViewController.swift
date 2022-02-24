@@ -39,6 +39,10 @@ class RegisterViewController: UIViewController, OnboardingDataStoreDelegate {
         }
     }
     
+    private func disableButton() {
+        
+    }
+    
     func segueIntoApp() {
         let profileVC = CreateProfileViewController()
         pushVC(profileVC)
