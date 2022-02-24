@@ -82,15 +82,25 @@ class ChatViewController: UIViewController {
     }
     
     private func checkPushNotificationStatus() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                // Handle the error here.
+                BannerAlert.show(with: error)
+            }
+        }
+        
         let current = UNUserNotificationCenter.current()
         current.getNotificationSettings(completionHandler: { permission in
             switch permission.authorizationStatus  {
             case .authorized:
                 print("User granted permission for notification")
-            case .denied, .notDetermined:
+            case .denied:
                 DispatchQueue.main.async {
                     BannerAlert.show(title: "Enable Push Notifications", subtitle: "To see when you receive new messages from this celeb, please go to your iPhone settings and enable push notifications", type: .info)
                 }
+            case .notDetermined:
+                print("push notifications are not determined yet")
             case .provisional:
                 // @available(iOS 12.0, *)
                 print("The application is authorized to post non-interruptive user notifications.")
@@ -198,11 +208,6 @@ class ChatViewController: UIViewController {
         let indexPath = NSIndexPath(item: self.chatMessages.count - 1, section: 0) as IndexPath
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
-
-//    @objc private func keyboardWillHide(notification: NSNotification) {
-//        view.endEditing(true)
-//        bottomConstraint?.update(offset: 0)
-//    }
     
     @objc private func pressedSendBtn() {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {

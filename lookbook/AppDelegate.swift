@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpServer()
         setStartingVC()
         
-        let types: UIUserNotificationType = [.alert, .badge, .sound]
-        let settings = UIUserNotificationSettings(types: types, categories: nil)
-        application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         return true
     }
@@ -51,10 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var orientationLock = UIInterfaceOrientationMask.portrait
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-            return self.orientationLock
+        return self.orientationLock
     }
     
-        private func setUpServer() {
+    private func setUpServer() {
         let configuration = ParseClientConfiguration {
             $0.applicationId = Configuration.environment.appID
             $0.server = Configuration.environment.serverURL
