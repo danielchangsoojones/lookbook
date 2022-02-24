@@ -50,15 +50,8 @@ class ChatViewController: UIViewController {
     }
     
     private func setKeyboardDetector() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        hideKeyboardWhenTappedAround()
-    }
-    
-    private func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
-        tap.cancelsTouchesInView = false
-        collectionView.addGestureRecognizer(tap)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,6 +145,22 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @objc private func handleKeyboardNotification(notification: NSNotification) {
+        let keyboardHeight = Helpers.getKeyboardHeight(notification: notification)
+        let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
+        if isKeyboardShowing {
+            bottomConstraint?.update(offset: -keyboardHeight)
+        } else {
+            bottomConstraint?.update(offset: 0)
+        }
+        
+        UIView.animate(withDuration: 0,
+                       delay: 0,
+                       options: .curveEaseOut) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in}
+    }
+    
     @objc private func keyboardWillShow(notification: NSNotification) {
         let keyboardHeight = Helpers.getKeyboardHeight(notification: notification)
         bottomConstraint?.update(offset: -keyboardHeight)
@@ -167,10 +176,10 @@ class ChatViewController: UIViewController {
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        view.endEditing(true)
-        bottomConstraint?.update(offset: 0)
-    }
+//    @objc private func keyboardWillHide(notification: NSNotification) {
+//        view.endEditing(true)
+//        bottomConstraint?.update(offset: 0)
+//    }
     
     @objc private func pressedSendBtn() {
         if let localMessage = inputChatView.textView.text, !localMessage.isEmpty {
@@ -330,5 +339,9 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let subscriptionModalVC = SubscriptionModalViewController(influencer: influencer)
         subscriptionModalVC.modalPresentationStyle = .popover
         present(subscriptionModalVC, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        inputChatView.textView.endEditing(true)
     }
 }
