@@ -40,7 +40,7 @@ class MessengerDataStore: NSObject {
         }
     }
     
-    func sendMessage(fanId: String, influencer: InfluencerParse, isUserInfluencer: Bool, messageText: String, messageType: String, completion: @escaping (ChatRoomParse) -> Void) {
+    func sendMessage(fanId: String, influencer: InfluencerParse, isUserInfluencer: Bool, messageText: String, messageType: String, completion: @escaping (ChatRoomParse?, Error?) -> Void) {
         let parameters: [String: Any] = ["fanId": fanId,
                                          "influencerID": influencer.objectId ?? "",
                                          "isUserInfluencer": isUserInfluencer,
@@ -49,11 +49,9 @@ class MessengerDataStore: NSObject {
                                          "messageType": messageType]
         PFCloud.callFunction(inBackground: "sendMessage", withParameters: parameters) { (result, error) in
             if let result = result as? ChatRoomParse {
-                completion(result)
-            } else if let error = error {
-                BannerAlert.show(with: error)
+                completion(result, nil)
             } else {
-                BannerAlert.showUnknownError(functionName: "sendMessage")
+                completion(nil, error)
             }
         }
     }

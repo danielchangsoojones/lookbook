@@ -237,9 +237,20 @@ class ChatViewController: UIViewController {
                               influencer: influencer,
                               isUserInfluencer: self.isUserInfluencer,
                               messageText: localMessage,
-                              messageType: messageType) { chatRoomParse in
-            self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
-            print("succesfully ran sendMessage")
+                              messageType: messageType) { chatRoomParse,error  in
+            if let chatRoomParse = chatRoomParse {
+                self.chatMessages.last?.messageParse = chatRoomParse.latestMessage
+                print("succesfully ran sendMessage")
+            } else if let error = error {
+                if error.localizedDescription.contains("subscribe to DM") {
+                    self.showSubscriptionModalVC(influencer: self.influencer)
+                } else {
+                    BannerAlert.show(with: error)
+                }
+            } else {
+                BannerAlert.showUnknownError(functionName: "sendMessage")
+            }
+            
         }
     }
 }
