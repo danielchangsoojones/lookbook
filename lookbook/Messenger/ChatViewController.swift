@@ -183,8 +183,10 @@ class ChatViewController: UIViewController {
         let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
         if isKeyboardShowing {
             bottomConstraint?.update(offset: -keyboardHeight)
+            inputChatView.bottomConstraint?.update(offset: -inputChatView.topOffset)
         } else {
             bottomConstraint?.update(offset: 0)
+            inputChatView.bottomConstraint?.update(offset: -inputChatView.originalBottomConstraint)
         }
         
         UIView.animate(withDuration: 0,

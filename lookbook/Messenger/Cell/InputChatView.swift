@@ -7,8 +7,13 @@
 
 import UIKit
 import GrowingTextView
+import SnapKit
 
 class InputChatView: UIView {
+    let topOffset: CGFloat = 8
+    let originalBottomConstraint: CGFloat = 25
+    var bottomConstraint: Constraint?
+    
     let textView: GrowingTextView = {
         let textView = GrowingTextView()
         textView.maxHeight = 150
@@ -35,13 +40,14 @@ class InputChatView: UIView {
         addSubview(textView)
         sendButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(14)
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(textView)
             make.width.height.equalTo(18)
         }
         textView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalTo(sendButton.snp.leading).offset(-8)
-            make.top.bottom.equalToSuperview().inset(8)
+            make.top.equalToSuperview().inset(topOffset)
+            self.bottomConstraint = make.bottom.equalToSuperview().inset(originalBottomConstraint).constraint
         }
     }
     
